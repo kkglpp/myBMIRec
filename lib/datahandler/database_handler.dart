@@ -33,6 +33,7 @@ class DatabaseHandler {
     final Database db = await initializeDB();
     final List<Map<String, Object?>> queryResult =
         await db.rawQuery('select * from bmirecord');
+        print("QueryRecord 가져옴 dataHandler");
     return queryResult.map((e) => BMIrecord.fromMap(e)).toList();
   }
 

@@ -9,7 +9,7 @@ class SqliteRepository{
     return rs;
   }
 
-  bringRecord() async{
+  Future<List<BMIrecord>> bringRecord() async{
     DatabaseHandler db = DatabaseHandler();
     List<BMIrecord> records ;
 
