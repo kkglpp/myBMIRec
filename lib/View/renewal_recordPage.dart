@@ -10,6 +10,7 @@ import 'package:mybmirecord/View/home.dart';
 import 'package:mybmirecord/Custom/graphCard.dart';
 import 'package:mybmirecord/Custom/lineChart.dart';
 import 'package:mybmirecord/Custom/textMiddle.dart';
+import 'package:mybmirecord/View/renewal_resultbmiPage.dart';
 
 class ReRecordPage extends StatelessWidget {
   ReRecordPage({super.key});
@@ -39,7 +40,7 @@ class ReRecordPage extends StatelessWidget {
               } else {
                 return Container(
                   decoration: BoxDecoration(
-                      color: Colors.black,
+                      color: Colors.black.withAlpha(50),
                       borderRadius: BorderRadius.circular(10)),
                   width: widthsize,
                   height: (heightsize * 0.25)
@@ -48,11 +49,19 @@ class ReRecordPage extends StatelessWidget {
                     scrollDirection: Axis.horizontal,
                     itemCount: records.length,
                     itemBuilder: (context, index) {
-                      return Center(
-                        child: GridCard(records[index].imgbyte,
-                                records[index].timestamp)
-                            .girdCard(widthsize * 0.35, widthsize * 0.35,
-                                records[index].bmi, 3),
+                      return GestureDetector(
+                        onTap: () {
+                          Get.off(ResultBMIPage(recordKey: records[index].seq!));
+
+                        },
+                        child: SizedBox(
+                          child: Center(
+                            child: GridCard(records[index].imgbyte,
+                                    records[index].timestamp)
+                                .girdCard(widthsize * 0.35, widthsize * 0.35,
+                                    records[index].bmi, 3),
+                          ),
+                        ),
                       );
                     },
                   ),
@@ -89,7 +98,7 @@ class ReRecordPage extends StatelessWidget {
                                 style: ElevatedButton.styleFrom(
                                     backgroundColor:
                                         controller.graphSelect.value != 0
-                                            ? Colors.amber[200]
+                                            ? Colors.amber[100]
                                             : Colors.grey,
                                     minimumSize: Size(
                                         widthsize * 0.2, heightsize * 0.04),
@@ -105,7 +114,7 @@ class ReRecordPage extends StatelessWidget {
                                 style: ElevatedButton.styleFrom(
                                     backgroundColor:
                                         controller.graphSelect.value != 1
-                                            ? Colors.blue[200]
+                                            ? Colors.blue[100]
                                             : Colors.grey,
                                     minimumSize: Size(
                                         widthsize * 0.2, heightsize * 0.04),
@@ -121,7 +130,7 @@ class ReRecordPage extends StatelessWidget {
                                 style: ElevatedButton.styleFrom(
                                     backgroundColor:
                                         controller.graphSelect.value != 2
-                                            ? Colors.green[200]
+                                            ? Colors.green[100]
                                             : Colors.grey,
                                     minimumSize: Size(
                                         widthsize * 0.2, heightsize * 0.04),
@@ -289,32 +298,24 @@ class ReRecordPage extends StatelessWidget {
             내용 : 버튼 
              */
             Container(
-              color: Colors.green[100],
+              // color: Colors.green[100],
               width: widthsize,
               height: heightsize * 0.15,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      minimumSize: Size(widthsize * 0.8, heightsize * 0.05),
-                      // fixedSize: Size(widthsize * 0.8, heightsize * 0.04)
-                    ),
-                    onPressed: () {},
-                    child: TextCustom()
-                        .customText("목록만 보기", 12, "c", clr: Colors.blue),
-                  ),
                   Container(
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        minimumSize: Size(widthsize * 0.8, heightsize * 0.05),
+                        backgroundColor: Colors.blue,
+                        minimumSize: Size(widthsize , heightsize * 0.07),
                         // fixedSize: Size(widthsize * 0.8, heightsize * 0.04)
                       ),
                       onPressed: () {
                         Get.off(() => const Home());
                       },
                       child: TextCustom()
-                          .customText("돌아가기", 12, "c", clr: Colors.red),
+                          .customText("돌아 가기", 16, "c", clr: Colors.white),
                     ),
                   ),
                 ],
