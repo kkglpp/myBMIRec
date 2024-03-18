@@ -3,7 +3,7 @@ import 'package:mybmirecord/Custom/lineChart.dart';
 import 'package:mybmirecord/Custom/textMiddle.dart';
 
 class graphCard {
-  lineGraphCell(double widthsize, double heightsize,  double maxNum,
+  lineGraphCell(int graphStatus,double widthsize, double heightsize,  double maxNum,
       double? startNum, double middleNum, double? endNum, double lineWeight, double heightsize2 ,String xAxis, double heightsize3,) {
     return Container(
         // color: Colors.grey ,

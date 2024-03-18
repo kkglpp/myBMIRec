@@ -51,7 +51,9 @@ class LineChart extends CustomPainter {
     );
 
     Offset p3 = Offset(
-      boxWidth,
+      nextValue == null 
+      ? boxWidth/2
+      :boxWidth,
       nextValue == null 
       ?realLength((realValue.clamp(0, maxValue)))
       :realLength((nextValue!.clamp(0, maxValue)+realValue.clamp(0, maxValue))/2)

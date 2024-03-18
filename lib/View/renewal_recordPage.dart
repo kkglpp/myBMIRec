@@ -3,12 +3,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mybmirecord/Controller/recordPage_Controller.dart';
+import 'package:mybmirecord/Custom/gridCard.dart';
 import 'package:mybmirecord/Model/bmi_record.dart';
 import 'package:mybmirecord/VM_repository/sqlite_repository.dart';
 import 'package:mybmirecord/View/home.dart';
-import 'package:mybmirecord/components/graphCard.dart';
-import 'package:mybmirecord/components/lineChart.dart';
-import 'package:mybmirecord/components/textMiddle.dart';
+import 'package:mybmirecord/Custom/graphCard.dart';
+import 'package:mybmirecord/Custom/lineChart.dart';
+import 'package:mybmirecord/Custom/textMiddle.dart';
 
 class ReRecordPage extends StatelessWidget {
   ReRecordPage({super.key});
@@ -18,6 +19,7 @@ class ReRecordPage extends StatelessWidget {
     Get.put(RecordPageController());
     double widthsize = 350;
     double heightsize = 700;
+    var radiobtnStatus;
 
     return Scaffold(
       appBar: AppBar(
@@ -29,18 +31,45 @@ class ReRecordPage extends StatelessWidget {
             Container(
               color: Colors.blue[100],
               width: widthsize,
-              height: heightsize * 0.26,
+              height: heightsize * 0.24,
               child: GetX<RecordPageController>(builder: (controller) {
                 return Column(
                   children: [
-                    Text(
-                        "${controller.loadRec} 흐르게 만들기. 높이 : 0.26\n클릭하면 각 기록 확인하기. 사진에 날짜 덮어쓰기."),
                     Container(
-                        // child: CustomPaint(
-                        //   size: Size(widthsize * 0.9, heightsize * 0.1),
-                        //   painter: LineChart(),
-                        // ),
-                        )
+                      width: widthsize,
+                      height: heightsize*0.02,
+                      child: TextCustom().customText( 
+                          "${controller.loadRec} 흐르게 만들기. 높이 : 0.24\n클릭하면 각 기록 확인하기. 사진에 날짜 덮어쓰기.",8,"L"),
+                    ),
+      
+                    GetX<RecordPageController>(
+                      builder: (controller) {
+                                            if (!controller.loadRec.value) {
+                      return CircularProgressIndicator();
+                    } else {
+                        return Container(
+                          width: widthsize,
+                          height: heightsize*0.2,
+                          child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: records.length,
+                            itemBuilder: (context, index) {
+                              return GridCard(records[index].imgbyte, records[index].timestamp).girdCard(widthsize*0.3,widthsize*0.3,records[index].bmiDouble,3);
+                                
+                                
+                              
+                              
+                            },
+                            
+                            ),
+                            );
+                      }
+                      }
+                    ),
+
+                  SizedBox(
+                    height: heightsize*0.02,
+                  )                        
                   ],
                 );
               }),
@@ -48,54 +77,173 @@ class ReRecordPage extends StatelessWidget {
             Container(
               color: Colors.amber[100],
               width: widthsize,
-              height: heightsize * 0.3,
+              height: heightsize * 0.32,
               child: Column(
                 children: [
                   Container(
-                      color: Colors.purple[200],
-                      height: heightsize * 0.03,
-                      width: widthsize * 0.8,
-                      child: Text("그래프 그리는 Container. 높이 : 0.3")),
+                      // color: Colors.purple[200],
+                      height: heightsize * 0.05,
+                      width: widthsize,
+                      child: GetX<RecordPageController>(builder: (controller) {
+                        return Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text("높이 : 0.09 ${controller.graphSelect}"),
+                            const Spacer(),
+                            ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: controller.graphSelect.value !=0 ? Colors.green[50] : Colors.grey,
+
+                                    minimumSize: Size(
+                                        widthsize * 0.2, heightsize * 0.04),
+                                    fixedSize: Size(
+                                        widthsize * 0.2, heightsize * 0.04)),
+                                onPressed: controller.graphSelect.value !=0 ? () {
+                                  controller.selectBMIGraph();
+                                }: null,
+                                child: TextCustom().customText("BMI", 8, "C")),
+
+                            ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: controller.graphSelect.value !=1 ? Colors.green[50] : Colors.grey,
+
+                                    minimumSize: Size(
+                                        widthsize * 0.2, heightsize * 0.04),
+                                    fixedSize: Size(
+                                        widthsize * 0.2, heightsize * 0.04)),
+                                onPressed: controller.graphSelect.value !=1 ? () {
+                                  controller.selectHeightGraph();
+                                }:null,
+                                child: TextCustom().customText("키", 8, "C")),
+                            ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: controller.graphSelect.value !=2 ? Colors.green[50] : Colors.grey,
+
+                                    minimumSize: Size(
+                                        widthsize * 0.2, heightsize * 0.04),
+                                    fixedSize: Size(
+                                        widthsize * 0.2, heightsize * 0.04)),
+                                onPressed:controller.graphSelect.value !=2 ?  () {
+                                  controller.selectWeightGraph();
+                                }:null,
+                                child: TextCustom().customText("몸무게", 8, "C")),
+                          ],
+                        );
+                      },),),
                   GetX<RecordPageController>(builder: (controller) {
                     if (!controller.loadRec.value) {
                       bringRecords();
-                      print("???");
                       return CircularProgressIndicator();
                     } else {
-                      print("가져옴?");
-                      print(records[0].bmiDouble);
                       return Row(
                         children: [
-                          Container(
-                            color: Colors.blue[50],
-                            width: widthsize,
-                            height: heightsize * 0.25,
-                            child: ListView.builder(
-                              scrollDirection: Axis.horizontal,
-                              itemCount: records.length,
-                              itemBuilder: (context, index) {
-                                return graphCard().lineGraphCell(
-                                  widthsize*0.2,
-                                  heightsize*0.22,
-
-                                  100, //max 그래프에서 보여줄 최대값.
-                                  index ==0? null: records[index-1].bmiDouble, // 시작값. 직전 측정값
-                                  records[index].bmiDouble, // 해당 날짜의 측정 실제 값.
-                                  index+1 < records.length?  records[index+1].bmiDouble : null,
-                                  3,
-                                  heightsize*0.02,
-                                  records[index].timestamp,
-                                  heightsize*0.01,
-
-                                );
-
-                              },
+                          Visibility(
+                            visible: controller.graphSelect.value ==0,
+                            child: Container(
+                              color: Colors.grey.withAlpha(50),
+                              width: widthsize,
+                              height: heightsize * 0.25,
+                              child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemCount: records.length,
+                                itemBuilder: (context, index) {
+                                      return graphCard().lineGraphCell(
+                                        controller.graphSelect.value,
+                                        widthsize * 0.2,
+                                        heightsize * 0.22,
+                                        100, //max 그래프에서 보여줄 최대값.
+                                        index == 0
+                                            ? null
+                                            : records[index - 1]
+                                                .bmiDouble, // 시작값. 직전 측정값
+                                        records[index]
+                                            .bmiDouble, // 해당 날짜의 측정 실제 값.
+                                        index + 1 < records.length
+                                            ? records[index + 1].bmiDouble
+                                            : null,
+                                        3,
+                                        heightsize * 0.02,
+                                        records[index].timestamp,
+                                        heightsize * 0.01,
+                                      );
+                                      },
+                              ),
+                            ),
+                          ),
+                          Visibility(
+                            visible: controller.graphSelect.value ==1,
+                            child: Container(
+                              color: Colors.blue[50],
+                              width: widthsize,
+                              height: heightsize * 0.25,
+                              child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemCount: records.length,
+                                itemBuilder: (context, index) {
+                                      return graphCard().lineGraphCell(
+                                        controller.graphSelect.value,
+                                        widthsize * 0.2,
+                                        heightsize * 0.22,
+                                        250, //max 그래프에서 보여줄 최대값.
+                                        index == 0
+                                            ? null
+                                            : records[index - 1]
+                                                .heightDouble, // 시작값. 직전 측정값
+                                        records[index]
+                                            .heightDouble, // 해당 날짜의 측정 실제 값.
+                                        index + 1 < records.length
+                                            ? records[index + 1].heightDouble
+                                            : null,
+                                        3,
+                                        heightsize * 0.02,
+                                        records[index].timestamp,
+                                        heightsize * 0.01,
+                                      );
+                                      },
+                              ),
+                            ),
+                          ),
+                          Visibility(
+                            visible: controller.graphSelect.value ==2,
+                            child: Container(
+                              color: Colors.blue[50],
+                              width: widthsize,
+                              height: heightsize * 0.25,
+                              child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemCount: records.length,
+                                itemBuilder: (context, index) {
+                                      return graphCard().lineGraphCell(
+                                        controller.graphSelect.value,
+                                        widthsize * 0.2,
+                                        heightsize * 0.22,
+                                        180, //max 그래프에서 보여줄 최대값.
+                                        index == 0
+                                            ? null
+                                            : records[index - 1]
+                                                .weightDouble, // 시작값. 직전 측정값
+                                        records[index]
+                                            .weightDouble, // 해당 날짜의 측정 실제 값.
+                                        index + 1 < records.length
+                                            ? records[index + 1].weightDouble
+                                            : null,
+                                        3,
+                                        heightsize * 0.02,
+                                        records[index].timestamp,
+                                        heightsize * 0.01,
+                                      );
+                                      },
+                              ),
                             ),
                           ),
                         ],
                       );
                     }
-                  }),
+                  },
+                  ),
+                  SizedBox(
+                    height: heightsize*0.02,
+                  )
                 ],
               ),
             ),
