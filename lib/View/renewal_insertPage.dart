@@ -7,8 +7,8 @@ import 'package:mybmirecord/Model/bmi_record.dart';
 import 'package:mybmirecord/View/renewal_recordPage.dart';
 import 'package:mybmirecord/datahandler/database_handler.dart';
 import 'package:mybmirecord/View/renewal_resultbmiPage.dart';
-import 'package:mybmirecord/components/circleChart.dart';
-import 'package:mybmirecord/components/textMiddle.dart';
+import 'package:mybmirecord/Custom/circleChart.dart';
+import 'package:mybmirecord/Custom/textMiddle.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 class InsertPage extends StatelessWidget {

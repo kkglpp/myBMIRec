@@ -76,42 +76,19 @@ class ReRecordPage extends StatelessWidget {
                               itemBuilder: (context, index) {
                                 return graphCard().lineGraphCell(
                                   widthsize*0.2,
-                                  heightsize*0.23,
+                                  heightsize*0.22,
+
                                   100, //max 그래프에서 보여줄 최대값.
-                                  index ==0? null: records[index-1].bmiDouble.clamp(0, 100), // 시작값. 직전 측정값
-                                  records[index].bmiDouble.clamp(0, 100), // 해당 날짜의 측정 실제 값.
-                                  index+1 < records.length?  records[index+1].bmiDouble.clamp(0, 100) : null,
+                                  index ==0? null: records[index-1].bmiDouble, // 시작값. 직전 측정값
+                                  records[index].bmiDouble, // 해당 날짜의 측정 실제 값.
+                                  index+1 < records.length?  records[index+1].bmiDouble : null,
                                   3,
                                   heightsize*0.02,
                                   records[index].timestamp,
+                                  heightsize*0.01,
+
                                 );
-                                // return Container(
-                                //     // color: Colors.grey,
-                                //     width: widthsize * 0.2,
-                                //     height: heightsize * 0.25,
-                                //     // child: Text("${records[index].bmiDouble}")
-                                //     child: Column(
-                                //       children: [
-                                //         CustomPaint(
-                                //           size: Size(
-                                //               widthsize * 0.1, heightsize * 0.2),
-                                //           painter: LineChart(
-                                //             heightsize * 0.2,
-                                //             widthsize * 0.2,
-                                //             100,
-                                //             index ==0? null: records[index-1].bmiDouble.clamp(0, 100),
-                                //             records[index].bmiDouble.clamp(0, 100),
-                                //             3,
-                                //           ),
-                                //         ),
-                                //         Container(
-                                //           width: widthsize*0.2,
-                                //           height: heightsize*0.05,
-                                //           child: TextCustom().customText("${records[index].timestamp}", 7, "L",),
-                                //         )
-                                //       ],
-                                //     ),
-                                //     );
+
                               },
                             ),
                           ),

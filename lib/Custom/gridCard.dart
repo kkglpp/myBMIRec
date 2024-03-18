@@ -1,7 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-import 'package:mybmirecord/components/textMiddle.dart';
+import 'package:mybmirecord/Custom/textMiddle.dart';
 
 class GridCard{
 

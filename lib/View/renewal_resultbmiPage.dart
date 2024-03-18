@@ -6,9 +6,9 @@ import 'package:mybmirecord/Controller/resultBMIPage_Controller.dart';
 import 'package:mybmirecord/VM_repository/sqlite_repository.dart';
 import 'package:mybmirecord/View/home.dart';
 import 'package:mybmirecord/View/renewal_insertPage.dart';
-import 'package:mybmirecord/components/textMiddle.dart';
+import 'package:mybmirecord/Custom/textMiddle.dart';
 import 'package:get/get.dart';
-import 'package:mybmirecord/components/circleChart.dart';
+import 'package:mybmirecord/Custom/circleChart.dart';
 
 class ResultBMIPage extends StatelessWidget {
   int recordKey;
