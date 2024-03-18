@@ -14,6 +14,10 @@ class ResultBMIPageController extends GetxController {
 
     bmirec = (await db.queryOneRecord(seq))[0];
 
+    print("bmiRec_height : ${bmirec!.height}");
+    print("bmiRec_weight : ${bmirec!.weight}");
+
+
     querySuccess.value = true;
 
   }

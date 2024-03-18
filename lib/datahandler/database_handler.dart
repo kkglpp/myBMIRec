@@ -44,9 +44,9 @@ class DatabaseHandler {
     try {
       pk = await db.rawInsert(insertStr, [
         bmi.timestamp,
-        bmi.weightDouble,
-        bmi.heightDouble,
-        bmi.bmiDouble,
+        bmi.weight,
+        bmi.height,
+        bmi.bmi,
         bmi.imgbyte,
       ]);
     } catch (e) {
@@ -60,7 +60,7 @@ class DatabaseHandler {
     final Database db = await initializeDB();
     final List<Map<String, Object?>> queryResult =
         await db.rawQuery(queryOneStr, [pk]);
-    print(queryResult);
+    print("쿼리 결과 : $queryResult");
     return queryResult.map((e) => BMIrecord.fromMap(e)).toList();
   }
 
@@ -80,9 +80,9 @@ class DatabaseHandler {
     final Database db = await initializeDB();
     await db.rawUpdate(updateStr, [
       bmi.timestamp,
-      bmi.weightDouble,
-      bmi.heightDouble,
-      bmi.bmiDouble,
+      bmi.weight,
+      bmi.height,
+      bmi.bmi,
       null,
       bmi.seq
     ]);

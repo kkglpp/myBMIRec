@@ -45,7 +45,7 @@ class InsertPageController extends GetxController {
   }
 
   saveMyBMI() async {
-    print("$bmi  $height  $weight");
+    print("$bmi // 키:  $height // 몸무게: $weight");
     DatabaseHandler dh = DatabaseHandler();
     int nowYear = DateTime.now().year;
     int nowday = DateTime.now().day;
@@ -54,17 +54,17 @@ class InsertPageController extends GetxController {
     BMIrecord bmiModel;
     if (imgPath.value == "1") {
       bmiModel = BMIrecord(
-        weightDouble: weight.value,
-        heightDouble: height.value,
-        bmiDouble: bmi.value,
+        weight: weight.value,
+        height: height.value,
+        bmi: bmi.value,
         timestamp: "$nowYear / $nowMonth / $nowday",
         // imgbyte: await File(imgPath.value).readAsBytes(),
       );
     } else {
       bmiModel = BMIrecord(
-        weightDouble: weight.value,
-        heightDouble: height.value,
-        bmiDouble: bmi.value,
+        weight: weight.value,
+        height: height.value,
+        bmi: bmi.value,
         timestamp: "$nowYear / $nowMonth / $nowday",
         imgbyte: await File(imgPath.value).readAsBytes(),
       );

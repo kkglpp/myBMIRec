@@ -123,7 +123,7 @@ class ResultBMIPage extends StatelessWidget {
                                               MainAxisAlignment.end,
                                               crossAxisAlignment: CrossAxisAlignment.end,
                                           children: [TextCustom()
-                                              .customText("${controller.bmirec!.bmiDouble.toStringAsFixed(1)} ",
+                                              .customText("${controller.bmirec!.bmi.toStringAsFixed(1)} ",
                                           15,
                                           "R",)],
                                         ),
@@ -169,7 +169,7 @@ class ResultBMIPage extends StatelessWidget {
                                               MainAxisAlignment.end,
                                               crossAxisAlignment: CrossAxisAlignment.end,
                                           children: [TextCustom()
-                                              .customText("${controller.bmirec!.weightDouble.toStringAsFixed(1)} kg",
+                                              .customText("${controller.bmirec!.weight.toStringAsFixed(1)} kg",
                                           15,
                                           "R",)],
                                         ),
@@ -215,7 +215,7 @@ class ResultBMIPage extends StatelessWidget {
                                               MainAxisAlignment.end,
                                               crossAxisAlignment: CrossAxisAlignment.end,
                                           children: [TextCustom()
-                                              .customText("${controller.bmirec!.heightDouble.toStringAsFixed(1)} cm",
+                                              .customText("${controller.bmirec!.height.toStringAsFixed(1)} cm",
                                           15,
                                           "R",)],
                                         ),
@@ -277,21 +277,21 @@ class ResultBMIPage extends StatelessWidget {
                                         widthsize * 0.4 * 0.9),
                                     painter: CircleChart(
                                         Colors.green.withAlpha((255 *
-                                                (controller.bmirec!.bmiDouble >
+                                                (controller.bmirec!.bmi >
                                                         45
                                                     ? 45
                                                     : controller
-                                                        .bmirec!.bmiDouble) /
+                                                        .bmirec!.bmi) /
                                                 45)
                                             .round()),
                                         const Color.fromARGB(255, 31, 87, 33),
                                         radius: (widthsize *
                                             0.4 *
                                             0.45 *
-                                            (controller.bmirec!.bmiDouble > 45
+                                            (controller.bmirec!.bmi > 45
                                                 ? 45
                                                 : controller
-                                                    .bmirec!.bmiDouble) /
+                                                    .bmirec!.bmi) /
                                             45)),
                                   ),
                                 )
