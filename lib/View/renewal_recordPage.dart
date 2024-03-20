@@ -2,15 +2,16 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:mybmirecord/Controller/recordPage_Controller.dart';
 import 'package:mybmirecord/Custom/gridCard.dart';
 import 'package:mybmirecord/Model/bmi_record.dart';
 import 'package:mybmirecord/VM_repository/sqlite_repository.dart';
 import 'package:mybmirecord/View/home.dart';
-import 'package:mybmirecord/Custom/graphCard.dart';
-import 'package:mybmirecord/Custom/lineChart.dart';
+import 'package:mybmirecord/Custom/customLineGraph/graphCard.dart';
 import 'package:mybmirecord/Custom/textMiddle.dart';
 import 'package:mybmirecord/View/renewal_resultbmiPage.dart';
+import 'package:mybmirecord/static/forBannerAd.dart';
 
 class ReRecordPage extends StatelessWidget {
   ReRecordPage({super.key});
@@ -20,7 +21,21 @@ class ReRecordPage extends StatelessWidget {
     Get.put(RecordPageController());
     double widthsize = 350;
     double heightsize = 700;
-    var radiobtnStatus;
+  //   TargetPlatform os = Theme.of(context).platform;
+
+  //   BannerAd banner = BannerAd(
+  //     // size: AdSize(width: widthsize.toInt(), height: (heightsize*0.05).toInt()),
+  //     size: AdSize.banner,
+  //     adUnitId: UNIT_ID[os == TargetPlatform.iOS ? 'ios' : 'android']!,
+  //     listener: BannerAdListener(
+  //     onAdFailedToLoad: (Ad ad, LoadAdError error) {},
+  //     onAdLoaded: (_) {},
+  //   ),
+  //     request: AdRequest(),
+  // )..load();
+      
+      
+    
 
     return Scaffold(
       appBar: AppBar(
@@ -43,8 +58,8 @@ class ReRecordPage extends StatelessWidget {
                       color: Colors.black.withAlpha(50),
                       borderRadius: BorderRadius.circular(10)),
                   width: widthsize,
-                  height: (heightsize * 0.25)
-                      .clamp(widthsize * 0.35, heightsize * 0.25),
+                  height: (heightsize * 0.19)
+                      .clamp(widthsize * 0.35, heightsize * 0.19),
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: records.length,
@@ -285,26 +300,33 @@ class ReRecordPage extends StatelessWidget {
             파트3 :
             높이 0.14
             누적 0.66
-            내용 : 배너 광고 
+            내용 : BMI 수치 그림 
              */
-            Container(
-              color: Colors.red[100],
+            // Container(
+            SizedBox(
+              // color: Colors.red[100],
               width: widthsize,
-              height: heightsize * 0.14,
-              child: const Text("광고 넣을 자리, 높이 : 0.14"),
+              height: heightsize * 0.2,
+              child: Image.asset("images/BMI_man.jpg",
+              fit: BoxFit.contain,),
+              // child: const Text("광고 넣을 자리, 높이 : 0.14"),
             ),
             /*
             파트4 :
             높이 0.14
             누적 0.80
-            내용 : 남는 페이지
+            내용 : 배너 광고 페이지
              */
-            Container(
-              color: Colors.purple[100],
+            const Spacer(),
+            // Container(
+            SizedBox(
+              // color: Colors.purple[100],
               width: widthsize,
               height: heightsize * 0.14,
-              child: const Text("남는 파트, 높이 : 0.14"),
+              child: AdWidget(ad: MkBannerADclass().mkBannerAD(context)),
+              // child: const Text("광고 파트, 높이 : 0.14"),
             ),
+            const Spacer(),
 
             /*
             파트 5 :
@@ -313,9 +335,9 @@ class ReRecordPage extends StatelessWidget {
             내용 : 버튼 
              */
             Container(
-              // color: Colors.green[100],
+              color: Colors.green[100],
               width: widthsize,
-              height: heightsize * 0.15,
+              height: heightsize * 0.12,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -336,6 +358,7 @@ class ReRecordPage extends StatelessWidget {
                 ],
               ),
             ),
+            const Spacer(),
           ],
         ),
       ),

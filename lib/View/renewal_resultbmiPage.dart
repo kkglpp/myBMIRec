@@ -3,6 +3,7 @@
 import 'dart:io';
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:mybmirecord/Controller/resultBMIPage_Controller.dart';
 import 'package:mybmirecord/VM_repository/sqlite_repository.dart';
 import 'package:mybmirecord/View/home.dart';
@@ -10,6 +11,7 @@ import 'package:mybmirecord/View/renewal_insertPage.dart';
 import 'package:mybmirecord/Custom/textMiddle.dart';
 import 'package:get/get.dart';
 import 'package:mybmirecord/Custom/circleChart.dart';
+import 'package:mybmirecord/static/forBannerAd.dart';
 
 class ResultBMIPage extends StatelessWidget {
   int recordKey;
@@ -76,11 +78,11 @@ class ResultBMIPage extends StatelessWidget {
                       ),
                       //화면 구성3 : 기타 내용을 넣기 위한 컨테이너
                       //삭제버튼, 광고 배너,
-                      Container(
-                        color: Colors.amber,
+                      SizedBox(
+                        // color: Colors.amber,
                         width: widthsize,
                         height: heightsize * 0.14,
-                        child: Center(child: Text("광고 넣을 자리")),
+                        child: AdWidget(ad: MkBannerADclass().mkBannerAD(context)),
                       ),
                       SizedBox(
                         height: heightsize * 0.01,

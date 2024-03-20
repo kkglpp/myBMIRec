@@ -44,6 +44,9 @@ dependencies:
   ## 갤러리 사용
   image_picker: ^1.0.7
 
+  ##광고를 위함
+  google_mobile_ads: ^4.0.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
