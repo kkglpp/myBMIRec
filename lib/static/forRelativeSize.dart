@@ -7,57 +7,16 @@ class RelativeSizeClass {
   double? customFontSizeS;
   double? customFontSizeM;
   double? customFontSizeL;
+  double? customFontSizeXL;
 
   RelativeSizeClass(BuildContext context) {
-    widthSize = ResponsiveValue(
-      context,
-      conditionalValues: [
-        const Condition.equals(name: MOBILE, value: 200.0),
-        const Condition.equals(name: TABLET, value: 220.0),
-        const Condition.equals(name: '2K', value: 250.0),
-        const Condition.equals(name: '4K', value: 300.0),
-      ],
-    ).value;
-    heightSize = ResponsiveValue(
-      context,
-      conditionalValues: [
-        const Condition.equals(name: MOBILE, value: 200.0),
-        const Condition.equals(name: TABLET, value: 220.0),
-        const Condition.equals(name: '2K', value: 250.0),
-        const Condition.equals(name: '4K', value: 300.0),
-      ],
-    ).value;
-    customFontSizeS = ResponsiveValue(
-      context,
-      conditionalValues: [
-        const Condition.equals(name: MOBILE, value: 200.0),
-        const Condition.equals(name: TABLET, value: 220.0),
-        const Condition.equals(name: '2K', value: 250.0),
-        const Condition.equals(name: '4K', value: 300.0),
-      ],
-    ).value;
-    customFontSizeM = ResponsiveValue(
-      context,
-      conditionalValues: [
-        const Condition.equals(name: MOBILE, value: 200.0),
-        const Condition.equals(name: TABLET, value: 220.0),
-        const Condition.equals(name: '2K', value: 250.0),
-        const Condition.equals(name: '4K', value: 300.0),
-      ],
-    ).value;
-    customFontSizeL = ResponsiveValue(
-      context,
-      conditionalValues: [
-        const Condition.equals(name: MOBILE, value: 200.0),
-        const Condition.equals(name: TABLET, value: 220.0),
-        const Condition.equals(name: '2K', value: 250.0),
-        const Condition.equals(name: '4K', value: 300.0),
-      ],
-    ).value;
 
+    widthSize =  MediaQuery.of(context).size.width*0.9;
+    heightSize =  MediaQuery.of(context).size.height*0.9-65;
+    customFontSizeS = (widthSize! * 0.02).clamp(8, 12);  //450 기준 9
+    customFontSizeM = (widthSize! * 0.02 *1.4).clamp(14, 20); // 450 기준 10.8
+    customFontSizeL = (widthSize! * 0.02*1.4).clamp(16, 22) ; //450 기준 
+    customFontSizeXL = (widthSize! * 0.02*0.4).clamp(20, 25);
 
-
-
-    
   }
 }

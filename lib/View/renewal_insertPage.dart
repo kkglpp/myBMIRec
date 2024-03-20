@@ -1,12 +1,13 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart' as getget;
+import 'package:get/get.dart';
 import 'package:mybmirecord/Controller/insertpage_controller.dart';
 import 'package:mybmirecord/View/renewal_recordpage.dart';
 import 'package:mybmirecord/View/renewal_resultbmipage.dart';
 import 'package:mybmirecord/Custom/circleChart.dart';
 import 'package:mybmirecord/Custom/textMiddle.dart';
+import 'package:mybmirecord/static/forRelativeSize.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 class InsertPage extends StatelessWidget {
@@ -15,17 +16,15 @@ class InsertPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(InsertPageController());
-    double? wsize = ResponsiveValue(
-          context,
-          conditionalValues: [
-            Condition.equals(name: MOBILE, value: 200.0),
-            Condition.equals(name: TABLET, value: 220.0),
-            Condition.equals(name: '2K', value: 250.0),
-            Condition.equals(name: '4K', value: 300.0),
-          ],
-        ).value;
-    double widthsize = 350;
-    double heightsize = 700;
+ 
+    // double widthsize = 350;
+    double widthsize = RelativeSizeClass(context).widthSize!;
+    double heightsize = RelativeSizeClass(context).heightSize!;
+    double fsizeSmall = RelativeSizeClass(context).customFontSizeS!;
+    double fsizeMiddle = RelativeSizeClass(context).customFontSizeM!;
+    double fsizeLarge= RelativeSizeClass(context).customFontSizeL!;
+    double fsizeXLarge= RelativeSizeClass(context).customFontSizeXL!;
+    // double heightsize = 700;
     return Scaffold(
       body: Center(
         child: Column(
@@ -47,7 +46,7 @@ class InsertPage extends StatelessWidget {
                     child: Center(
                       child: TextCustom().customText(
                           "${controller.height.toStringAsFixed(1)}cm",
-                          widthsize * 0.06,
+                          fsizeLarge,
                           'C'),
                     ),
                   ),
@@ -86,7 +85,7 @@ class InsertPage extends StatelessWidget {
                     child: Center(
                       child: TextCustom().customText(
                           "${controller.weight.toStringAsFixed(1)} kg",
-                          widthsize * 0.06,
+                          fsizeLarge,
                           'C'),
                     ),
                   ),
@@ -142,7 +141,7 @@ class InsertPage extends StatelessWidget {
                           // color: Colors.grey,
                           child: TextCustom().customText(
                               "BMI : ${controller.bmi.toStringAsFixed(1)}",
-                              widthsize * 0.05,
+                              fsizeXLarge,
                               "L"),
                         ),
                         const Spacer(),
@@ -154,7 +153,7 @@ class InsertPage extends StatelessWidget {
                               // mainAxisAlignment: MainAxisAlignment.end,
                               children: [
                                 TextCustom().customText(
-                                    "사진 고르기 ➤ ", widthsize * 0.05, "R"),
+                                    "사진 고르기 ➤ ", fsizeLarge, "R",),
                               ],
                             )),
                         SizedBox(
@@ -212,11 +211,11 @@ class InsertPage extends StatelessWidget {
                                   onPressed: () {
                                     _selectImage(ctrl);
                                   },
-                                  child: const Text(
+                                  child: Text(
                                     "눈바디 사진 선택",
                                     style: TextStyle(
                                         fontWeight: FontWeight.w800,
-                                        fontSize: 16),
+                                        fontSize: fsizeMiddle),
                                   ),
                                 )
                               ],
@@ -323,14 +322,14 @@ class InsertPage extends StatelessWidget {
               },
               child: SizedBox(
                 width: widthsize * 0.8,
-                child: const Row(
+                child:  Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Icons.save),
+                    Icon(Icons.save, size: fsizeXLarge*1.6,),
                     Text(
-                      " 저 장 하 기",
+                      "  저 장 하 기",
                       style:
-                          TextStyle(fontWeight: FontWeight.w800, fontSize: 18),
+                          TextStyle(fontWeight: FontWeight.w800, fontSize: fsizeXLarge),
                     ),
                   ],
                 ),
@@ -350,14 +349,14 @@ class InsertPage extends StatelessWidget {
               },
               child: SizedBox(
                 width: widthsize * 0.8,
-                child: const Row(
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Icons.menu_sharp),
+                    Icon(Icons.menu_sharp, size : fsizeXLarge*1.6),
                     Text(
-                      " 목 록 보 기",
+                      "   목 록 보 기",
                       style:
-                          TextStyle(fontWeight: FontWeight.w800, fontSize: 18),
+                          TextStyle(fontWeight: FontWeight.w800, fontSize: fsizeXLarge),
                     ),
                   ],
                 ),
