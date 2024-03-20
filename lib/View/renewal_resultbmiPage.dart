@@ -53,15 +53,23 @@ class ResultBMIPage extends StatelessWidget {
                           height: heightsize * 0.6,
                           child: controller.bmirec!.imgbyte != null
                               ? Image.memory(
-                                  controller.bmirec!.imgbyte!,
+                                  controller.bmirec!.imgbyte!, 
                                   width: widthsize,
                                   fit: BoxFit.contain,
                                 )
-                              : Image.asset(
-                                  "images/0.jpeg",
+                              : Center(
+                                child: Container(
+                                  color: Colors.black,
                                   width: widthsize,
-                                  fit: BoxFit.contain,
-                                )),
+                                  height: widthsize,
+                                  child: Center(
+                                    child: TextCustom().customText("No Image", 20, "C",clr: Colors.white),
+                                  )
+                                  
+                                  
+                                ),
+                              )
+                                ),
 
                       SizedBox(
                         height: heightsize * 0.01,

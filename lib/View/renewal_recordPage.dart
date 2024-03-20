@@ -93,6 +93,18 @@ class ReRecordPage extends StatelessWidget {
                         return Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
+                            SizedBox(
+                              width: widthsize*0.2,
+                              height: heightsize*0.5,
+                              child:Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [TextCustom().customText(controller.graphSelect.value == 0? "" : controller.graphSelect.value ==1? "단위 : cm " :"단위 : kg", 11, "C",clr: Colors.black)],
+                              )
+                              
+                              
+                            ),
+                            
                             const Spacer(),
                             ElevatedButton(
                                 style: ElevatedButton.styleFrom(
@@ -183,6 +195,7 @@ class ReRecordPage extends StatelessWidget {
                                       heightsize * 0.02,
                                       records[index].timestamp,
                                       heightsize * 0.01,
+                                      
                                     );
                                   },
                                 ),
@@ -216,6 +229,7 @@ class ReRecordPage extends StatelessWidget {
                                       heightsize * 0.02,
                                       records[index].timestamp,
                                       heightsize * 0.01,
+                                      
                                     );
                                   },
                                 ),
@@ -248,7 +262,8 @@ class ReRecordPage extends StatelessWidget {
                                       3,
                                       heightsize * 0.02,
                                       records[index].timestamp,
-                                      heightsize * 0.01,
+                                      heightsize * 0.01
+                                      
                                     );
                                   },
                                 ),
