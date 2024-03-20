@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mybmirecord/View/insert_bmi.dart';
-import 'package:mybmirecord/View/renewal_insertPage.dart';
+
+import 'package:mybmirecord/View/renewal-insertPage.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});

@@ -1,17 +1,20 @@
 // import 'dart:ffi';
 
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:mybmirecord/Controller/recordPage_Controller.dart';
+import 'package:mybmirecord/Controller/recordpage_controller.dart';
 import 'package:mybmirecord/Custom/gridCard.dart';
-import 'package:mybmirecord/Model/bmi_record.dart';
 import 'package:mybmirecord/VM_repository/sqlite_repository.dart';
 import 'package:mybmirecord/View/home.dart';
 import 'package:mybmirecord/Custom/customLineGraph/graphCard.dart';
 import 'package:mybmirecord/Custom/textMiddle.dart';
-import 'package:mybmirecord/View/renewal_resultbmiPage.dart';
+import 'package:mybmirecord/View/renewal_resultbmipage.dart';
 import 'package:mybmirecord/static/forBannerAd.dart';
+
+import '../Model/bmi_record.dart';
 
 class ReRecordPage extends StatelessWidget {
   ReRecordPage({super.key});
@@ -21,21 +24,6 @@ class ReRecordPage extends StatelessWidget {
     Get.put(RecordPageController());
     double widthsize = 350;
     double heightsize = 700;
-  //   TargetPlatform os = Theme.of(context).platform;
-
-  //   BannerAd banner = BannerAd(
-  //     // size: AdSize(width: widthsize.toInt(), height: (heightsize*0.05).toInt()),
-  //     size: AdSize.banner,
-  //     adUnitId: UNIT_ID[os == TargetPlatform.iOS ? 'ios' : 'android']!,
-  //     listener: BannerAdListener(
-  //     onAdFailedToLoad: (Ad ad, LoadAdError error) {},
-  //     onAdLoaded: (_) {},
-  //   ),
-  //     request: AdRequest(),
-  // )..load();
-      
-      
-    
 
     return Scaffold(
       appBar: AppBar(
@@ -99,7 +87,7 @@ class ReRecordPage extends StatelessWidget {
               height: heightsize * 0.32,
               child: Column(
                 children: [
-                  Container(
+                  SizedBox(
                     // color: Colors.purple[200],
                     height: heightsize * 0.05,
                     width: widthsize,
@@ -334,14 +322,15 @@ class ReRecordPage extends StatelessWidget {
             누적 :0.95
             내용 : 버튼 
              */
-            Container(
-              color: Colors.green[100],
+            // Container(
+            SizedBox(
+              // color: Colors.green[100],
               width: widthsize,
               height: heightsize * 0.12,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
+                  SizedBox(
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.blue,
@@ -367,11 +356,11 @@ class ReRecordPage extends StatelessWidget {
 
   bringRecords() async {
     SqliteRepository sql = SqliteRepository();
-    print("뷰 에서보기");
+
     // records.addAll(await sql.bringRecord()) ;
     records = await sql.bringRecord();
-    print("리스트 가져옴");
+
     Get.find<RecordPageController>().loadRec.value = true;
-    print("컨트롤러 조정");
+
   } //end of bringRecords
 } //end  of class

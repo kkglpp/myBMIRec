@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:mybmirecord/Model/bmi_record.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
@@ -33,7 +31,7 @@ class DatabaseHandler {
     final Database db = await initializeDB();
     final List<Map<String, Object?>> queryResult =
         await db.rawQuery('select * from bmirecord');
-        print("QueryRecord 가져옴 dataHandler");
+        // print("QueryRecord 가져옴 dataHandler");
     return queryResult.map((e) => BMIrecord.fromMap(e)).toList();
   }
 
@@ -50,7 +48,7 @@ class DatabaseHandler {
         bmi.imgbyte,
       ]);
     } catch (e) {
-      print("db handler Try 에러$e");
+      // print("db handler Try 에러$e");
     }
 
     return pk;
@@ -60,7 +58,7 @@ class DatabaseHandler {
     final Database db = await initializeDB();
     final List<Map<String, Object?>> queryResult =
         await db.rawQuery(queryOneStr, [pk]);
-    print("쿼리 결과 : $queryResult");
+    // print("쿼리 결과 : $queryResult");
     return queryResult.map((e) => BMIrecord.fromMap(e)).toList();
   }
 
@@ -70,7 +68,7 @@ class DatabaseHandler {
     try {
       await db.rawDelete(deleteStr, [recordKey]);
     } catch (e) {
-      print(e);
+      // print(e);
       return false;
     }
     return true;

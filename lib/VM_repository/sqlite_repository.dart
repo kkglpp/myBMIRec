@@ -1,5 +1,6 @@
-import 'package:mybmirecord/Model/bmi_record.dart';
-import 'package:mybmirecord/datahandler/database_handler.dart';
+
+import '../Model/bmi_record.dart';
+import '../datahandler/database_handler.dart';
 
 class SqliteRepository{
 
@@ -14,7 +15,7 @@ class SqliteRepository{
     List<BMIrecord> records ;
 
     records = await db.queryRecord();
-    print("개수 : ${records.length}");
+    // print("개수 : ${records.length}");
 
     return records;
 

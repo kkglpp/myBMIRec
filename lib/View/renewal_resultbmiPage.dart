@@ -1,22 +1,21 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
-import 'dart:io';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:mybmirecord/Controller/resultBMIPage_Controller.dart';
+import 'package:mybmirecord/Controller/resultBMIPage-Controller.dart';
 import 'package:mybmirecord/VM_repository/sqlite_repository.dart';
 import 'package:mybmirecord/View/home.dart';
-import 'package:mybmirecord/View/renewal_insertPage.dart';
+
 import 'package:mybmirecord/Custom/textMiddle.dart';
 import 'package:get/get.dart';
 import 'package:mybmirecord/Custom/circleChart.dart';
 import 'package:mybmirecord/static/forBannerAd.dart';
 
 class ResultBMIPage extends StatelessWidget {
-  int recordKey;
+  final int recordKey;
 
-  ResultBMIPage({
+  const ResultBMIPage({
     Key? key,
     required this.recordKey,
   }) : super(key: key);
@@ -26,7 +25,7 @@ class ResultBMIPage extends StatelessWidget {
     Get.put(ResultBMIPageController());
     double widthsize = 350;
     double heightsize = 700;
-    bool querysucess = false;
+    // bool querysucess = false;
     // bringQuery(recordKey);
     return Scaffold(
       appBar: AppBar(
@@ -41,7 +40,7 @@ class ResultBMIPage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Container(
+                SizedBox(
                   // color: Colors.grey,
                   width: widthsize,
                   height: heightsize,
@@ -55,23 +54,21 @@ class ResultBMIPage extends StatelessWidget {
                           height: heightsize * 0.6,
                           child: controller.bmirec!.imgbyte != null
                               ? Image.memory(
-                                  controller.bmirec!.imgbyte!, 
+                                  controller.bmirec!.imgbyte!,
                                   width: widthsize,
                                   fit: BoxFit.contain,
                                 )
                               : Center(
-                                child: Container(
-                                  color: Colors.black,
-                                  width: widthsize,
-                                  height: widthsize,
-                                  child: Center(
-                                    child: TextCustom().customText("No Image", 20, "C",clr: Colors.white),
-                                  )
-                                  
-                                  
-                                ),
-                              )
-                                ),
+                                  child: Container(
+                                      color: Colors.black,
+                                      width: widthsize,
+                                      height: widthsize,
+                                      child: Center(
+                                        child: TextCustom().customText(
+                                            "No Image", 20, "C",
+                                            clr: Colors.white),
+                                      )),
+                                )),
 
                       SizedBox(
                         height: heightsize * 0.01,
@@ -82,14 +79,16 @@ class ResultBMIPage extends StatelessWidget {
                         // color: Colors.amber,
                         width: widthsize,
                         height: heightsize * 0.14,
-                        child: AdWidget(ad: MkBannerADclass().mkBannerAD(context)),
+                        child:
+                            AdWidget(ad: MkBannerADclass().mkBannerAD(context)),
                       ),
                       SizedBox(
                         height: heightsize * 0.01,
                       ),
 
                       //화면구성2 : 수치 및 메시지 전달하는 컨테이너
-                      Container(
+                      SizedBox(
+                        // Container(
                         // color: Colors.green,
                         width: widthsize,
                         height: heightsize * 0.15,
@@ -102,42 +101,51 @@ class ResultBMIPage extends StatelessWidget {
                                   //높이 : 0.04
                                   children: [
                                     SizedBox(
-                                        // color: Colors.amber[50],
-                                        height: heightsize * 0.04,
-                                        width: widthsize * 0.25,
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.end,
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [TextCustom()
-                                              .customText("BMI ", 15, "L")],
-                                        ),
-                                        ),
-                                    SizedBox(
-                                                                              height: heightsize * 0.04,
-
-                                      width: widthsize * 0.05,
-                                      child:Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.end,
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [TextCustom()
-                                              .customText(": ", 15, "R")],
-                                        ),
+                                      // color: Colors.amber[50],
+                                      height: heightsize * 0.04,
+                                      width: widthsize * 0.25,
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          TextCustom()
+                                              .customText("BMI ", 15, "L")
+                                        ],
+                                      ),
                                     ),
-                                    Container(
+                                    SizedBox(
+                                      height: heightsize * 0.04,
+                                      width: widthsize * 0.05,
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          TextCustom().customText(": ", 15, "R")
+                                        ],
+                                      ),
+                                    ),
+                                    // Container(
+                                    SizedBox(
                                       // color: Colors.red[100],
                                       height: heightsize * 0.04,
                                       width: widthsize * 0.25,
                                       child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.end,
-                                              crossAxisAlignment: CrossAxisAlignment.end,
-                                          children: [TextCustom()
-                                              .customText("${controller.bmirec!.bmi.toStringAsFixed(1)} ",
-                                          15,
-                                          "R",)],
-                                        ),
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.end,
+                                        children: [
+                                          TextCustom().customText(
+                                            "${controller.bmirec!.bmi.toStringAsFixed(1)} ",
+                                            15,
+                                            "R",
+                                          )
+                                        ],
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -147,43 +155,51 @@ class ResultBMIPage extends StatelessWidget {
                                 Row(
                                   //높이 : 0.04
                                   children: [
-                                    Container(
+                                    SizedBox(
                                       // color: Colors.amber[50],
                                       height: heightsize * 0.04,
                                       width: widthsize * 0.25,
                                       child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.end,
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [TextCustom()
-                                              .customText("몸무게", 15, "L")],
-                                        ),
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          TextCustom()
+                                              .customText("몸무게", 15, "L")
+                                        ],
+                                      ),
                                     ),
                                     SizedBox(
-                                        height: heightsize * 0.04,
-
+                                      height: heightsize * 0.04,
                                       width: widthsize * 0.05,
-                                      child:Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.end,
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [TextCustom()
-                                              .customText(": ", 15, "R")],
-                                        ),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          TextCustom().customText(": ", 15, "R")
+                                        ],
+                                      ),
                                     ),
-                                    Container(
+                                    SizedBox(
                                       // color: Colors.red[100],
                                       height: heightsize * 0.04,
                                       width: widthsize * 0.25,
                                       child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.end,
-                                              crossAxisAlignment: CrossAxisAlignment.end,
-                                          children: [TextCustom()
-                                              .customText("${controller.bmirec!.weight.toStringAsFixed(1)} kg",
-                                          15,
-                                          "R",)],
-                                        ),
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.end,
+                                        children: [
+                                          TextCustom().customText(
+                                            "${controller.bmirec!.weight.toStringAsFixed(1)} kg",
+                                            15,
+                                            "R",
+                                          )
+                                        ],
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -193,43 +209,50 @@ class ResultBMIPage extends StatelessWidget {
                                 Row(
                                   //높이 : 0.04
                                   children: [
-                                    Container(
+                                    SizedBox(
                                       // color: Colors.amber[50],
                                       height: heightsize * 0.04,
                                       width: widthsize * 0.25,
                                       child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.end,
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [TextCustom()
-                                              .customText("키 ", 15, "L")],
-                                        ),
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          TextCustom().customText("키 ", 15, "L")
+                                        ],
+                                      ),
                                     ),
                                     SizedBox(
-                                        height: heightsize * 0.04,
-
+                                      height: heightsize * 0.04,
                                       width: widthsize * 0.05,
-                                      child:Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.end,
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [TextCustom()
-                                              .customText(": ", 15, "R")],
-                                        ),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          TextCustom().customText(": ", 15, "R")
+                                        ],
+                                      ),
                                     ),
-                                    Container(
+                                    SizedBox(
                                       // color: Colors.red[100],
                                       height: heightsize * 0.04,
                                       width: widthsize * 0.25,
                                       child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.end,
-                                              crossAxisAlignment: CrossAxisAlignment.end,
-                                          children: [TextCustom()
-                                              .customText("${controller.bmirec!.height.toStringAsFixed(1)} cm",
-                                          15,
-                                          "R",)],
-                                        ),
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.end,
+                                        children: [
+                                          TextCustom().customText(
+                                            "${controller.bmirec!.height.toStringAsFixed(1)} cm",
+                                            15,
+                                            "R",
+                                          )
+                                        ],
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -239,7 +262,7 @@ class ResultBMIPage extends StatelessWidget {
                               width: widthsize * 0.05,
                             ),
                             // 원 그래프 들어있는 컨테이너 시작
-                            Container(
+                            SizedBox(
                               // color: Colors.pink,
                               width: widthsize * 0.4,
                               height: heightsize * 0.15,
@@ -252,31 +275,48 @@ class ResultBMIPage extends StatelessWidget {
                                       color: Colors.red.withAlpha(40),
                                       border: Border.all(
                                           color: Colors.red, width: 3)),
-                                  width: (min(widthsize * 0.4, heightsize*0.15)  ) * 0.9,
-                                  height: (min(widthsize * 0.4, heightsize*0.15)  ) * 0.9,
+                                  width: (min(
+                                          widthsize * 0.4, heightsize * 0.15)) *
+                                      0.9,
+                                  height: (min(
+                                          widthsize * 0.4, heightsize * 0.15)) *
+                                      0.9,
                                   // height: widthsize * 0.9,
                                 ),
                                 Positioned(
                                   child: CustomPaint(
-                                    size: Size((min(widthsize * 0.4, heightsize*0.15)  ) * 0.9,
-                                        (min(widthsize * 0.4, heightsize*0.15)  )* 0.9),
+                                    size: Size(
+                                        (min(widthsize * 0.4,
+                                                heightsize * 0.15)) *
+                                            0.9,
+                                        (min(widthsize * 0.4,
+                                                heightsize * 0.15)) *
+                                            0.9),
                                     painter: CircleChart(
-                                        Colors.blue.withAlpha(50), Colors.blue,
-                                        radius: ((min(widthsize * 0.4, heightsize*0.15))*
-                                            0.45 *
-                                            (30) /
-                                            45),
-                                            ),
+                                      Colors.blue.withAlpha(50),
+                                      Colors.blue,
+                                      radius: ((min(widthsize * 0.4,
+                                              heightsize * 0.15)) *
+                                          0.45 *
+                                          (30) /
+                                          45),
+                                    ),
                                   ),
                                 ),
                                 Positioned(
                                   child: CustomPaint(
-                                    size: Size((min(widthsize * 0.4, heightsize*0.15)  )* 0.9,
-                                        (min(widthsize * 0.4, heightsize*0.15)  ) * 0.9),
+                                    size: Size(
+                                        (min(widthsize * 0.4,
+                                                heightsize * 0.15)) *
+                                            0.9,
+                                        (min(widthsize * 0.4,
+                                                heightsize * 0.15)) *
+                                            0.9),
                                     painter: CircleChart(
                                         Colors.purple.withAlpha(50),
                                         Colors.purple,
-                                        radius: ((min(widthsize * 0.4, heightsize*0.15)  ) *
+                                        radius: ((min(widthsize * 0.4,
+                                                heightsize * 0.15)) *
                                             0.45 *
                                             (18.5) /
                                             45)),
@@ -284,20 +324,29 @@ class ResultBMIPage extends StatelessWidget {
                                 ),
                                 Positioned(
                                   child: CustomPaint(
-                                    size: Size((min(widthsize * 0.4, heightsize*0.15)  ) * 0.9,
-                                        (min(widthsize * 0.4, heightsize*0.15)  ) * 0.9),
+                                    size: Size(
+                                        (min(widthsize * 0.4,
+                                                heightsize * 0.15)) *
+                                            0.9,
+                                        (min(widthsize * 0.4,
+                                                heightsize * 0.15)) *
+                                            0.9),
                                     painter: CircleChart(
                                         Colors.green.withAlpha((255 *
-                                                (controller.bmirec!.bmi >
-                                                        45
+                                                (controller.bmirec!.bmi > 45
                                                     ? 45
-                                                    : controller
-                                                        .bmirec!.bmi) /
+                                                    : controller.bmirec!.bmi) /
                                                 45)
                                             .round()),
                                         const Color.fromARGB(255, 31, 87, 33),
-                                        
-                                        radius: ((min(widthsize * 0.4, heightsize*0.15)  )*0.9*0.5 *(controller.bmirec!.bmi > 45? 45: controller.bmirec!.bmi) /45)),
+                                        radius: ((min(widthsize * 0.4,
+                                                heightsize * 0.15)) *
+                                            0.9 *
+                                            0.5 *
+                                            (controller.bmirec!.bmi > 45
+                                                ? 45
+                                                : controller.bmirec!.bmi) /
+                                            45)),
                                   ),
                                 )
                               ])),
@@ -308,7 +357,7 @@ class ResultBMIPage extends StatelessWidget {
                       SizedBox(
                         height: heightsize * 0.02,
                       ),
-                      Container(
+                      SizedBox(
                         // color: Colors.blue,
                         height: heightsize * 0.07,
                         width: widthsize,
@@ -324,7 +373,6 @@ class ResultBMIPage extends StatelessWidget {
                                             heightsize * 0.06)),
                                     onPressed: () {
                                       deleteDialog();
-
                                     },
                                     child: TextCustom().customText(
                                         "삭제하기", 12, "C",
@@ -337,7 +385,7 @@ class ResultBMIPage extends StatelessWidget {
                                         fixedSize: Size(widthsize * 0.4,
                                             heightsize * 0.06)),
                                     onPressed: () {
-                                      Get.off(Home());
+                                      Get.off(const Home());
                                     },
                                     child: TextCustom().customText(
                                         "확 인", 12, "C",
@@ -358,80 +406,73 @@ class ResultBMIPage extends StatelessWidget {
     );
   } // end of widget
 
-  doQuery(ResultBMIPageController controller)  {
+  doQuery(ResultBMIPageController controller) {
     controller.bringQuery(recordKey);
   } //doQUery 종료
 
   deleteDialog() {
-     Get.defaultDialog(
-      title: "기록삭제",
-      content: Text("정말로 기록을 삭제하시겠습니까?\n 지난 날짜의 기록은 기록할 수 없으며,\n삭제된 기록은 복구되지 않습니다. "),
-      barrierDismissible: false,
-      actions: [
-        TextButton(onPressed: (){
-            deleteQuery(recordKey);
-            Get.back();
-
-        },
-        child: Text("삭제"),
-        ),
-        TextButton(onPressed: (){
-          Get.back();
-        },
-        child: Text("취소"),
-        ),
-      ]
-    );
+    Get.defaultDialog(
+        title: "기록삭제",
+        content: const Text(
+            "정말로 기록을 삭제하시겠습니까?\n 지난 날짜의 기록은 기록할 수 없으며,\n삭제된 기록은 복구되지 않습니다. "),
+        barrierDismissible: false,
+        actions: [
+          TextButton(
+            onPressed: () {
+              deleteQuery(recordKey);
+              Get.back();
+            },
+            child: const Text("삭제"),
+          ),
+          TextButton(
+            onPressed: () {
+              Get.back();
+            },
+            child: const Text("취소"),
+          ),
+        ]);
   } //end of deleteDialog
-
 
   deleteQuery(int seq) async {
     SqliteRepository vm = SqliteRepository();
     bool rs = await vm.deleteRecord(seq);
-    if (rs){
+    if (rs) {
       deleteSuccess();
-    }else{
+    } else {
       deleteFail();
     }
     return rs;
-
-  }  
+  }
 
   deleteSuccess() async {
     await Get.defaultDialog(
-      title: "삭제 완료",
-      content: Text("기록이 정상적으로 삭제되었습니다."),
-      barrierDismissible: false,
-      actions: [
-        TextButton(onPressed: (){
-          Get.offAll(Home()); // 다 종료하고 첫화면으로 이동
-        },
-        child: Text("확 인"),
-        ),
-      ]
-    );
+        title: "삭제 완료",
+        content: const Text("기록이 정상적으로 삭제되었습니다."),
+        barrierDismissible: false,
+        actions: [
+          TextButton(
+            onPressed: () {
+              Get.offAll(const Home()); // 다 종료하고 첫화면으로 이동
+            },
+            child: const Text("확 인"),
+          ),
+        ]);
     Get.back();
   } //deleteSuccess 종료
+
   deleteFail() async {
-      await Get.defaultDialog(
-      title: "삭제 실패",
-      content: Text("기록이 없거나, 삭제할 수 없는 기록입니다."),
-      barrierDismissible: false,
-      actions: [
-        TextButton(onPressed: (){
-          Get.offAll(Home()); // 다 종료하고 첫화면으로 이동
-
-        },
-        child: Text("확 인"),
-        ),
-      ]
-    );
-              Get.back();
-
+    await Get.defaultDialog(
+        title: "삭제 실패",
+        content: const Text("기록이 없거나, 삭제할 수 없는 기록입니다."),
+        barrierDismissible: false,
+        actions: [
+          TextButton(
+            onPressed: () {
+              Get.offAll(const Home()); // 다 종료하고 첫화면으로 이동
+            },
+            child: const Text("확 인"),
+          ),
+        ]);
+    Get.back();
   } //deleteFail 종료
-
-
-
-
-  
 } //end of class

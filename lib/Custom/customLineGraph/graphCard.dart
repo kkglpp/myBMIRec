@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mybmirecord/Custom/lineChart.dart';
+import 'package:mybmirecord/Custom/customLineGraph/lineChart.dart';
 import 'package:mybmirecord/Custom/textMiddle.dart';
 
 class graphCard {

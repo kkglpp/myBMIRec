@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -8,15 +7,6 @@ import 'package:responsive_framework/responsive_framework.dart';
 
 
 
-const Map<String, String> UNIT_ID = kReleaseMode
-    ? {
-        'ios': '[YOUR iOS AD UNIT ID]',
-        'android': '[YOUR ANDROID AD UNIT ID]',
-      }
-    : {
-        'ios': 'ca-app-pub-4716787481822502/4135660246',
-        'android': 'ca-app-pub-3940256099942544/6300978111',
-      };
 
 
 void main() {

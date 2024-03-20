@@ -1,6 +1,6 @@
 import 'dart:typed_data';
 
-import 'package:get/get_rx/src/rx_types/rx_types.dart';
+
 
 class BMIrecord {
   final int? seq;

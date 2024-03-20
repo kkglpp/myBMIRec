@@ -1,11 +1,9 @@
 import 'dart:io';
 
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mybmirecord/Model/bmi_record.dart';
 import 'package:mybmirecord/datahandler/database_handler.dart';
-import 'package:mybmirecord/View/renewal_resultbmiPage.dart';
 
 class InsertPageController extends GetxController {
   //field
@@ -37,15 +35,15 @@ class InsertPageController extends GetxController {
     XFile? tempFile = await imgPicker.pickImage(source: ImageSource.gallery);
     if (tempFile != null) {
       imgPath.value = tempFile!.path;
-      print("tempFile : $tempFile");
-      print("tempFile path : ${tempFile.path}");
+      // print("tempFile : $tempFile");
+      // print("tempFile path : ${tempFile.path}");
     } else {
-      print("사진 가져오지 않음.");
+      // print("사진 가져오지 않음.");
     }
   }
 
   saveMyBMI() async {
-    print("$bmi // 키:  $height // 몸무게: $weight");
+    // print("$bmi // 키:  $height // 몸무게: $weight");
     DatabaseHandler dh = DatabaseHandler();
     int nowYear = DateTime.now().year;
     int nowday = DateTime.now().day;
@@ -70,15 +68,15 @@ class InsertPageController extends GetxController {
       );
     }
 
-    print(bmiModel.imgbyte);
+    // print(bmiModel.imgbyte);
     rs = await dh.insertRecord(
       bmiModel,
     );
 
     if (rs == 0) {
-      print("저장실패");
+      // print("저장실패");
     } else {
-      print("??");
+      // print("??");
       return rs;
     }
   } //end of save

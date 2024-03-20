@@ -27,7 +27,7 @@ class MkBannerADclass{
       onAdFailedToLoad: (Ad ad, LoadAdError error) {},
       onAdLoaded: (_) {},
     ),
-      request: AdRequest(),
+      request: const AdRequest(),
   )..load();
   return banner;
 

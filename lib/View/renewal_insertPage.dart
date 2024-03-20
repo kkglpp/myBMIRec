@@ -1,12 +1,10 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:mybmirecord/Controller/insertPage_Controller.dart';
-import 'package:mybmirecord/Model/bmi_record.dart';
-import 'package:mybmirecord/View/renewal_recordPage.dart';
-import 'package:mybmirecord/datahandler/database_handler.dart';
-import 'package:mybmirecord/View/renewal_resultbmiPage.dart';
+import 'package:get/get.dart' as getget;
+import 'package:mybmirecord/Controller/insertpage_controller.dart';
+import 'package:mybmirecord/View/renewal_recordpage.dart';
+import 'package:mybmirecord/View/renewal_resultbmipage.dart';
 import 'package:mybmirecord/Custom/circleChart.dart';
 import 'package:mybmirecord/Custom/textMiddle.dart';
 import 'package:responsive_framework/responsive_framework.dart';
@@ -17,6 +15,15 @@ class InsertPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(InsertPageController());
+    double? wsize = ResponsiveValue(
+          context,
+          conditionalValues: [
+            Condition.equals(name: MOBILE, value: 200.0),
+            Condition.equals(name: TABLET, value: 220.0),
+            Condition.equals(name: '2K', value: 250.0),
+            Condition.equals(name: '4K', value: 300.0),
+          ],
+        ).value;
     double widthsize = 350;
     double heightsize = 700;
     return Scaffold(
@@ -57,8 +64,6 @@ class InsertPage extends StatelessWidget {
                       max: 250,
                       divisions: 1500,
                       onChanged: (value) {
-                        print("키 슬라이더 작동");
-                        // Get.find<InsertPageController>().changeHeight(value);
                         controller.changeHeight(value);
                       },
                     ),
@@ -98,8 +103,7 @@ class InsertPage extends StatelessWidget {
                       max: 180,
                       divisions: 1500,
                       onChanged: (value) {
-                        print("몸무게 슬라이더 작동");
-                        // Get.find<InsertPageController>().changeHeight(value);
+
                         controller.changeWeight(value);
                       },
                     ),
