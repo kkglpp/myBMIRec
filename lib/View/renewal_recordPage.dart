@@ -2,6 +2,8 @@
 
 // ignore_for_file: must_be_immutable
 
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -20,6 +22,12 @@ import '../static/forRelativeSize.dart';
 class ReRecordPage extends StatelessWidget {
   ReRecordPage({super.key});
   late List<BMIrecord> records = [];
+  late double minBMI ;
+  late double maxBMI ;
+  late double minHeight;
+  late double maxHeight;
+  late double minWeight;
+  late double maxWeight;
   @override
   Widget build(BuildContext context) {
     Get.put(RecordPageController());
@@ -32,7 +40,7 @@ class ReRecordPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("My Records"),
+        title: TextCustom().customText("My BMI Status ? ", fsizeXLarge, "C"),
       ),
       body: Center(
         child: Column(
@@ -199,7 +207,8 @@ class ReRecordPage extends StatelessWidget {
                                         controller.graphSelect.value,
                                         widthsize * 0.2,
                                         heightsize * 0.22,
-                                        100, //max 그래프에서 보여줄 최대값.
+                                        minBMI*0.1, //min 그래프 y 축의 최소값
+                                        maxBMI*1.1, //max 그래프에서 보여줄 최대값.
                                         index == 0
                                             ? null
                                             : records[index - 1]
@@ -231,7 +240,8 @@ class ReRecordPage extends StatelessWidget {
                                         controller.graphSelect.value,
                                         widthsize * 0.2,
                                         heightsize * 0.22,
-                                        250, //max 그래프에서 보여줄 최대값.
+                                        minHeight*0.3,
+                                        maxHeight*1.1, //max 그래프에서 보여줄 최대값.
                                         index == 0
                                             ? null
                                             : records[index - 1]
@@ -264,7 +274,8 @@ class ReRecordPage extends StatelessWidget {
                                         controller.graphSelect.value,
                                         widthsize * 0.2,
                                         heightsize * 0.22,
-                                        180, //max 그래프에서 보여줄 최대값.
+                                        minWeight*0.15,
+                                        maxWeight*1.2, //max 그래프에서 보여줄 최대값.
                                         index == 0
                                             ? null
                                             : records[index - 1]
@@ -372,6 +383,22 @@ class ReRecordPage extends StatelessWidget {
 
     // records.addAll(await sql.bringRecord()) ;
     records = await sql.bringRecord();
+    minBMI = (records.map((record) => record.bmi).toList()).reduce(min);
+    maxBMI = (records.map((record) => record.bmi).toList()).reduce(max);
+
+    minWeight = (records.map((record) => record.weight).toList()).reduce(min);
+    print("몸무게최소값 : $minWeight");
+    maxWeight = (records.map((record) => record.weight).toList()).reduce(max);
+    print("몸무게최대값 : $maxWeight");
+
+    minHeight = (records.map((record) => record.height).toList()).reduce(min);
+    print("키최소값 $minHeight");
+    maxHeight = (records.map((record) => record.height).toList()).reduce(max);
+
+
+
+
+
 
     Get.find<RecordPageController>().loadRec.value = true;
   } //end of bringRecords

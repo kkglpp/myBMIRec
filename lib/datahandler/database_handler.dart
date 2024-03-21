@@ -13,6 +13,8 @@ class DatabaseHandler {
       'UPDATE bmirecord SET insertdate = ? ,weight = ?, height = ?, bmi = ? , image = ? WHERE seq = ?';
   final String queryAllStr = 'SELECT * FROM bmirecord';
   final String queryOneStr = 'SELECT * FROM bmirecord WHERE seq = ?';
+
+
   //Db 불러오기.
   Future<Database> initializeDB() async {
     String path = await getDatabasesPath();
@@ -85,4 +87,5 @@ class DatabaseHandler {
       bmi.seq
     ]);
   }
+
 }

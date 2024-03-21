@@ -136,7 +136,8 @@ class InsertPage extends StatelessWidget {
                           width: widthsize*0.05,
                         ),
                         SizedBox(
-                          width: widthsize * 0.3,
+
+                          width: widthsize * 0.4,
                           height: heightsize * 0.05,
                           // color: Colors.grey,
                           child: TextCustom().customText(

@@ -12,7 +12,8 @@ class LineChart extends CustomPainter {
   /// unit  
   final double boxLength; // 선이 그려지는 박스의 세로 길이
   final double boxWidth; // 선이 그려지는 박스의 가로 길이
-  final double maxValue; // 세로값에 영향주겠지
+  final double minValue; // 세로축의 최소값
+  final double maxValue; // 세로축의 최대값
   double? pastValue; //시작점.  직전 좌표.
   final double realValue; //실제 보여줄 세로값이지.
   double? nextValue; //다음 실측값의 좌표
@@ -25,7 +26,7 @@ class LineChart extends CustomPainter {
       /// boxLength, boxWidth
     this.boxLength,
     this.boxWidth,
-    
+    this.minValue,
     this.maxValue,
     this.pastValue,
     this.realValue,
@@ -35,9 +36,15 @@ class LineChart extends CustomPainter {
     this.unit = "",
   });
 
+  
+  late double realRange  = maxValue - minValue;
+  late double minPosition = boxLength*(maxValue/realRange);
+  late double maxPosition = boxLength*(minValue/realRange);
+  
   //주어진 값에따라 y좌표를 계산해 주는 함수
   double realLength(double value) {
-    return (boxLength) * ((maxValue - value) / maxValue);
+    // return (boxLength) * ((maxValue - value) / maxValue);
+    return (boxLength) * ((maxValue - (value - minValue) ) / realRange);
   }
 
   @override
@@ -61,24 +68,27 @@ class LineChart extends CustomPainter {
             : realLength(
                 (pastValue!.clamp(0, maxValue) + realValue.clamp(0, maxValue)) /
                     2));
+                // (pastValue!.clamp(0, maxValue) + realValue.clamp(0, maxValue)) /
+                //     2));
     Offset p2 = Offset(boxWidth / 2, realLength(realValue.clamp(0, maxValue)));
+    // Offset p2 = Offset(boxWidth / 2, realLength(realValue.clamp(0, maxValue)));
 
     Offset p3 = Offset(
         nextValue == null ? boxWidth / 2 : boxWidth,
         nextValue == null
             ? realLength((realValue.clamp(0, maxValue)))
+            // ? realLength((realValue.clamp(0, maxValue)))
             : realLength(
                 (nextValue!.clamp(0, maxValue) + realValue.clamp(0, maxValue)) /
                     2));
 
     Offset textLocation = Offset(
       (boxWidth / 2) - (boxWidth * 0.35),
-      (pastValue ?? realValue).clamp(0, maxValue) < realValue.clamp(0, maxValue)
-          ? (boxLength) *
-                  ((maxValue - realValue.clamp(0, maxValue)) / maxValue) -
+      (pastValue ?? realValue).clamp(0, realRange) < realValue.clamp(0, realRange)
+      // (pastValue ?? realValue).clamp(0, maxValue) < realValue.clamp(0, maxValue)
+          ? realLength((realValue.clamp(0, maxValue))) -
               10
-          : (boxLength) *
-                  ((maxValue - realValue.clamp(0, maxValue)) / maxValue) +
+          :  realLength((realValue.clamp(0, maxValue))) +
               3,
     );
 
