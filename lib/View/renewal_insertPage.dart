@@ -121,14 +121,15 @@ class InsertPage extends StatelessWidget {
             전체 높이 : heightsize * 0.7
              */
 
-            SizedBox(
+            Container(
+              // color: Colors.amber,
               width: widthsize,
-              height: heightsize * 0.62,
+              height: heightsize * 0.65,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   GetX<InsertPageController>(builder: (controller) {
-                    return Row(
+                    return Row( 
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
@@ -172,6 +173,7 @@ class InsertPage extends StatelessWidget {
                       ],
                     );
                   }),
+            const Spacer(),
 
                   /*
                   Switch에 따른 화면전환
@@ -192,13 +194,13 @@ class InsertPage extends StatelessWidget {
                                     child: ctrl.imgPath.value == "1"
                                         ? Image.asset(
                                             "images/0.jpeg",
-                                            height: heightsize * 0.4,
+                                            height: heightsize * 0.35,
                                             width: widthsize,
                                             fit: BoxFit.fitHeight,
                                           )
                                         : Image.file(
                                             File(ctrl.imgPath.value),
-                                            height: heightsize * 0.4,
+                                            height: heightsize * 0.35,
                                             width: widthsize,
                                             fit: BoxFit.fitHeight,
                                           )),
@@ -302,22 +304,20 @@ class InsertPage extends StatelessWidget {
                           );
                   }),
                   const Spacer(),
-                  SizedBox(
-                    // color: Colors.grey,
-                    height: heightsize * 0.05,
-                  )
+
                 ],
               ),
             ),
-//여기까지 0.75
-            const Spacer(),
-//여기까지 0.8
+            SizedBox(
+              height: heightsize*0.02,
+            ),
+//여기까지 0.85
 
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.green,
                   foregroundColor: Colors.white,
-                  minimumSize: Size(widthsize * 0.8, heightsize * 0.07)),
+                  minimumSize: Size(widthsize * 0.8, heightsize * 0.075)),
               onPressed: () {
                 _saveMyRec();
               },
@@ -330,7 +330,7 @@ class InsertPage extends StatelessWidget {
                     Text(
                       "  저 장 하 기",
                       style:
-                          TextStyle(fontWeight: FontWeight.w800, fontSize: fsizeXLarge),
+                          TextStyle(fontWeight: FontWeight.w800, fontSize: fsizeLarge),
                     ),
                   ],
                 ),
@@ -338,13 +338,13 @@ class InsertPage extends StatelessWidget {
             ),
 
             SizedBox(
-              height: heightsize * 0.01,
+              height: heightsize * 0.005,
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue,
                   foregroundColor: Colors.white,
-                  minimumSize: Size(widthsize * 0.8, heightsize * 0.07)),
+                  minimumSize: Size(widthsize * 0.8, heightsize * 0.075)),
               onPressed: () {
                 Get.off(()=>ReRecordPage());
               },
@@ -357,16 +357,16 @@ class InsertPage extends StatelessWidget {
                     Text(
                       "   목 록 보 기",
                       style:
-                          TextStyle(fontWeight: FontWeight.w800, fontSize: fsizeXLarge),
+                          TextStyle(fontWeight: FontWeight.w800, fontSize: fsizeLarge),
                     ),
                   ],
                 ),
               ),
             ),
 // 여기까지 0.95
-            Container(
+            SizedBox(
               // color: Colors.black,
-              height: heightsize * 0.08,
+              height: heightsize * 0.01,
             )
           ],
         ),

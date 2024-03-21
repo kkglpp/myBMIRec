@@ -22,12 +22,12 @@ import '../static/forRelativeSize.dart';
 class ReRecordPage extends StatelessWidget {
   ReRecordPage({super.key});
   late List<BMIrecord> records = [];
-  late double minBMI ;
-  late double maxBMI ;
-  late double minHeight;
-  late double maxHeight;
-  late double minWeight;
-  late double maxWeight;
+  late double minBMI = 5 ;
+  late double maxBMI = 60;
+  late double minHeight=0;
+  late double maxHeight=180;
+  late double minWeight=30;
+  late double maxWeight=100;
   @override
   Widget build(BuildContext context) {
     Get.put(RecordPageController());
@@ -56,11 +56,12 @@ class ReRecordPage extends StatelessWidget {
               } else {
                 return Container(
                   decoration: BoxDecoration(
-                      color: Colors.black.withAlpha(50),
+                      color: Color.fromARGB(255, 144, 143, 143),
                       borderRadius: BorderRadius.circular(10)),
                   width: widthsize,
                   height: (heightsize * 0.19)
-                      .clamp(widthsize * 0.35, heightsize * 0.19),
+                      // .clamp((widthsize * 0.35), heightsize * 0.19)
+                      ,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: records.length,
@@ -74,9 +75,9 @@ class ReRecordPage extends StatelessWidget {
                           child: Center(
                             child: GridCard(records[index].imgbyte,
                                     records[index].timestamp)
-                                .girdCard(widthsize * 0.35, widthsize * 0.35,
+                                .girdCard(widthsize * 0.35, heightsize * 0.19,
                                     records[index].bmi, 3,
-                                    fsize: fsizeMiddle),
+                                    fsize: fsizeSmall*1.1),
                           ),
                         ),
                       );
@@ -98,7 +99,7 @@ class ReRecordPage extends StatelessWidget {
               decoration: BoxDecoration(
                   color: Colors.white, borderRadius: BorderRadius.circular(10)),
               width: widthsize,
-              height: heightsize * 0.32,
+              height: heightsize * 0.33,
               child: Column(
                 children: [
                   SizedBox(
@@ -111,7 +112,7 @@ class ReRecordPage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             SizedBox(
-                                width: widthsize * 0.2,
+                                width: widthsize * 0.21,
                                 height: heightsize * 0.5,
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
@@ -136,9 +137,9 @@ class ReRecordPage extends StatelessWidget {
                                             ? Colors.amber[100]
                                             : Colors.grey,
                                     minimumSize: Size(
-                                        widthsize * 0.2, heightsize * 0.04),
+                                        widthsize * 0.23, heightsize * 0.04),
                                     fixedSize: Size(
-                                        widthsize * 0.2, heightsize * 0.04)),
+                                        widthsize * 0.23, heightsize * 0.04)),
                                 onPressed: controller.graphSelect.value != 0
                                     ? () {
                                         controller.selectBMIGraph();
@@ -153,9 +154,9 @@ class ReRecordPage extends StatelessWidget {
                                             ? Colors.blue[100]
                                             : Colors.grey,
                                     minimumSize: Size(
-                                        widthsize * 0.2, heightsize * 0.04),
+                                        widthsize * 0.23, heightsize * 0.04),
                                     fixedSize: Size(
-                                        widthsize * 0.2, heightsize * 0.04)),
+                                        widthsize * 0.23, heightsize * 0.04)),
                                 onPressed: controller.graphSelect.value != 1
                                     ? () {
                                         controller.selectHeightGraph();
@@ -170,9 +171,9 @@ class ReRecordPage extends StatelessWidget {
                                             ? Colors.green[100]
                                             : Colors.grey,
                                     minimumSize: Size(
-                                        widthsize * 0.2, heightsize * 0.04),
+                                        widthsize * 0.23, heightsize * 0.04),
                                     fixedSize: Size(
-                                        widthsize * 0.2, heightsize * 0.04)),
+                                        widthsize * 0.23, heightsize * 0.04)),
                                 onPressed: controller.graphSelect.value != 2
                                     ? () {
                                         controller.selectWeightGraph();
@@ -198,7 +199,7 @@ class ReRecordPage extends StatelessWidget {
                               child: Container(
                                 color: Colors.amber.withAlpha(50),
                                 width: widthsize,
-                                height: heightsize * 0.25,
+                                height: heightsize * 0.26,
                                 child: ListView.builder(
                                   scrollDirection: Axis.horizontal,
                                   itemCount: records.length,
@@ -206,7 +207,7 @@ class ReRecordPage extends StatelessWidget {
                                     return graphCard().lineGraphCell(
                                         controller.graphSelect.value,
                                         widthsize * 0.2,
-                                        heightsize * 0.22,
+                                        heightsize * 0.22, //height 1
                                         minBMI*0.1, //min 그래프 y 축의 최소값
                                         maxBMI*1.1, //max 그래프에서 보여줄 최대값.
                                         index == 0
@@ -218,9 +219,9 @@ class ReRecordPage extends StatelessWidget {
                                             ? records[index + 1].bmi
                                             : null,
                                         3,
-                                        heightsize * 0.02,
+                                        heightsize * 0.03, //height 2  가로축의 값을 입력하는 파트
                                         records[index].timestamp,
-                                        heightsize * 0.01,
+                                        heightsize * 0.01, //height 3 그래프와 가로축 사이의 여백
                                         fsizeX: fsizeSmall);
                                   },
                                 ),
@@ -231,7 +232,7 @@ class ReRecordPage extends StatelessWidget {
                               child: Container(
                                 color: Colors.blue[50],
                                 width: widthsize,
-                                height: heightsize * 0.25,
+                                height: heightsize * 0.26,
                                 child: ListView.builder(
                                   scrollDirection: Axis.horizontal,
                                   itemCount: records.length,
@@ -252,7 +253,7 @@ class ReRecordPage extends StatelessWidget {
                                             ? records[index + 1].height
                                             : null,
                                         3,
-                                        heightsize * 0.02,
+                                        heightsize * 0.03,
                                         records[index].timestamp,
                                         heightsize * 0.01,
                                         fsizeX: fsizeSmall);
@@ -265,7 +266,7 @@ class ReRecordPage extends StatelessWidget {
                               child: Container(
                                 color: Colors.green[50],
                                 width: widthsize,
-                                height: heightsize * 0.25,
+                                height: heightsize * 0.26,
                                 child: ListView.builder(
                                   scrollDirection: Axis.horizontal,
                                   itemCount: records.length,
@@ -286,7 +287,7 @@ class ReRecordPage extends StatelessWidget {
                                             ? records[index + 1].weight
                                             : null,
                                         3,
-                                        heightsize * 0.02,
+                                        heightsize * 0.03,
                                         records[index].timestamp,
                                         heightsize * 0.01,
                                         fsizeX: fsizeSmall);
@@ -299,13 +300,11 @@ class ReRecordPage extends StatelessWidget {
                       }
                     },
                   ),
-                  SizedBox(
-                    height: heightsize * 0.02,
-                  )
+                  
                 ],
               ),
             ),
-
+const Spacer(),
             /*
             파트3 :
             높이 0.14
@@ -383,17 +382,14 @@ class ReRecordPage extends StatelessWidget {
 
     // records.addAll(await sql.bringRecord()) ;
     records = await sql.bringRecord();
+    if (records.length != 0){
     minBMI = (records.map((record) => record.bmi).toList()).reduce(min);
     maxBMI = (records.map((record) => record.bmi).toList()).reduce(max);
-
     minWeight = (records.map((record) => record.weight).toList()).reduce(min);
-    print("몸무게최소값 : $minWeight");
     maxWeight = (records.map((record) => record.weight).toList()).reduce(max);
-    print("몸무게최대값 : $maxWeight");
-
     minHeight = (records.map((record) => record.height).toList()).reduce(min);
-    print("키최소값 $minHeight");
     maxHeight = (records.map((record) => record.height).toList()).reduce(max);
+    }
 
 
 

@@ -33,8 +33,8 @@ class graphCard {
               height: heightsize3,
             ),
     
-            SizedBox(
-              // color: Colors.amber,
+            Container(
+              // color: Colors.red,
               width: widthsize,
               height: heightsize2,
               child: Column(

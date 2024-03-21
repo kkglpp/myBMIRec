@@ -37,7 +37,9 @@ class ResultBMIPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: TextCustom().customText("My BMI Status ? ", fsizeXLarge, "C"),
+        
+        // title: TextCustom().customText("My BMI Status ? ", fsizeXLarge, "C"),
+        title: const Text("My BMI Record"),
       ),
       body: GetX<ResultBMIPageController>(builder: (controller) {
         if (!controller.querySuccess.value) {
@@ -48,364 +50,357 @@ class ResultBMIPage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                SizedBox(
-                  // color: Colors.grey,
-                  width: widthsize,
-                  height: heightsize,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      // 화면구성1 : 눈바디 보여주는 컨테이너
-                      Container(
-                          color: Colors.blueGrey,
-                          width: widthsize,
-                          height: heightsize * 0.6,
-                          child: controller.bmirec!.imgbyte != null
-                              ? Image.memory(
-                                  controller.bmirec!.imgbyte!,
-                                  width: widthsize,
-                                  fit: BoxFit.contain,
-                                )
-                              : Center(
-                                  child: Container(
-                                      color: Colors.black,
-                                      width: widthsize,
-                                      height: widthsize,
-                                      child: Center(
-                                        child: TextCustom().customText(
-                                            "No Image", fsizeXLarge, "C",
-                                            clr: Colors.white),
-                                      )),
+                Container(
+                    color: Colors.blueGrey,
+                    width: widthsize,
+                    height: heightsize * 0.6,
+                    child: controller.bmirec!.imgbyte != null
+                        ? Image.memory(
+                            controller.bmirec!.imgbyte!,
+                            width: widthsize,
+                            fit: BoxFit.contain,
+                          )
+                        : Center(
+                            child: Container(
+                                color: Colors.black,
+                                width: widthsize,
+                                height: heightsize * 0.55,
+                                child: Center(
+                                  child: TextCustom().customText(
+                                      "No Image", fsizeXLarge, "C",
+                                      clr: Colors.white),
                                 )),
-
+                          )),
+                                
+                SizedBox(
+                  height: heightsize * 0.01,
+                ),
+                //화면 구성3 : 기타 내용을 넣기 위한 컨테이너
+                //삭제버튼, 광고 배너,
+                SizedBox(
+                  // color: Colors.amber,
+                  width: widthsize,
+                  height: heightsize * 0.14,
+                  child:
+                      AdWidget(ad: MkBannerADclass().mkBannerAD(context)),
+                ),
+       Spacer(),
+                                
+                //화면구성2 : 수치 및 메시지 전달하는 컨테이너
+                SizedBox(
+                  // Container(
+                  // color: Colors.green,
+                  width: widthsize,
+                  height: heightsize * 0.15,
+                  child: Row(
+                    children: [
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Row(
+                            //높이 : 0.04
+                            children: [
+                              SizedBox(
+                                // color: Colors.amber[50],
+                                height: heightsize * 0.04,
+                                width: widthsize * 0.25,
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.end,
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.start,
+                                  children: [
+                                    TextCustom()
+                                        .customText("BMI ", fsizeLarge, "L")
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                height: heightsize * 0.04,
+                                width: widthsize * 0.05,
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.end,
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.start,
+                                  children: [
+                                    TextCustom().customText(": ", fsizeLarge, "R")
+                                  ],
+                                ),
+                              ),
+                              // Container(
+                              SizedBox(
+                                // color: Colors.red[100],
+                                height: heightsize * 0.04,
+                                width: widthsize * 0.25,
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.end,
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.end,
+                                  children: [
+                                    TextCustom().customText(
+                                      "${controller.bmirec!.bmi.toStringAsFixed(1)} ",
+                                      fsizeLarge,
+                                      "R",
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: heightsize * 0.01,
+                          ),
+                          Row(
+                            //높이 : 0.04
+                            children: [
+                              SizedBox(
+                                // color: Colors.amber[50],
+                                height: heightsize * 0.04,
+                                width: widthsize * 0.25,
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.end,
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.start,
+                                  children: [
+                                    TextCustom()
+                                        .customText("몸무게", fsizeLarge, "L")
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                height: heightsize * 0.04,
+                                width: widthsize * 0.05,
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.end,
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.start,
+                                  children: [
+                                    TextCustom().customText(": ", fsizeLarge, "R")
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                // color: Colors.red[100],
+                                height: heightsize * 0.04,
+                                width: widthsize * 0.25,
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.end,
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.end,
+                                  children: [
+                                    TextCustom().customText(
+                                      "${controller.bmirec!.weight.toStringAsFixed(1)} kg",
+                                      fsizeLarge,
+                                      "R",
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: heightsize * 0.01,
+                          ),
+                          Row(
+                            //높이 : 0.04
+                            children: [
+                              SizedBox(
+                                // color: Colors.amber[50],
+                                height: heightsize * 0.04,
+                                width: widthsize * 0.25,
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.end,
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.start,
+                                  children: [
+                                    TextCustom().customText("키 ", fsizeLarge, "L")
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                height: heightsize * 0.04,
+                                width: widthsize * 0.05,
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.end,
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.start,
+                                  children: [
+                                    TextCustom().customText(": ", fsizeLarge, "R")
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                // color: Colors.red[100],
+                                height: heightsize * 0.04,
+                                width: widthsize * 0.25,
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.end,
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.end,
+                                  children: [
+                                    TextCustom().customText(
+                                      "${controller.bmirec!.height.toStringAsFixed(1)} cm",
+                                      fsizeLarge,
+                                      "R",
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ), // BMI 몸무게 키 Column 종료
                       SizedBox(
-                        height: heightsize * 0.01,
+                        width: widthsize * 0.05,
                       ),
-                      //화면 구성3 : 기타 내용을 넣기 위한 컨테이너
-                      //삭제버튼, 광고 배너,
+                      // 원 그래프 들어있는 컨테이너 시작
                       SizedBox(
-                        // color: Colors.amber,
-                        width: widthsize,
-                        height: heightsize * 0.14,
-                        child:
-                            AdWidget(ad: MkBannerADclass().mkBannerAD(context)),
-                      ),
-                      SizedBox(
-                        height: heightsize * 0.01,
-                      ),
-
-                      //화면구성2 : 수치 및 메시지 전달하는 컨테이너
-                      SizedBox(
-                        // Container(
-                        // color: Colors.green,
-                        width: widthsize,
+                        // color: Colors.pink,
+                        width: widthsize * 0.4,
                         height: heightsize * 0.15,
-                        child: Row(
-                          children: [
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Row(
-                                  //높이 : 0.04
-                                  children: [
-                                    SizedBox(
-                                      // color: Colors.amber[50],
-                                      height: heightsize * 0.04,
-                                      width: widthsize * 0.25,
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          TextCustom()
-                                              .customText("BMI ", fsizeLarge, "L")
-                                        ],
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: heightsize * 0.04,
-                                      width: widthsize * 0.05,
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          TextCustom().customText(": ", fsizeLarge, "R")
-                                        ],
-                                      ),
-                                    ),
-                                    // Container(
-                                    SizedBox(
-                                      // color: Colors.red[100],
-                                      height: heightsize * 0.04,
-                                      width: widthsize * 0.25,
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.end,
-                                        children: [
-                                          TextCustom().customText(
-                                            "${controller.bmirec!.bmi.toStringAsFixed(1)} ",
-                                            fsizeLarge,
-                                            "R",
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: heightsize * 0.01,
-                                ),
-                                Row(
-                                  //높이 : 0.04
-                                  children: [
-                                    SizedBox(
-                                      // color: Colors.amber[50],
-                                      height: heightsize * 0.04,
-                                      width: widthsize * 0.25,
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          TextCustom()
-                                              .customText("몸무게", fsizeLarge, "L")
-                                        ],
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: heightsize * 0.04,
-                                      width: widthsize * 0.05,
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          TextCustom().customText(": ", fsizeLarge, "R")
-                                        ],
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      // color: Colors.red[100],
-                                      height: heightsize * 0.04,
-                                      width: widthsize * 0.25,
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.end,
-                                        children: [
-                                          TextCustom().customText(
-                                            "${controller.bmirec!.weight.toStringAsFixed(1)} kg",
-                                            fsizeLarge,
-                                            "R",
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: heightsize * 0.01,
-                                ),
-                                Row(
-                                  //높이 : 0.04
-                                  children: [
-                                    SizedBox(
-                                      // color: Colors.amber[50],
-                                      height: heightsize * 0.04,
-                                      width: widthsize * 0.25,
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          TextCustom().customText("키 ", fsizeLarge, "L")
-                                        ],
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: heightsize * 0.04,
-                                      width: widthsize * 0.05,
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          TextCustom().customText(": ", fsizeLarge, "R")
-                                        ],
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      // color: Colors.red[100],
-                                      height: heightsize * 0.04,
-                                      width: widthsize * 0.25,
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.end,
-                                        children: [
-                                          TextCustom().customText(
-                                            "${controller.bmirec!.height.toStringAsFixed(1)} cm",
-                                            fsizeLarge,
-                                            "R",
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ), // BMI 몸무게 키 Column 종료
-                            SizedBox(
-                              width: widthsize * 0.05,
+                        child: Center(
+                            child: Stack(children: [
+                          // BMI 최대치 (720)에 해당하는 원
+                          Container(
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.red.withAlpha(40),
+                                border: Border.all(
+                                    color: Colors.red, width: 3)),
+                            width: (min(
+                                    widthsize * 0.4, heightsize * 0.15)) *
+                                0.9,
+                            height: (min(
+                                    widthsize * 0.4, heightsize * 0.15)) *
+                                0.9,
+                            // height: widthsize * 0.9,
+                          ),
+                          Positioned(
+                            child: CustomPaint(
+                              size: Size(
+                                  (min(widthsize * 0.4,
+                                          heightsize * 0.15)) *
+                                      0.9,
+                                  (min(widthsize * 0.4,
+                                          heightsize * 0.15)) *
+                                      0.9),
+                              painter: CircleChart(
+                                Colors.blue.withAlpha(50),
+                                Colors.blue,
+                                radius: ((min(widthsize * 0.4,
+                                        heightsize * 0.15)) *
+                                    0.45 *
+                                    (30) /
+                                    45),
+                              ),
                             ),
-                            // 원 그래프 들어있는 컨테이너 시작
-                            SizedBox(
-                              // color: Colors.pink,
-                              width: widthsize * 0.4,
-                              height: heightsize * 0.15,
-                              child: Center(
-                                  child: Stack(children: [
-                                // BMI 최대치 (720)에 해당하는 원
-                                Container(
-                                  decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: Colors.red.withAlpha(40),
-                                      border: Border.all(
-                                          color: Colors.red, width: 3)),
-                                  width: (min(
-                                          widthsize * 0.4, heightsize * 0.15)) *
+                          ),
+                          Positioned(
+                            child: CustomPaint(
+                              size: Size(
+                                  (min(widthsize * 0.4,
+                                          heightsize * 0.15)) *
                                       0.9,
-                                  height: (min(
-                                          widthsize * 0.4, heightsize * 0.15)) *
+                                  (min(widthsize * 0.4,
+                                          heightsize * 0.15)) *
+                                      0.9),
+                              painter: CircleChart(
+                                  Colors.purple.withAlpha(50),
+                                  Colors.purple,
+                                  radius: ((min(widthsize * 0.4,
+                                          heightsize * 0.15)) *
+                                      0.45 *
+                                      (18.5) /
+                                      45)),
+                            ),
+                          ),
+                          Positioned(
+                            child: CustomPaint(
+                              size: Size(
+                                  (min(widthsize * 0.4,
+                                          heightsize * 0.15)) *
                                       0.9,
-                                  // height: widthsize * 0.9,
-                                ),
-                                Positioned(
-                                  child: CustomPaint(
-                                    size: Size(
-                                        (min(widthsize * 0.4,
-                                                heightsize * 0.15)) *
-                                            0.9,
-                                        (min(widthsize * 0.4,
-                                                heightsize * 0.15)) *
-                                            0.9),
-                                    painter: CircleChart(
-                                      Colors.blue.withAlpha(50),
-                                      Colors.blue,
-                                      radius: ((min(widthsize * 0.4,
-                                              heightsize * 0.15)) *
-                                          0.45 *
-                                          (30) /
-                                          45),
-                                    ),
-                                  ),
-                                ),
-                                Positioned(
-                                  child: CustomPaint(
-                                    size: Size(
-                                        (min(widthsize * 0.4,
-                                                heightsize * 0.15)) *
-                                            0.9,
-                                        (min(widthsize * 0.4,
-                                                heightsize * 0.15)) *
-                                            0.9),
-                                    painter: CircleChart(
-                                        Colors.purple.withAlpha(50),
-                                        Colors.purple,
-                                        radius: ((min(widthsize * 0.4,
-                                                heightsize * 0.15)) *
-                                            0.45 *
-                                            (18.5) /
-                                            45)),
-                                  ),
-                                ),
-                                Positioned(
-                                  child: CustomPaint(
-                                    size: Size(
-                                        (min(widthsize * 0.4,
-                                                heightsize * 0.15)) *
-                                            0.9,
-                                        (min(widthsize * 0.4,
-                                                heightsize * 0.15)) *
-                                            0.9),
-                                    painter: CircleChart(
-                                        Colors.green.withAlpha((255 *
-                                                (controller.bmirec!.bmi > 45
-                                                    ? 45
-                                                    : controller.bmirec!.bmi) /
-                                                45)
-                                            .round()),
-                                        const Color.fromARGB(255, 31, 87, 33),
-                                        radius: ((min(widthsize * 0.4,
-                                                heightsize * 0.15)) *
-                                            0.9 *
-                                            0.5 *
-                                            (controller.bmirec!.bmi > 45
-                                                ? 45
-                                                : controller.bmirec!.bmi) /
-                                            45)),
-                                  ),
-                                )
-                              ])),
-                            )
-                          ],
-                        ), // BMI 몸무게 키 Column 그래프 들어있는 Row
-                      ), //BMI 몸무게 키 및 그래프 보이는 컨테이너의박스 종료
-                      SizedBox(
-                        height: heightsize * 0.02,
-                      ),
-                      SizedBox(
-                        // color: Colors.blue,
-                        height: heightsize * 0.07,
-                        width: widthsize,
-                        child: Column(
-                          children: [
-                            Row(
-                              // 높이 : 0.05
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        fixedSize: Size(widthsize * 0.4,
-                                            heightsize * 0.06)),
-                                    onPressed: () {
-                                      deleteDialog();
-                                    },
-                                    child: TextCustom().customText(
-                                        "삭제하기", fsizeMiddle, "C",
-                                        clr: Colors.red)),
-                                SizedBox(
-                                  width: widthsize * 0.1,
-                                ),
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        fixedSize: Size(widthsize * 0.4,
-                                            heightsize * 0.06)),
-                                    onPressed: () {
-                                      Get.off(const Home());
-                                    },
-                                    child: TextCustom().customText(
-                                        "확 인", fsizeMiddle, "C",
-                                        clr: Colors.blue)),
-                              ],
-                            ), //버튼 들어있는 row 종료
-                          ],
-                        ),
-                      ), //버튼 들어있는 박스 종료
+                                  (min(widthsize * 0.4,
+                                          heightsize * 0.15)) *
+                                      0.9),
+                              painter: CircleChart(
+                                  Colors.green.withAlpha((255 *
+                                          (controller.bmirec!.bmi > 45
+                                              ? 45
+                                              : controller.bmirec!.bmi) /
+                                          45)
+                                      .round()),
+                                  const Color.fromARGB(255, 31, 87, 33),
+                                  radius: ((min(widthsize * 0.4,
+                                          heightsize * 0.15)) *
+                                      0.9 *
+                                      0.5 *
+                                      (controller.bmirec!.bmi > 45
+                                          ? 45
+                                          : controller.bmirec!.bmi) /
+                                      45)),
+                            ),
+                          )
+                        ])),
+                      )
+                    ],
+                  ), // BMI 몸무게 키 Column 그래프 들어있는 Row
+                ), //BMI 몸무게 키 및 그래프 보이는 컨테이너의박스 종료
+                  // Container(
+                  //   color: Colors.amber,
+                  //   width: 20,
+                  //   height: 10,
+                  // ),
+                  Spacer(),
+                SizedBox(
+                  // color: Colors.blue,
+                  height: heightsize * 0.1,
+                  width: widthsize,
+                  child: Column(
+                    children: [
+                      Row(
+                        // 높이 : 0.05
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  fixedSize: Size(widthsize * 0.4,
+                                      heightsize * 0.06)),
+                              onPressed: () {
+                                deleteDialog();
+                              },
+                              child: TextCustom().customText(
+                                  "삭제하기", fsizeMiddle, "C",
+                                  clr: Colors.red)),
+                          SizedBox(
+                            width: widthsize * 0.1,
+                          ),
+                          ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  fixedSize: Size(widthsize * 0.4,
+                                      heightsize * 0.06)),
+                              onPressed: () {
+                                Get.off(const Home());
+                              },
+                              child: TextCustom().customText(
+                                  "확 인", fsizeMiddle, "C",
+                                  clr: Colors.blue)),
+                        ],
+                      ), //버튼 들어있는 row 종료
                     ],
                   ),
                 ),
+                SizedBox(
+                  height: heightsize*0.01,
+                )
               ],
             ),
           );
