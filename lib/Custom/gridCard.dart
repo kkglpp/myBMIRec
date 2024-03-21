@@ -7,10 +7,11 @@ class GridCard {
   Uint8List? imgBytes;
   final String recordDate;
 
-  GridCard(this.imgBytes, this.recordDate);
+
+  GridCard(this.imgBytes, this.recordDate, );
 
   girdCard(double widthsize, double heightsize, double bmiValue,
-      double paddingValue) {
+      double paddingValue, {double fsize = 12}) {
     // double realWidth = widthsize;
     // double realHeight = heightsize ;
     double realWidth = widthsize - (paddingValue * 2);
@@ -38,7 +39,7 @@ class GridCard {
                         width: realWidth,
                         height: realHeight,
                         child: Center(
-                          child: TextCustom().customText("No Image", 15, "C",
+                          child: TextCustom().customText("No Image", fsize*1.5, "C",
                               clr: Colors.white),
                         ),
                       )
@@ -73,8 +74,8 @@ class GridCard {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             TextCustom().customText(
-                                "BMI : ${bmiValue.toStringAsFixed(1)}", 8, "L"),
-                            TextCustom().customText(recordDate, 10, "C"),
+                                "BMI : ${bmiValue.toStringAsFixed(1)}", fsize, "L"),
+                            TextCustom().customText(recordDate, fsize*0.9, "C"),
                           ]),
                     ],
                   )),

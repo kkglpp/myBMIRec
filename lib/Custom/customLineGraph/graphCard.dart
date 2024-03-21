@@ -4,8 +4,8 @@ import 'package:mybmirecord/Custom/textMiddle.dart';
 
 class graphCard {
   lineGraphCell(int graphStatus,double widthsize, double heightsize,  double maxNum,
-      double? startNum, double middleNum, double? endNum, double lineWeight, double heightsize2 ,String xAxis, double heightsize3 ) {
-    return Container(
+      double? startNum, double middleNum, double? endNum, double lineWeight, double heightsize2 ,String xAxis, double heightsize3, {double fsizeX = 2 }) {
+    return SizedBox(
         // color: Colors.grey ,
         // color: Colors.grey.withAlpha(255*(middleNum/maxNum).toInt()) ,
         width: widthsize,
@@ -32,7 +32,7 @@ class graphCard {
               height: heightsize3,
             ),
     
-            Container(
+            SizedBox(
               // color: Colors.amber,
               width: widthsize,
               height: heightsize2,
@@ -41,7 +41,7 @@ class graphCard {
                 children: [
                 TextCustom().customText(
                 xAxis,
-                8,
+                fsizeX,
                 "C",
               ),],
               )

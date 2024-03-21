@@ -15,6 +15,7 @@ import 'package:mybmirecord/View/renewal_resultbmipage.dart';
 import 'package:mybmirecord/static/forBannerAd.dart';
 
 import '../Model/bmi_record.dart';
+import '../static/forRelativeSize.dart';
 
 class ReRecordPage extends StatelessWidget {
   ReRecordPage({super.key});
@@ -22,12 +23,16 @@ class ReRecordPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(RecordPageController());
-    double widthsize = 350;
-    double heightsize = 700;
+    double widthsize = RelativeSizeClass(context).widthSize!;
+    double heightsize = RelativeSizeClass(context).heightSize!;
+    double fsizeSmall = RelativeSizeClass(context).customFontSizeS!;
+    double fsizeMiddle = RelativeSizeClass(context).customFontSizeM!;
+    double fsizeLarge = RelativeSizeClass(context).customFontSizeL!;
+    double fsizeXLarge = RelativeSizeClass(context).customFontSizeXL!;
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("내 BMI 기록"),
+        title: const Text("My Records"),
       ),
       body: Center(
         child: Column(
@@ -54,15 +59,16 @@ class ReRecordPage extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return GestureDetector(
                         onTap: () {
-                          Get.off(ResultBMIPage(recordKey: records[index].seq!));
-
+                          Get.off(
+                              ResultBMIPage(recordKey: records[index].seq!));
                         },
                         child: SizedBox(
                           child: Center(
                             child: GridCard(records[index].imgbyte,
                                     records[index].timestamp)
                                 .girdCard(widthsize * 0.35, widthsize * 0.35,
-                                    records[index].bmi, 3),
+                                    records[index].bmi, 3,
+                                    fsize: fsizeMiddle),
                           ),
                         ),
                       );
@@ -97,17 +103,23 @@ class ReRecordPage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             SizedBox(
-                              width: widthsize*0.2,
-                              height: heightsize*0.5,
-                              child:Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [TextCustom().customText(controller.graphSelect.value == 0? "" : controller.graphSelect.value ==1? "단위 : cm " :"단위 : kg", 11, "C",clr: Colors.black)],
-                              )
-                              
-                              
-                            ),
-                            
+                                width: widthsize * 0.2,
+                                height: heightsize * 0.5,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    TextCustom().customText(
+                                        controller.graphSelect.value == 0
+                                            ? "단위 : "
+                                            : controller.graphSelect.value == 1
+                                                ? "단위 : cm "
+                                                : "단위 : kg",
+                                        fsizeMiddle,
+                                        "C",
+                                        clr: Colors.black)
+                                  ],
+                                )),
                             const Spacer(),
                             ElevatedButton(
                                 style: ElevatedButton.styleFrom(
@@ -124,7 +136,8 @@ class ReRecordPage extends StatelessWidget {
                                         controller.selectBMIGraph();
                                       }
                                     : null,
-                                child: TextCustom().customText("BMI", 8, "C")),
+                                child: TextCustom()
+                                    .customText("BMI", fsizeSmall, "C")),
                             ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                     backgroundColor:
@@ -140,7 +153,8 @@ class ReRecordPage extends StatelessWidget {
                                         controller.selectHeightGraph();
                                       }
                                     : null,
-                                child: TextCustom().customText("키", 8, "C")),
+                                child: TextCustom()
+                                    .customText("키", fsizeSmall, "C")),
                             ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                     backgroundColor:
@@ -156,7 +170,8 @@ class ReRecordPage extends StatelessWidget {
                                         controller.selectWeightGraph();
                                       }
                                     : null,
-                                child: TextCustom().customText("몸무게", 8, "C")),
+                                child: TextCustom()
+                                    .customText("몸무게", fsizeSmall, "C")),
                           ],
                         );
                       },
@@ -181,25 +196,23 @@ class ReRecordPage extends StatelessWidget {
                                   itemCount: records.length,
                                   itemBuilder: (context, index) {
                                     return graphCard().lineGraphCell(
-                                      controller.graphSelect.value,
-                                      widthsize * 0.2,
-                                      heightsize * 0.22,
-                                      100, //max 그래프에서 보여줄 최대값.
-                                      index == 0
-                                          ? null
-                                          : records[index - 1]
-                                              .bmi, // 시작값. 직전 측정값
-                                      records[index]
-                                          .bmi, // 해당 날짜의 측정 실제 값.
-                                      index + 1 < records.length
-                                          ? records[index + 1].bmi
-                                          : null,
-                                      3,
-                                      heightsize * 0.02,
-                                      records[index].timestamp,
-                                      heightsize * 0.01,
-                                      
-                                    );
+                                        controller.graphSelect.value,
+                                        widthsize * 0.2,
+                                        heightsize * 0.22,
+                                        100, //max 그래프에서 보여줄 최대값.
+                                        index == 0
+                                            ? null
+                                            : records[index - 1]
+                                                .bmi, // 시작값. 직전 측정값
+                                        records[index].bmi, // 해당 날짜의 측정 실제 값.
+                                        index + 1 < records.length
+                                            ? records[index + 1].bmi
+                                            : null,
+                                        3,
+                                        heightsize * 0.02,
+                                        records[index].timestamp,
+                                        heightsize * 0.01,
+                                        fsizeX: fsizeSmall);
                                   },
                                 ),
                               ),
@@ -215,25 +228,24 @@ class ReRecordPage extends StatelessWidget {
                                   itemCount: records.length,
                                   itemBuilder: (context, index) {
                                     return graphCard().lineGraphCell(
-                                      controller.graphSelect.value,
-                                      widthsize * 0.2,
-                                      heightsize * 0.22,
-                                      250, //max 그래프에서 보여줄 최대값.
-                                      index == 0
-                                          ? null
-                                          : records[index - 1]
-                                              .height, // 시작값. 직전 측정값
-                                      records[index]
-                                          .height, // 해당 날짜의 측정 실제 값.
-                                      index + 1 < records.length
-                                          ? records[index + 1].height
-                                          : null,
-                                      3,
-                                      heightsize * 0.02,
-                                      records[index].timestamp,
-                                      heightsize * 0.01,
-                                      
-                                    );
+                                        controller.graphSelect.value,
+                                        widthsize * 0.2,
+                                        heightsize * 0.22,
+                                        250, //max 그래프에서 보여줄 최대값.
+                                        index == 0
+                                            ? null
+                                            : records[index - 1]
+                                                .height, // 시작값. 직전 측정값
+                                        records[index]
+                                            .height, // 해당 날짜의 측정 실제 값.
+                                        index + 1 < records.length
+                                            ? records[index + 1].height
+                                            : null,
+                                        3,
+                                        heightsize * 0.02,
+                                        records[index].timestamp,
+                                        heightsize * 0.01,
+                                        fsizeX: fsizeSmall);
                                   },
                                 ),
                               ),
@@ -249,25 +261,24 @@ class ReRecordPage extends StatelessWidget {
                                   itemCount: records.length,
                                   itemBuilder: (context, index) {
                                     return graphCard().lineGraphCell(
-                                      controller.graphSelect.value,
-                                      widthsize * 0.2,
-                                      heightsize * 0.22,
-                                      180, //max 그래프에서 보여줄 최대값.
-                                      index == 0
-                                          ? null
-                                          : records[index - 1]
-                                              .weight, // 시작값. 직전 측정값
-                                      records[index]
-                                          .weight, // 해당 날짜의 측정 실제 값.
-                                      index + 1 < records.length
-                                          ? records[index + 1].weight
-                                          : null,
-                                      3,
-                                      heightsize * 0.02,
-                                      records[index].timestamp,
-                                      heightsize * 0.01
-                                      
-                                    );
+                                        controller.graphSelect.value,
+                                        widthsize * 0.2,
+                                        heightsize * 0.22,
+                                        180, //max 그래프에서 보여줄 최대값.
+                                        index == 0
+                                            ? null
+                                            : records[index - 1]
+                                                .weight, // 시작값. 직전 측정값
+                                        records[index]
+                                            .weight, // 해당 날짜의 측정 실제 값.
+                                        index + 1 < records.length
+                                            ? records[index + 1].weight
+                                            : null,
+                                        3,
+                                        heightsize * 0.02,
+                                        records[index].timestamp,
+                                        heightsize * 0.01,
+                                        fsizeX: fsizeSmall);
                                   },
                                 ),
                               ),
@@ -295,8 +306,10 @@ class ReRecordPage extends StatelessWidget {
               // color: Colors.red[100],
               width: widthsize,
               height: heightsize * 0.2,
-              child: Image.asset("images/BMI_man.jpg",
-              fit: BoxFit.contain,),
+              child: Image.asset(
+                "images/BMI_man.jpg",
+                fit: BoxFit.contain,
+              ),
               // child: const Text("광고 넣을 자리, 높이 : 0.14"),
             ),
             /*
@@ -334,14 +347,14 @@ class ReRecordPage extends StatelessWidget {
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.blue,
-                        minimumSize: Size(widthsize , heightsize * 0.07),
+                        minimumSize: Size(widthsize, heightsize * 0.07),
                         // fixedSize: Size(widthsize * 0.8, heightsize * 0.04)
                       ),
                       onPressed: () {
                         Get.off(() => const Home());
                       },
                       child: TextCustom()
-                          .customText("돌아 가기", 16, "c", clr: Colors.white),
+                          .customText("돌아 가기", fsizeLarge, "c", clr: Colors.white),
                     ),
                   ),
                 ],
@@ -361,6 +374,5 @@ class ReRecordPage extends StatelessWidget {
     records = await sql.bringRecord();
 
     Get.find<RecordPageController>().loadRec.value = true;
-
   } //end of bringRecords
 } //end  of class

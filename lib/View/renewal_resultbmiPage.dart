@@ -3,7 +3,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:mybmirecord/Controller/resultBMIPage-Controller.dart';
+import 'package:mybmirecord/Controller/resultbmipage_controller.dart';
 import 'package:mybmirecord/VM_repository/sqlite_repository.dart';
 import 'package:mybmirecord/View/home.dart';
 
@@ -11,6 +11,8 @@ import 'package:mybmirecord/Custom/textMiddle.dart';
 import 'package:get/get.dart';
 import 'package:mybmirecord/Custom/circleChart.dart';
 import 'package:mybmirecord/static/forBannerAd.dart';
+
+import '../static/forRelativeSize.dart';
 
 class ResultBMIPage extends StatelessWidget {
   final int recordKey;
@@ -23,13 +25,19 @@ class ResultBMIPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(ResultBMIPageController());
-    double widthsize = 350;
-    double heightsize = 700;
-    // bool querysucess = false;
-    // bringQuery(recordKey);
+    // double widthsize = 350;
+    // double heightsize = 700;
+        double widthsize = RelativeSizeClass(context).widthSize!;
+    double heightsize = RelativeSizeClass(context).heightSize!;
+    double fsizeSmall = RelativeSizeClass(context).customFontSizeS!;
+    double fsizeMiddle = RelativeSizeClass(context).customFontSizeM!;
+    double fsizeLarge = RelativeSizeClass(context).customFontSizeL!;
+    double fsizeXLarge = RelativeSizeClass(context).customFontSizeXL!;
+
+
     return Scaffold(
       appBar: AppBar(
-        title: TextCustom().customText("나의 BMI 수치는 ? ", 20, "C"),
+        title: TextCustom().customText("My BMI Status ? ", fsizeXLarge, "C"),
       ),
       body: GetX<ResultBMIPageController>(builder: (controller) {
         if (!controller.querySuccess.value) {
@@ -65,7 +73,7 @@ class ResultBMIPage extends StatelessWidget {
                                       height: widthsize,
                                       child: Center(
                                         child: TextCustom().customText(
-                                            "No Image", 20, "C",
+                                            "No Image", fsizeXLarge, "C",
                                             clr: Colors.white),
                                       )),
                                 )),
@@ -111,7 +119,7 @@ class ResultBMIPage extends StatelessWidget {
                                             CrossAxisAlignment.start,
                                         children: [
                                           TextCustom()
-                                              .customText("BMI ", 15, "L")
+                                              .customText("BMI ", fsizeLarge, "L")
                                         ],
                                       ),
                                     ),
@@ -124,7 +132,7 @@ class ResultBMIPage extends StatelessWidget {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          TextCustom().customText(": ", 15, "R")
+                                          TextCustom().customText(": ", fsizeLarge, "R")
                                         ],
                                       ),
                                     ),
@@ -141,7 +149,7 @@ class ResultBMIPage extends StatelessWidget {
                                         children: [
                                           TextCustom().customText(
                                             "${controller.bmirec!.bmi.toStringAsFixed(1)} ",
-                                            15,
+                                            fsizeLarge,
                                             "R",
                                           )
                                         ],
@@ -166,7 +174,7 @@ class ResultBMIPage extends StatelessWidget {
                                             CrossAxisAlignment.start,
                                         children: [
                                           TextCustom()
-                                              .customText("몸무게", 15, "L")
+                                              .customText("몸무게", fsizeLarge, "L")
                                         ],
                                       ),
                                     ),
@@ -179,7 +187,7 @@ class ResultBMIPage extends StatelessWidget {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          TextCustom().customText(": ", 15, "R")
+                                          TextCustom().customText(": ", fsizeLarge, "R")
                                         ],
                                       ),
                                     ),
@@ -195,7 +203,7 @@ class ResultBMIPage extends StatelessWidget {
                                         children: [
                                           TextCustom().customText(
                                             "${controller.bmirec!.weight.toStringAsFixed(1)} kg",
-                                            15,
+                                            fsizeLarge,
                                             "R",
                                           )
                                         ],
@@ -219,7 +227,7 @@ class ResultBMIPage extends StatelessWidget {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          TextCustom().customText("키 ", 15, "L")
+                                          TextCustom().customText("키 ", fsizeLarge, "L")
                                         ],
                                       ),
                                     ),
@@ -232,7 +240,7 @@ class ResultBMIPage extends StatelessWidget {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          TextCustom().customText(": ", 15, "R")
+                                          TextCustom().customText(": ", fsizeLarge, "R")
                                         ],
                                       ),
                                     ),
@@ -248,7 +256,7 @@ class ResultBMIPage extends StatelessWidget {
                                         children: [
                                           TextCustom().customText(
                                             "${controller.bmirec!.height.toStringAsFixed(1)} cm",
-                                            15,
+                                            fsizeLarge,
                                             "R",
                                           )
                                         ],
@@ -375,7 +383,7 @@ class ResultBMIPage extends StatelessWidget {
                                       deleteDialog();
                                     },
                                     child: TextCustom().customText(
-                                        "삭제하기", 12, "C",
+                                        "삭제하기", fsizeMiddle, "C",
                                         clr: Colors.red)),
                                 SizedBox(
                                   width: widthsize * 0.1,
@@ -388,7 +396,7 @@ class ResultBMIPage extends StatelessWidget {
                                       Get.off(const Home());
                                     },
                                     child: TextCustom().customText(
-                                        "확 인", 12, "C",
+                                        "확 인", fsizeMiddle, "C",
                                         clr: Colors.blue)),
                               ],
                             ), //버튼 들어있는 row 종료
