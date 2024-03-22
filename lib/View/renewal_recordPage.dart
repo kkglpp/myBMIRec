@@ -4,6 +4,7 @@
 
 import 'dart:math';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -12,7 +13,7 @@ import 'package:mybmirecord/Custom/gridCard.dart';
 import 'package:mybmirecord/VM_repository/sqlite_repository.dart';
 import 'package:mybmirecord/View/home.dart';
 import 'package:mybmirecord/Custom/customLineGraph/graphCard.dart';
-import 'package:mybmirecord/Custom/textMiddle.dart';
+import 'package:mybmirecord/Custom/textcustom.dart';
 import 'package:mybmirecord/View/renewal_resultbmipage.dart';
 import 'package:mybmirecord/static/forBannerAd.dart';
 
@@ -56,7 +57,7 @@ class ReRecordPage extends StatelessWidget {
               } else {
                 return Container(
                   decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 144, 143, 143),
+                      color: const Color.fromARGB(255, 144, 143, 143),
                       borderRadius: BorderRadius.circular(10)),
                   width: widthsize,
                   height: (heightsize * 0.19)
@@ -77,7 +78,7 @@ class ReRecordPage extends StatelessWidget {
                                     records[index].timestamp)
                                 .girdCard(widthsize * 0.35, heightsize * 0.19,
                                     records[index].bmi, 3,
-                                    fsize: fsizeSmall*1.1),
+                                    fsize: RelativeSizeClass(context).orientation == Orientation.portrait? fsizeMiddle : fsizeMiddle/1.8),
                           ),
                         ),
                       );
@@ -334,7 +335,10 @@ const Spacer(),
               // color: Colors.purple[100],
               width: widthsize,
               height: heightsize * 0.14,
-              child: AdWidget(ad: MkBannerADclass().mkBannerAD(context)),
+              child: kReleaseMode? AdWidget(ad: MkBannerADclass().mkBannerAD(context))
+              :const Center(child: Text("for banner Contents"))
+              ,
+              
               // child: const Text("광고 파트, 높이 : 0.14"),
             ),
             const Spacer(),
@@ -364,7 +368,7 @@ const Spacer(),
                         Get.off(() => const Home());
                       },
                       child: TextCustom()
-                          .customText("돌아 가기", fsizeLarge, "c", clr: Colors.white),
+                          .customText("새로 입력하기", fsizeLarge, "c", clr: Colors.white),
                     ),
                   ),
                 ],

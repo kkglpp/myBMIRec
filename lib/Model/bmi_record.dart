@@ -1,7 +1,5 @@
 import 'dart:typed_data';
 
-
-
 class BMIrecord {
   final int? seq;
   final double bmi;

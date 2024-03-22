@@ -6,9 +6,9 @@ import 'package:mybmirecord/Controller/insertpage_controller.dart';
 import 'package:mybmirecord/View/renewal_recordpage.dart';
 import 'package:mybmirecord/View/renewal_resultbmipage.dart';
 import 'package:mybmirecord/Custom/circleChart.dart';
-import 'package:mybmirecord/Custom/textMiddle.dart';
+import 'package:mybmirecord/Custom/textcustom.dart';
 import 'package:mybmirecord/static/forRelativeSize.dart';
-import 'package:responsive_framework/responsive_framework.dart';
+
 
 class InsertPage extends StatelessWidget {
   const InsertPage({super.key});
@@ -243,29 +243,29 @@ class InsertPage extends StatelessWidget {
                                         color: Colors.red.withAlpha(40),
                                         border: Border.all(
                                             color: Colors.red, width: 3)),
-                                    width: widthsize * 0.9,
-                                    height: widthsize * 0.9,
+                                    width: heightsize * 0.5,
+                                    height: heightsize * 0.5,
                                   ),
                                   Positioned(
                                     child: CustomPaint(
                                       size: Size(
-                                          widthsize * 0.9, widthsize * 0.9),
+                                          heightsize * 0.5, heightsize * 0.5),
                                       painter: CircleChart(
                                           Colors.blue.withAlpha(50),
                                           Colors.blue,
                                           radius:
-                                              (widthsize * 0.45 * (30) / 45)),
+                                              (heightsize * 0.25 * (30) / 45)),
                                     ),
                                   ),
                                   Positioned(
                                     child: CustomPaint(
                                       size: Size(
-                                          widthsize * 0.9, widthsize * 0.9),
+                                          heightsize * 0.5, heightsize * 0.5),
                                       painter: CircleChart(
                                           Colors.purple.withAlpha(50),
                                           Colors.purple,
                                           radius:
-                                              (widthsize * 0.45 * (18.5) / 45)),
+                                              (heightsize * 0.25 * (18.5) / 45)),
                                     ),
                                   ),
 
@@ -278,7 +278,7 @@ class InsertPage extends StatelessWidget {
                                     return Positioned(
                                       child: CustomPaint(
                                         size: Size(
-                                            widthsize * 0.9, widthsize * 0.9),
+                                            heightsize * 0.5,heightsize * 0.5),
                                         painter: CircleChart(
                                             Colors.green.withAlpha((255 *
                                                     (controller.bmi.value > 45
@@ -289,8 +289,7 @@ class InsertPage extends StatelessWidget {
                                                 .round()),
                                             const Color.fromARGB(
                                                 255, 31, 87, 33),
-                                            radius: (widthsize *
-                                                0.45 *
+                                            radius: (heightsize * 0.25 *
                                                 (controller.bmi.value > 45
                                                     ? 45
                                                     : controller.bmi.value) /

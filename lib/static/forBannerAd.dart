@@ -3,12 +3,14 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
-const Map<String, String> UNIT_ID = kReleaseMode
-    ? {
-        'ios': '[YOUR iOS AD UNIT ID]',
-        'android': '[YOUR ANDROID AD UNIT ID]',
-      }
-    : {
+const Map<String, String> UNIT_ID =
+// kReleaseMode
+//     ? {
+//         'ios': '[YOUR iOS AD UNIT ID]',
+//         'android': '[YOUR ANDROID AD UNIT ID]',
+//       }
+//     : 
+    {
         'ios': 'ca-app-pub-4716787481822502/4135660246',
         'android': 'ca-app-pub-3940256099942544/6300978111',
       };

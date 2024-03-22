@@ -1,13 +1,14 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
 import 'dart:math';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:mybmirecord/Controller/resultbmipage_controller.dart';
 import 'package:mybmirecord/VM_repository/sqlite_repository.dart';
 import 'package:mybmirecord/View/home.dart';
 
-import 'package:mybmirecord/Custom/textMiddle.dart';
+import 'package:mybmirecord/Custom/textcustom.dart';
 import 'package:get/get.dart';
 import 'package:mybmirecord/Custom/circleChart.dart';
 import 'package:mybmirecord/static/forBannerAd.dart';
@@ -27,17 +28,15 @@ class ResultBMIPage extends StatelessWidget {
     Get.put(ResultBMIPageController());
     // double widthsize = 350;
     // double heightsize = 700;
-        double widthsize = RelativeSizeClass(context).widthSize!;
+    double widthsize = RelativeSizeClass(context).widthSize!;
     double heightsize = RelativeSizeClass(context).heightSize!;
     double fsizeSmall = RelativeSizeClass(context).customFontSizeS!;
     double fsizeMiddle = RelativeSizeClass(context).customFontSizeM!;
     double fsizeLarge = RelativeSizeClass(context).customFontSizeL!;
     double fsizeXLarge = RelativeSizeClass(context).customFontSizeXL!;
 
-
     return Scaffold(
       appBar: AppBar(
-        
         // title: TextCustom().customText("My BMI Status ? ", fsizeXLarge, "C"),
         title: const Text("My BMI Record"),
       ),
@@ -71,7 +70,7 @@ class ResultBMIPage extends StatelessWidget {
                                       clr: Colors.white),
                                 )),
                           )),
-                                
+
                 SizedBox(
                   height: heightsize * 0.01,
                 ),
@@ -81,11 +80,12 @@ class ResultBMIPage extends StatelessWidget {
                   // color: Colors.amber,
                   width: widthsize,
                   height: heightsize * 0.14,
-                  child:
-                      AdWidget(ad: MkBannerADclass().mkBannerAD(context)),
+                  child: kReleaseMode
+                      ? AdWidget(ad: MkBannerADclass().mkBannerAD(context))
+                      : Center(child: const Text("for banner Contents")),
                 ),
-       Spacer(),
-                                
+                const Spacer(),
+
                 //화면구성2 : 수치 및 메시지 전달하는 컨테이너
                 SizedBox(
                   // Container(
@@ -105,13 +105,17 @@ class ResultBMIPage extends StatelessWidget {
                                 height: heightsize * 0.04,
                                 width: widthsize * 0.25,
                                 child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.end,
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    TextCustom()
-                                        .customText("BMI ", fsizeLarge, "L")
+                                    TextCustom().customText(
+                                      "BMI ",
+                                      RelativeSizeClass(context).orientation ==
+                                              Orientation.portrait
+                                          ? fsizeLarge
+                                          : fsizeLarge / 1.5,
+                                      "L",
+                                    )
                                   ],
                                 ),
                               ),
@@ -119,12 +123,17 @@ class ResultBMIPage extends StatelessWidget {
                                 height: heightsize * 0.04,
                                 width: widthsize * 0.05,
                                 child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.end,
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    TextCustom().customText(": ", fsizeLarge, "R")
+                                    TextCustom().customText(
+                                      ": ",
+                                      RelativeSizeClass(context).orientation ==
+                                              Orientation.portrait
+                                          ? fsizeLarge
+                                          : fsizeLarge / 1.5,
+                                      "R",
+                                    )
                                   ],
                                 ),
                               ),
@@ -134,14 +143,15 @@ class ResultBMIPage extends StatelessWidget {
                                 height: heightsize * 0.04,
                                 width: widthsize * 0.25,
                                 child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.end,
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.end,
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
                                     TextCustom().customText(
                                       "${controller.bmirec!.bmi.toStringAsFixed(1)} ",
-                                      fsizeLarge,
+                                      RelativeSizeClass(context).orientation ==
+                                              Orientation.portrait
+                                          ? fsizeLarge
+                                          : fsizeLarge / 1.5,
                                       "R",
                                     )
                                   ],
@@ -160,13 +170,17 @@ class ResultBMIPage extends StatelessWidget {
                                 height: heightsize * 0.04,
                                 width: widthsize * 0.25,
                                 child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.end,
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    TextCustom()
-                                        .customText("몸무게", fsizeLarge, "L")
+                                    TextCustom().customText(
+                                      "몸무게",
+                                      RelativeSizeClass(context).orientation ==
+                                              Orientation.portrait
+                                          ? fsizeLarge
+                                          : fsizeLarge / 1.5,
+                                      "L",
+                                    )
                                   ],
                                 ),
                               ),
@@ -174,12 +188,17 @@ class ResultBMIPage extends StatelessWidget {
                                 height: heightsize * 0.04,
                                 width: widthsize * 0.05,
                                 child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.end,
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    TextCustom().customText(": ", fsizeLarge, "R")
+                                    TextCustom().customText(
+                                      ": ",
+                                      RelativeSizeClass(context).orientation ==
+                                              Orientation.portrait
+                                          ? fsizeLarge
+                                          : fsizeLarge / 1.5,
+                                      "R",
+                                    )
                                   ],
                                 ),
                               ),
@@ -188,14 +207,15 @@ class ResultBMIPage extends StatelessWidget {
                                 height: heightsize * 0.04,
                                 width: widthsize * 0.25,
                                 child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.end,
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.end,
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
                                     TextCustom().customText(
                                       "${controller.bmirec!.weight.toStringAsFixed(1)} kg",
-                                      fsizeLarge,
+                                      RelativeSizeClass(context).orientation ==
+                                              Orientation.portrait
+                                          ? fsizeLarge
+                                          : fsizeLarge / 1.5,
                                       "R",
                                     )
                                   ],
@@ -214,12 +234,17 @@ class ResultBMIPage extends StatelessWidget {
                                 height: heightsize * 0.04,
                                 width: widthsize * 0.25,
                                 child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.end,
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    TextCustom().customText("키 ", fsizeLarge, "L")
+                                    TextCustom().customText(
+                                        "키 ",
+                                        RelativeSizeClass(context)
+                                                    .orientation ==
+                                                Orientation.portrait
+                                            ? fsizeLarge
+                                            : fsizeLarge / 1.5,
+                                        "L")
                                   ],
                                 ),
                               ),
@@ -227,12 +252,17 @@ class ResultBMIPage extends StatelessWidget {
                                 height: heightsize * 0.04,
                                 width: widthsize * 0.05,
                                 child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.end,
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    TextCustom().customText(": ", fsizeLarge, "R")
+                                    TextCustom().customText(
+                                      ": ",
+                                      RelativeSizeClass(context).orientation ==
+                                              Orientation.portrait
+                                          ? fsizeLarge
+                                          : fsizeLarge / 1.5,
+                                      "R",
+                                    )
                                   ],
                                 ),
                               ),
@@ -241,14 +271,15 @@ class ResultBMIPage extends StatelessWidget {
                                 height: heightsize * 0.04,
                                 width: widthsize * 0.25,
                                 child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.end,
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.end,
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
                                     TextCustom().customText(
                                       "${controller.bmirec!.height.toStringAsFixed(1)} cm",
-                                      fsizeLarge,
+                                      RelativeSizeClass(context).orientation ==
+                                              Orientation.portrait
+                                          ? fsizeLarge
+                                          : fsizeLarge / 1.5,
                                       "R",
                                     )
                                   ],
@@ -273,50 +304,43 @@ class ResultBMIPage extends StatelessWidget {
                             decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: Colors.red.withAlpha(40),
-                                border: Border.all(
-                                    color: Colors.red, width: 3)),
-                            width: (min(
-                                    widthsize * 0.4, heightsize * 0.15)) *
-                                0.9,
-                            height: (min(
-                                    widthsize * 0.4, heightsize * 0.15)) *
-                                0.9,
+                                border:
+                                    Border.all(color: Colors.red, width: 3)),
+                            width:
+                                (min(widthsize * 0.4, heightsize * 0.15)) * 0.9,
+                            height:
+                                (min(widthsize * 0.4, heightsize * 0.15)) * 0.9,
                             // height: widthsize * 0.9,
                           ),
                           Positioned(
                             child: CustomPaint(
                               size: Size(
-                                  (min(widthsize * 0.4,
-                                          heightsize * 0.15)) *
+                                  (min(widthsize * 0.4, heightsize * 0.15)) *
                                       0.9,
-                                  (min(widthsize * 0.4,
-                                          heightsize * 0.15)) *
+                                  (min(widthsize * 0.4, heightsize * 0.15)) *
                                       0.9),
                               painter: CircleChart(
                                 Colors.blue.withAlpha(50),
                                 Colors.blue,
-                                radius: ((min(widthsize * 0.4,
-                                        heightsize * 0.15)) *
-                                    0.45 *
-                                    (30) /
-                                    45),
+                                radius:
+                                    ((min(widthsize * 0.4, heightsize * 0.15)) *
+                                        0.45 *
+                                        (30) /
+                                        45),
                               ),
                             ),
                           ),
                           Positioned(
                             child: CustomPaint(
                               size: Size(
-                                  (min(widthsize * 0.4,
-                                          heightsize * 0.15)) *
+                                  (min(widthsize * 0.4, heightsize * 0.15)) *
                                       0.9,
-                                  (min(widthsize * 0.4,
-                                          heightsize * 0.15)) *
+                                  (min(widthsize * 0.4, heightsize * 0.15)) *
                                       0.9),
                               painter: CircleChart(
-                                  Colors.purple.withAlpha(50),
-                                  Colors.purple,
-                                  radius: ((min(widthsize * 0.4,
-                                          heightsize * 0.15)) *
+                                  Colors.purple.withAlpha(50), Colors.purple,
+                                  radius: ((min(
+                                          widthsize * 0.4, heightsize * 0.15)) *
                                       0.45 *
                                       (18.5) /
                                       45)),
@@ -325,11 +349,9 @@ class ResultBMIPage extends StatelessWidget {
                           Positioned(
                             child: CustomPaint(
                               size: Size(
-                                  (min(widthsize * 0.4,
-                                          heightsize * 0.15)) *
+                                  (min(widthsize * 0.4, heightsize * 0.15)) *
                                       0.9,
-                                  (min(widthsize * 0.4,
-                                          heightsize * 0.15)) *
+                                  (min(widthsize * 0.4, heightsize * 0.15)) *
                                       0.9),
                               painter: CircleChart(
                                   Colors.green.withAlpha((255 *
@@ -339,8 +361,8 @@ class ResultBMIPage extends StatelessWidget {
                                           45)
                                       .round()),
                                   const Color.fromARGB(255, 31, 87, 33),
-                                  radius: ((min(widthsize * 0.4,
-                                          heightsize * 0.15)) *
+                                  radius: ((min(
+                                          widthsize * 0.4, heightsize * 0.15)) *
                                       0.9 *
                                       0.5 *
                                       (controller.bmirec!.bmi > 45
@@ -354,12 +376,12 @@ class ResultBMIPage extends StatelessWidget {
                     ],
                   ), // BMI 몸무게 키 Column 그래프 들어있는 Row
                 ), //BMI 몸무게 키 및 그래프 보이는 컨테이너의박스 종료
-                  // Container(
-                  //   color: Colors.amber,
-                  //   width: 20,
-                  //   height: 10,
-                  // ),
-                  Spacer(),
+                // Container(
+                //   color: Colors.amber,
+                //   width: 20,
+                //   height: 10,
+                // ),
+                const Spacer(),
                 SizedBox(
                   // color: Colors.blue,
                   height: heightsize * 0.1,
@@ -372,8 +394,8 @@ class ResultBMIPage extends StatelessWidget {
                         children: [
                           ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                  fixedSize: Size(widthsize * 0.4,
-                                      heightsize * 0.06)),
+                                  fixedSize:
+                                      Size(widthsize * 0.4, heightsize * 0.06)),
                               onPressed: () {
                                 deleteDialog();
                               },
@@ -385,8 +407,8 @@ class ResultBMIPage extends StatelessWidget {
                           ),
                           ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                  fixedSize: Size(widthsize * 0.4,
-                                      heightsize * 0.06)),
+                                  fixedSize:
+                                      Size(widthsize * 0.4, heightsize * 0.06)),
                               onPressed: () {
                                 Get.off(const Home());
                               },
@@ -399,7 +421,7 @@ class ResultBMIPage extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: heightsize*0.01,
+                  height: heightsize * 0.01,
                 )
               ],
             ),
