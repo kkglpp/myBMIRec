@@ -43,17 +43,13 @@
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
-	<!-- Image Picker 사용하기 위함 -->
 	<key>NSCameraUsageDescription</key>
-	<string>Used to demonstrate image picker plugin</string>
+	<string>기록을 기기내 별도의 저장공간에 사진과 함께 저장하기위해서 카메라기능의 접근권한 동의가 필요합니다. 설정(setting)에서 이를 변경할 수 있습니다.</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>Used to capture audio for image picker plugin</string>
+	<string>기록을 기기내 별도의 저장공간에 음성파일과 함께 저장하기위해서 microphone 접근권한 동의가 필요합니다. 설정(setting)에서 이를 변경할 수 있습니다.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Used to demonstrate image picker plugin</string>
-
-<!-- ios 광고 추가를 위함 (admob) -->
+	<string>기록을 기기내 별도의 저장공간에 사진과 함께 저장하기위해서 라이브러리 접근권한 동의가 필요합니다. 설정(setting)에서 이를 변경할 수 있습니다.</string>
 	<key>GADApplicationIdentifier</key>
 	<string>ca-app-pub-4716787481822502~2093162940</string>
-
 </dict>
 </plist>

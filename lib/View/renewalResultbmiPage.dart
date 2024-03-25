@@ -1,10 +1,7 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-
 import 'dart:math';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:mybmirecord/Controller/resultbmipage_controller.dart';
+import 'package:mybmirecord/Controller/resultbmipageController.dart';
 import 'package:mybmirecord/VM_repository/sqlite_repository.dart';
 import 'package:mybmirecord/View/home.dart';
 
@@ -30,7 +27,7 @@ class ResultBMIPage extends StatelessWidget {
     // double heightsize = 700;
     double widthsize = RelativeSizeClass(context).widthSize!;
     double heightsize = RelativeSizeClass(context).heightSize!;
-    double fsizeSmall = RelativeSizeClass(context).customFontSizeS!;
+    // double fsizeSmall = RelativeSizeClass(context).customFontSizeS!;
     double fsizeMiddle = RelativeSizeClass(context).customFontSizeM!;
     double fsizeLarge = RelativeSizeClass(context).customFontSizeL!;
     double fsizeXLarge = RelativeSizeClass(context).customFontSizeXL!;
@@ -80,9 +77,10 @@ class ResultBMIPage extends StatelessWidget {
                   // color: Colors.amber,
                   width: widthsize,
                   height: heightsize * 0.14,
-                  child: kReleaseMode
-                      ? AdWidget(ad: MkBannerADclass().mkBannerAD(context))
-                      : Center(child: const Text("for banner Contents")),
+                  child: 
+                  // kReleaseMode?
+                  AdWidget(ad: MkBannerADclass().mkBannerAD(context))
+                      // : Center(child: const Text("for banner Contents")),
                 ),
                 const Spacer(),
 

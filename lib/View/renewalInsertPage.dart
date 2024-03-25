@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mybmirecord/Controller/insertpage_controller.dart';
+import 'package:mybmirecord/Controller/insertpageController.dart';
 import 'package:mybmirecord/View/renewal_recordpage.dart';
 import 'package:mybmirecord/View/renewal_resultbmipage.dart';
 import 'package:mybmirecord/Custom/circleChart.dart';

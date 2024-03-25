@@ -1,14 +1,9 @@
-// import 'dart:ffi';
-
-// ignore_for_file: must_be_immutable
-
 import 'dart:math';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:mybmirecord/Controller/recordpage_controller.dart';
+import 'package:mybmirecord/Controller/recordpageController.dart';
 import 'package:mybmirecord/Custom/gridCard.dart';
 import 'package:mybmirecord/VM_repository/sqlite_repository.dart';
 import 'package:mybmirecord/View/home.dart';
@@ -335,8 +330,10 @@ const Spacer(),
               // color: Colors.purple[100],
               width: widthsize,
               height: heightsize * 0.14,
-              child: kReleaseMode? AdWidget(ad: MkBannerADclass().mkBannerAD(context))
-              :const Center(child: Text("for banner Contents"))
+              child: 
+              // kReleaseMode? 
+              AdWidget(ad: MkBannerADclass().mkBannerAD(context))
+              // :const Center(child: Text("for banner Contents"))
               ,
               
               // child: const Text("광고 파트, 높이 : 0.14"),
@@ -386,7 +383,7 @@ const Spacer(),
 
     // records.addAll(await sql.bringRecord()) ;
     records = await sql.bringRecord();
-    if (records.length != 0){
+    if (records.isNotEmpty){
     minBMI = (records.map((record) => record.bmi).toList()).reduce(min);
     maxBMI = (records.map((record) => record.bmi).toList()).reduce(max);
     minWeight = (records.map((record) => record.weight).toList()).reduce(min);
