@@ -2,7 +2,7 @@ import 'dart:math';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-import 'package:mybmirecord/Custom/textcustom.dart';
+import 'package:mybmirecord/ViewCustom/textcustom.dart';
 
 class GridCard {
   Uint8List? imgBytes;

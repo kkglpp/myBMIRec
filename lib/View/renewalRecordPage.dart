@@ -3,13 +3,13 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:mybmirecord/Controller/recordpageController.dart';
-import 'package:mybmirecord/Custom/gridCard.dart';
+import 'package:mybmirecord/ViewController/recordpageController.dart';
 import 'package:mybmirecord/VM_repository/sqlite_repository.dart';
 import 'package:mybmirecord/View/home.dart';
-import 'package:mybmirecord/Custom/customLineGraph/graphCard.dart';
-import 'package:mybmirecord/Custom/textcustom.dart';
 import 'package:mybmirecord/View/renewal_resultbmipage.dart';
+import 'package:mybmirecord/ViewCustom/customLineGraph/graphCard.dart';
+import 'package:mybmirecord/ViewCustom/gridCard.dart';
+import 'package:mybmirecord/ViewCustom/textcustom.dart';
 import 'package:mybmirecord/static/forBannerAd.dart';
 
 import '../Model/bmi_record.dart';

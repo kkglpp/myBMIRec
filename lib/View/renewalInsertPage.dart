@@ -2,11 +2,11 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mybmirecord/Controller/insertpageController.dart';
+import 'package:mybmirecord/ViewController/insertpageController.dart';
 import 'package:mybmirecord/View/renewal_recordpage.dart';
 import 'package:mybmirecord/View/renewal_resultbmipage.dart';
-import 'package:mybmirecord/Custom/circleChart.dart';
-import 'package:mybmirecord/Custom/textcustom.dart';
+import 'package:mybmirecord/ViewCustom/circleChart.dart';
+import 'package:mybmirecord/ViewCustom/textcustom.dart';
 import 'package:mybmirecord/static/forRelativeSize.dart';
 
 
@@ -16,7 +16,7 @@ class InsertPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(InsertPageController());
- 
+
     // double widthsize = 350;
     double widthsize = RelativeSizeClass(context).widthSize!;
     double heightsize = RelativeSizeClass(context).heightSize!;
