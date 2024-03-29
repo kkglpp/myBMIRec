@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:mybmirecord/VM_repository/calcBMI.dart';
-import 'package:mybmirecord/VM_repository/sqlite_repository.dart';
+import 'package:mybmirecord/Model_Func/calcBMI.dart';
+import 'package:mybmirecord/Model_Func/sqlite_repository.dart';
 
 class InsertPageController extends GetxController {
   //field

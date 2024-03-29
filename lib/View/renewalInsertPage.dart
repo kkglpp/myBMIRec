@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mybmirecord/View/renewalRecordPage.dart';
 import 'package:mybmirecord/View/renewalResultbmiPage.dart';
-import 'package:mybmirecord/ViewController/insertpageController.dart';
+import 'package:mybmirecord/Controller_ViewModel/insertpageController.dart';
 
-import 'package:mybmirecord/ViewCustom/circleChart.dart';
-import 'package:mybmirecord/ViewCustom/textcustom.dart';
+import 'package:mybmirecord/View_Custom/circleChart.dart';
+import 'package:mybmirecord/View_Custom/textcustom.dart';
 import 'package:mybmirecord/static/forRelativeSize.dart';
 
 

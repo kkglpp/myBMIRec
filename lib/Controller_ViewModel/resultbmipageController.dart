@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import 'package:mybmirecord/Model/bmi_record.dart';
-import 'package:mybmirecord/VM_repository/sqlite_repository.dart';
+import 'package:mybmirecord/Model_dataModel/bmi_record.dart';
+import 'package:mybmirecord/Model_Func/sqlite_repository.dart';
 
 class ResultBMIPageController extends GetxController {
   RxBool querySuccess = false.obs;

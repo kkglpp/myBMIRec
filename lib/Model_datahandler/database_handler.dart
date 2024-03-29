@@ -1,4 +1,4 @@
-import 'package:mybmirecord/Model/bmi_record.dart';
+import 'package:mybmirecord/Model_dataModel/bmi_record.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 

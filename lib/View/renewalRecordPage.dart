@@ -4,15 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:mybmirecord/View/renewalResultbmiPage.dart';
-import 'package:mybmirecord/ViewController/recordpageController.dart';
-import 'package:mybmirecord/VM_repository/sqlite_repository.dart';
+import 'package:mybmirecord/Controller_ViewModel/recordpageController.dart';
+import 'package:mybmirecord/Model_Func/sqlite_repository.dart';
 import 'package:mybmirecord/View/home.dart';
-import 'package:mybmirecord/ViewCustom/customLineGraph/graphCard.dart';
-import 'package:mybmirecord/ViewCustom/gridCard.dart';
-import 'package:mybmirecord/ViewCustom/textcustom.dart';
+import 'package:mybmirecord/View_Custom/customLineGraph/graphCard.dart';
+import 'package:mybmirecord/View_Custom/gridCard.dart';
+import 'package:mybmirecord/View_Custom/textcustom.dart';
 import 'package:mybmirecord/static/forBannerAd.dart';
 
-import '../Model/bmi_record.dart';
+import '../Model_dataModel/bmi_record.dart';
 import '../static/forRelativeSize.dart';
 
 class ReRecordPage extends StatelessWidget {
