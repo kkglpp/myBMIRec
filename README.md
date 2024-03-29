@@ -1,16 +1,27 @@
-# mybmirecord
+# 건강관리 app
+## IOS app store 등록완료 
 
-A new Flutter project.
+---
+---
 
-## Getting Started
+## 1. 아키텍쳐 적용을 위한 리팩토링
+- 좀더 이해하기 쉽게 MVVM 역할 구분의 일관성을 갖출 것.
+- 그래프 구현한 class 들을 패키지화 시켜볼 것.
+- 세부적인 디자인 요소들 가꾸어 볼것.
+- Screen util 패키지 사용하는 방식으로 요소들의 크기 및 여백/마진을 조정할 것.
+- MVI 패턴으로변경 고려해 볼 것.
 
-This project is a starting point for a Flutter application.
+## 2. V. 2.0.2 준비 할 것.  4월중 개선해 볼 것.
+- alert 디자인 개선
+- 목록페이지에서 삭제 기능
+- 목록 페이지에서 grid card 요소들의 배경없애고, 자체 card들에 그림자 및 테두리로 >
+디자인 개선할 것.
+- 안드로이드 play스토어에 등록할것 (4월 첫주 목표)
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 3. V. 3.0.0 준비 할 것. 목표 : 24년 7월중 개선해볼 것.
+- app 이름 바꾸기  ( 현재 고려중: My Trainer Partner)
+- 목표 추가기능
+ | 다양한 방식의 초시계 기능
+ | 운동별 목표 입력기능
+ | 운동별 성취 수준 입력기능
+ | 운동별 성취 및 변화 입력 기능 등등
