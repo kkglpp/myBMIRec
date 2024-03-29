@@ -1,13 +1,13 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:mybmirecord/Controller/resultbmipageController.dart';
+import 'package:mybmirecord/ViewController/resultbmipageController.dart';
 import 'package:mybmirecord/VM_repository/sqlite_repository.dart';
 import 'package:mybmirecord/View/home.dart';
 
-import 'package:mybmirecord/Custom/textcustom.dart';
 import 'package:get/get.dart';
-import 'package:mybmirecord/Custom/circleChart.dart';
+import 'package:mybmirecord/ViewCustom/circleChart.dart';
+import 'package:mybmirecord/ViewCustom/textcustom.dart';
 import 'package:mybmirecord/static/forBannerAd.dart';
 
 import '../static/forRelativeSize.dart';

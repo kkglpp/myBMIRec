@@ -110,7 +110,6 @@ class LineChart extends CustomPainter {
 
 // p2에 점 그리기
     canvas.drawCircle(p2, lineWidth * 1.3, paint);
-
     textPainter.layout(); // 텍스트의 레이아웃을 설정
     textPainter.paint(canvas, textLocation); // 텍스트를 그림
   }
