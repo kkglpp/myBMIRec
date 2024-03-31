@@ -46,6 +46,8 @@ dependencies:
 
   ##광고를 위함
   google_mobile_ads: ^4.0.0
+  ## Screen util
+  flutter_screenutil: ^5.9.0
 
 dev_dependencies:
   flutter_test:
