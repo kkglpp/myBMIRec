@@ -42,7 +42,7 @@ class RecordPageController extends GetxController {
     maxWeight = (records.map((record) => record.weight).toList()).reduce(max);
     minHeight = (records.map((record) => record.height).toList()).reduce(min);
     maxHeight = (records.map((record) => record.height).toList()).reduce(max);
-    loadRec.value = true;
     }
+    loadRec.value = true;
   }
 }

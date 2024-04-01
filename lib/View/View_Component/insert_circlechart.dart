@@ -30,6 +30,7 @@ Widget insertCircleChart(BuildContext context) {
             width: heightsize * 0.5,
             height: heightsize * 0.5,
           ),
+          //정상체중의 범위를 표시해주시는 원. BMI 수치 30 까지가 해당함.
           Positioned(
             child: CustomPaint(
               size: Size(heightsize * 0.5, heightsize * 0.5),
@@ -37,6 +38,8 @@ Widget insertCircleChart(BuildContext context) {
                   radius: (heightsize * 0.25 * (30) / 45)),
             ),
           ),
+          // 저체중의 범위를 표시해주시는 원. BMI 수치 18.5 까지가 해당함.
+
           Positioned(
             child: CustomPaint(
               size: Size(heightsize * 0.5, heightsize * 0.5),

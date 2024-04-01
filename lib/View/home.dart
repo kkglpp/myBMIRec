@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mybmirecord/View/renewalInsertPage.dart';
+import 'package:mybmirecord/View/InsertPage.dart';
 
 
 class Home extends StatelessWidget {

@@ -1,14 +1,12 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:mybmirecord/View/Component/insert_circlechart.dart';
-import 'package:mybmirecord/View/Component/insert_height.dart';
-import 'package:mybmirecord/View/Component/insert_image.dart';
-import 'package:mybmirecord/View/Component/insert_weight.dart';
-import 'package:mybmirecord/View/renewalRecordPage.dart';
-import 'package:mybmirecord/View/renewalResultbmiPage.dart';
+import 'package:mybmirecord/View/View_Component/insert_circlechart.dart';
+import 'package:mybmirecord/View/View_Component/insert_height.dart';
+import 'package:mybmirecord/View/View_Component/insert_image.dart';
+import 'package:mybmirecord/View/View_Component/insert_weight.dart';
+import 'package:mybmirecord/View/RecordPage.dart';
+import 'package:mybmirecord/View/ResultbmiPage.dart';
 import 'package:mybmirecord/ViewModel_Controller/insertpageController.dart';
 
 import 'package:mybmirecord/Widget_Custom/CustomWidget.dart';
@@ -193,7 +191,7 @@ class InsertPage extends StatelessWidget {
                   foregroundColor: Colors.white,
                   minimumSize: Size(widthsize * 0.8, heightsize * 0.075)),
               onPressed: () {
-                Get.off(() => ReRecordPage());
+                Get.off(() => RecordPage());
               },
               child: SizedBox(
                 width: widthsize * 0.8,
