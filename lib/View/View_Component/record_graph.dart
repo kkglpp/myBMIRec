@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mybmirecord/ViewModel_Controller/recordpageController.dart';
-import 'package:mybmirecord/Widget_Custom/customLineGraph/graphCard.dart';
+import 'package:mybmirecord/Widget_Custom/customLineGraph/GraphCard.dart';
 import 'package:mybmirecord/static/forRelativeSize.dart';
 
 Widget recordGraph(BuildContext context, RecordPageController controller) {
@@ -10,7 +10,7 @@ Widget recordGraph(BuildContext context, RecordPageController controller) {
   double fsizeMiddle = RelativeSizeClass(context).customFontSizeM!;
   double fsizeLarge = RelativeSizeClass(context).customFontSizeL!;
   double fsizeXLarge = RelativeSizeClass(context).customFontSizeXL!;
-
+  GraphCard gc = GraphCard();
   return Row(
     children: [
       /*
@@ -29,7 +29,7 @@ Widget recordGraph(BuildContext context, RecordPageController controller) {
             scrollDirection: Axis.horizontal,
             itemCount: controller.records.length,
             itemBuilder: (context, index) {
-              return graphCard().lineGraphCell(
+              return gc.lineGraphCell(
                   controller.graphSelect.value,
                   widthsize * 0.2,
                   heightsize * 0.22, //height 1
@@ -62,7 +62,7 @@ Widget recordGraph(BuildContext context, RecordPageController controller) {
             scrollDirection: Axis.horizontal,
             itemCount: controller.records.length,
             itemBuilder: (context, index) {
-              return graphCard().lineGraphCell(
+              return gc.lineGraphCell(
                   controller.graphSelect.value,
                   widthsize * 0.2,
                   heightsize * 0.22,
@@ -95,7 +95,7 @@ Widget recordGraph(BuildContext context, RecordPageController controller) {
             scrollDirection: Axis.horizontal,
             itemCount: controller.records.length,
             itemBuilder: (context, index) {
-              return graphCard().lineGraphCell(
+              return gc.lineGraphCell(
                   controller.graphSelect.value,
                   widthsize * 0.2,
                   heightsize * 0.22,

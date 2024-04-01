@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mybmirecord/Widget_Custom/customLineGraph/lineChart.dart';
 import 'package:mybmirecord/Widget_Custom/CustomWidget.dart';
 
-class graphCard {
+class GraphCard {
   lineGraphCell(int graphStatus,double widthsize, double heightsize,double minNum,  double maxNum,
       double? startNum, double middleNum, double? endNum, double lineWeight, double heightsize2 ,String xAxis, double heightsize3, {double fsizeX = 2 }) {
     return SizedBox(

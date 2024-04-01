@@ -41,7 +41,8 @@ class ResultBMIPage extends StatelessWidget {
       body: GetX<ResultBMIPageController>(builder: (controller) {
         if (!controller.querySuccess.value) {
           doQuery(controller);
-          return const Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator(),
+          );
         } else {
           return Center(
             child: Column(
@@ -437,10 +438,13 @@ class ResultBMIPage extends StatelessWidget {
     Get.defaultDialog(
         title: "기록삭제",
         content: const Text(
-            "정말로 기록을 삭제하시겠습니까?\n 지난 날짜의 기록은 기록할 수 없으며,\n삭제된 기록은 복구되지 않습니다. "),
+            "정말로 기록을 삭제하시겠습니까?\n지난 날짜의 기록은 기록할 수 없으며,\n삭제된 기록은 복구되지 않습니다. "),
         barrierDismissible: false,
         actions: [
           TextButton(
+            style: TextButton.styleFrom(
+              foregroundColor: Colors.red
+            ),
             onPressed: () {
               deleteQuery(recordKey);
               Get.back();
@@ -448,6 +452,9 @@ class ResultBMIPage extends StatelessWidget {
             child: const Text("삭제"),
           ),
           TextButton(
+            style: TextButton.styleFrom(
+              foregroundColor: Colors.blue
+            ),
             onPressed: () {
               Get.back();
             },

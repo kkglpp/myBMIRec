@@ -54,7 +54,6 @@ class SqliteRepository {
     final DatabaseHandler db = DatabaseHandler();
     BMIrecord? bmi;
     bmi = (await db.queryOneRecord(seq))[0];
-
     return bmi;
   } //end of birngQuery
 }

@@ -90,14 +90,14 @@ class GridCard {
                   decoration: BoxDecoration(
                       color: Colors.white.withAlpha(190),
                       // color: Colors.white.withAlpha(180),
-                      borderRadius: BorderRadius.only(
+                      borderRadius: const BorderRadius.only(
                           bottomLeft: Radius.circular(10),
                           bottomRight: Radius.circular(10))),
                   width: realWidth,
                   height: realHeight * 0.3,
                   child: Row(
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
                       Column(

@@ -15,9 +15,27 @@ import 'package:mybmirecord/static/forRelativeSize.dart';
 class InsertPage extends StatelessWidget {
   const InsertPage({super.key});
 
+  // late double widthsize;
+  // late double heightsize;
+  // late double fsizeSmall;
+  // late double fsizeMiddle;
+  // late double fsizeLarge;
+  // late double fsizeXLarge;
+
+  // setSizeValue(BuildContext context) {
+  //   widthsize = RelativeSizeClass(context).widthSize!;
+  //   heightsize = RelativeSizeClass(context).heightSize!;
+  //   fsizeSmall = RelativeSizeClass(context).customFontSizeS!;
+  //   fsizeMiddle = RelativeSizeClass(context).customFontSizeM!;
+  //   fsizeLarge = RelativeSizeClass(context).customFontSizeL!;
+  //   fsizeXLarge = RelativeSizeClass(context).customFontSizeXL!;
+  // }
+
   @override
   Widget build(BuildContext context) {
     Get.put(InsertPageController());
+    // setSizeValue(context);
+
     double widthsize = RelativeSizeClass(context).widthSize!;
     double heightsize = RelativeSizeClass(context).heightSize!;
     double fsizeSmall = RelativeSizeClass(context).customFontSizeS!;

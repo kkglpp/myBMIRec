@@ -19,6 +19,14 @@
 ## 1. 코드 개선 위한 필요 작업
 - 나중에 봐도 좀 더 읽기쉽고 이해하기 쉽게 주석 깔끔하게 달아둘 것.
 - MVVM 역할 구분의 일관성을 갖출 것.
+#### View에서 Controller의 함수 실행해서 data 최신화 -> Model Func 의 함수 실행해서 필요 data 가져옴 -> 필요시 dataHandler의 함수 실행해서 db에서 데이터 꺼내옴.
+#### Model dataHandler : db에서 데이터 꺼내오기
+#### Model Func : Biz Function
+##### 1. db에서 데이터 꺼내오기 위해 필요한 매개변수 전달.
+##### 2. 성공여부에 다른 return 값 전달
+##### 3. db에서 가져올 필요 없는 데이터들의 최신화
+#### ViewModel Controller : View에 필요한 data의 관찰 및 갱신. data 변화의 시작과 끝만 담당?
+-1.db 에서 데이터를꺼내오기위해 필요한 요소 전달.
 - 그래프 구현한 class 들을 패키지화 시켜볼 것.
 - 세부적인 디자인 요소들 가꾸어 볼것.
 - Screen util 패키지 사용해 볼 것. 
