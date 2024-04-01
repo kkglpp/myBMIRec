@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mybmirecord/View_Custom/customLineGraph/lineChart.dart';
-import 'package:mybmirecord/View_Custom/textcustom.dart';
+import 'package:mybmirecord/Widget_Custom/customLineGraph/lineChart.dart';
+import 'package:mybmirecord/Widget_Custom/CustomWidget.dart';
 
 class graphCard {
   lineGraphCell(int graphStatus,double widthsize, double heightsize,double minNum,  double maxNum,
@@ -40,7 +40,7 @@ class graphCard {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                TextCustom().customText(
+                customText(
                 xAxis,
                 fsizeX,
                 "C",

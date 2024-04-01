@@ -2,7 +2,7 @@ import 'dart:math';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-import 'package:mybmirecord/View_Custom/textcustom.dart';
+import 'package:mybmirecord/Widget_Custom/CustomWidget.dart';
 
 class GridCard {
   Uint8List? imgBytes;
@@ -42,7 +42,7 @@ class GridCard {
                       width: realWidth,
                       height: realHeight,
                       child: Center(
-                        child: TextCustom().customText("No Image", fsize*1.5, "C",
+                        child: customText("No Image", fsize*1.5, "C",
                             clr: Colors.white),
                       ),
                     )
@@ -82,9 +82,9 @@ class GridCard {
                           mainAxisAlignment: MainAxisAlignment.end,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            TextCustom().customText(
+                            customText(
                                 "BMI : ${bmiValue.toStringAsFixed(1)}", fsize, "L"),
-                            TextCustom().customText(recordDate, fsize*0.9, "C"),
+                            customText(recordDate, fsize*0.9, "C"),
                           ]),
                     ],
                   )),

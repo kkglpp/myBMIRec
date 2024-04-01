@@ -1,13 +1,14 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:mybmirecord/View/renewalRecordPage.dart';
 import 'package:mybmirecord/View/renewalResultbmiPage.dart';
-import 'package:mybmirecord/Controller_ViewModel/insertpageController.dart';
+import 'package:mybmirecord/ViewModel_Controller/insertpageController.dart';
 
-import 'package:mybmirecord/View_Custom/circleChart.dart';
-import 'package:mybmirecord/View_Custom/textcustom.dart';
+import 'package:mybmirecord/Widget_Custom/circleChart.dart';
+import 'package:mybmirecord/Widget_Custom/CustomWidget.dart';
 import 'package:mybmirecord/static/forRelativeSize.dart';
 
 
@@ -17,15 +18,13 @@ class InsertPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(InsertPageController());
-
-    // double widthsize = 350;
     double widthsize = RelativeSizeClass(context).widthSize!;
     double heightsize = RelativeSizeClass(context).heightSize!;
     double fsizeSmall = RelativeSizeClass(context).customFontSizeS!;
     double fsizeMiddle = RelativeSizeClass(context).customFontSizeM!;
     double fsizeLarge= RelativeSizeClass(context).customFontSizeL!;
     double fsizeXLarge= RelativeSizeClass(context).customFontSizeXL!;
-    // double heightsize = 700;
+
     return Scaffold(
       body: Center(
         child: Column(
@@ -33,31 +32,27 @@ class InsertPage extends StatelessWidget {
           children: [
             /*
             - 키 (height) 입력 하는 파트 - 
-            높이 : height 0.075
-            
+            높이 : height 0.09
              */
             GetX<InsertPageController>(builder: (controller) {
               return Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
-                    width: widthsize * 0.35,
-                    height: heightsize * 0.075,
+                    width: widthsize * 0.3,
+                    height: heightsize * 0.09,
                     // color: Colors.blue,
                     child: Center(
-                      child: TextCustom().customText(
+                      child: customText(
                           "${controller.height.toStringAsFixed(1)}cm",
                           fsizeLarge,
                           'C'),
                     ),
                   ),
-                  SizedBox(
-                    width: widthsize * 0.05,
-                  ),
-                  SizedBox(
+                  Container(
                     // color: Colors.amber,
-                    width: widthsize * 0.6,
-                    height: heightsize * 0.075,
+                    width: widthsize * 0.55,
+                    height: heightsize * 0.09,
                     child: Slider(
                       value: controller.height.value,
                       min: 100,
@@ -68,35 +63,73 @@ class InsertPage extends StatelessWidget {
                       },
                     ),
                   ),
+                  Container(
+                    // color: Colors.green,
+                    width: widthsize * 0.15,
+                    height: heightsize * 0.09,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          // color: Colors.pink,
+                          height: heightsize*0.045,
+                          child: IconButton(
+                            onPressed: (){
+                              controller.plusHeight();
+                            },
+                            icon: Icon(Icons.keyboard_arrow_up_sharp,
+                            size: fsizeXLarge*1.2,)
+                            ),
+                        ),
+                        const Spacer(),
+                        Container(
+                          // color: Colors.yellow,
+                          height: heightsize*0.045,
+                          child: IconButton(
+                            onPressed: (){
+                              controller.subHeight();
+                            },
+                            icon: Icon(Icons.keyboard_arrow_down_sharp,
+                            size: fsizeXLarge*1.2,)
+                            ),
+                        ),
+                      ],
+                    ),
+                  ),                
+                  SizedBox(
+                    width: widthsize*0.05,
+                  )  
                 ],
               );
             }),
+            Padding(
+              padding: EdgeInsets.fromLTRB(25.w, 0, 25.w, 0),
+              child: const Divider(),
+            ),
             /*
             - 몸무게 (weight) 입력 하는 파트 - 
-            높이 : height 0.075
+            높이 : height 0.09
              */
             GetX<InsertPageController>(builder: (controller) {
               return Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
-                    width: widthsize * 0.35,
-                    height: heightsize * 0.075,
+                    width: widthsize * 0.3,
+                    height: heightsize * 0.09,
                     // color: Colors.blue,
                     child: Center(
-                      child: TextCustom().customText(
+                      child: customText(
                           "${controller.weight.toStringAsFixed(1)} kg",
                           fsizeLarge,
                           'C'),
                     ),
                   ),
-                  SizedBox(
-                    width: widthsize * 0.05,
-                  ),
+
                   SizedBox(
                     // color: Colors.amber,
-                    width: widthsize * 0.6,
-                    height: heightsize * 0.075,
+                    width: widthsize * 0.55,
+                    height: heightsize * 0.09,
                     child: Slider(
                       value: controller.weight.value,
                       min: 30,
@@ -108,28 +141,63 @@ class InsertPage extends StatelessWidget {
                       },
                     ),
                   ),
+                  Container(
+                    // color: Colors.green,
+                    width: widthsize * 0.15,
+                    height: heightsize * 0.09,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          // color: Colors.pink,
+                          height: heightsize*0.045,
+                          child: IconButton(
+                            onPressed: (){
+                              controller.plusWeight();
+                            },
+                            icon: Icon(Icons.keyboard_arrow_up_sharp,
+                            size: fsizeXLarge*1.2,)
+                            ),
+                        ),
+                        const Spacer(),
+                        Container(
+                          // color: Colors.yellow,
+                          height: heightsize*0.045,
+                          child: IconButton(
+                            onPressed: (){
+                              controller.subWeight();
+                              
+                            },
+                            icon: Icon(Icons.keyboard_arrow_down_sharp,
+                            size: fsizeXLarge*1.2,)
+                            ),
+                        ),
+                        
+
+                      ],
+                    ),
+                  ),                        
+                  SizedBox(
+                    width: widthsize * 0.05,
+                  ),                  
                 ],
               );
             }),
+            Padding(
+              padding: EdgeInsets.fromLTRB(25.w, 0, 25.w, 0),
+              child: Divider(),
+            ),            
 //여기까지 0.15
-            // 여백을 위한 sizedbox
-            SizedBox(
-              // color: Colors.amber,
-              height: heightsize * 0.05,
-            ),
-            /*
-            BMI 수치를 시각화 하는 부분
-            전체 높이 : heightsize * 0.7
-             */
-
+            const Spacer(),
+            /* 
+            BMI 수치를 표시해주는 칸. 
+            사진을 입력할지 고르는 Switch
+            */
             Container(
               // color: Colors.amber,
               width: widthsize,
-              height: heightsize * 0.65,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  GetX<InsertPageController>(builder: (controller) {
+              height: heightsize * 0.05,
+              child:                   GetX<InsertPageController>(builder: (controller) {
                     return Row( 
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.end,
@@ -138,14 +206,17 @@ class InsertPage extends StatelessWidget {
                           width: widthsize*0.05,
                         ),
                         SizedBox(
-
                           width: widthsize * 0.4,
                           height: heightsize * 0.05,
                           // color: Colors.grey,
-                          child: TextCustom().customText(
-                              "BMI : ${controller.bmi.toStringAsFixed(1)}",
-                              fsizeXLarge,
-                              "L"),
+                          child: Row(
+                            children: [
+                              customText(
+                                  "BMI : ${controller.bmi.toStringAsFixed(1)}",
+                                  fsizeXLarge,
+                                  "L"),
+                            ],
+                          ),
                         ),
                         const Spacer(),
                         SizedBox(
@@ -153,9 +224,9 @@ class InsertPage extends StatelessWidget {
                             width: widthsize * 0.3,
                             height: heightsize * 0.05,
                             child: Column(
-                              // mainAxisAlignment: MainAxisAlignment.end,
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                TextCustom().customText(
+                                customText(
                                     "사진 고르기 ➤ ", fsizeLarge, "R",),
                               ],
                             )),
@@ -168,17 +239,30 @@ class InsertPage extends StatelessWidget {
                                 controller.viewType.value = value;
                               }),
                         ),
-                        SizedBox(
-                          width: widthsize*0.05,
-                        ),                            
+                        // SizedBox(
+                        //   width: widthsize*0.05,
+                        // ),                            
                       ],
                     );
                   }),
-            const Spacer(),
 
+            ),
+const Spacer(),            
+            /*
+            BMI 수치를 시각화 하는 부분
+            전체 높이 : heightsize * 0.6
+             */
+            Container(
+              // color: Colors.amber,
+              width: widthsize,
+              height: heightsize * 0.5,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
                   /*
                   Switch에 따른 화면전환
-                  눈바디 사진 입력 필요
+                  true ->사진을 고르는 화면
+                  false -> BMI 와 연동되는 원
                    */
                   GetX<InsertPageController>(builder: (ctrl) {
                     return ctrl.viewType.value
@@ -229,8 +313,7 @@ class InsertPage extends StatelessWidget {
                   BMI에 따라 달라지는 원의 크기
                   Zstack으로 쌓아서 겹쳐지게 표현.
                    */
-
-                        : SizedBox(
+                        : Container(
                             width: widthsize,
                             height: heightsize * 0.5,
                             // color: Colors.amber,
@@ -303,16 +386,13 @@ class InsertPage extends StatelessWidget {
                             ),
                           );
                   }),
-                  const Spacer(),
+                  // const Spacer(),
 
                 ],
               ),
             ),
-            SizedBox(
-              height: heightsize*0.02,
-            ),
+            const Spacer(),
 //여기까지 0.85
-
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.green,
@@ -338,7 +418,7 @@ class InsertPage extends StatelessWidget {
             ),
 
             SizedBox(
-              height: heightsize * 0.005,
+              height: heightsize * 0.01,
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
@@ -363,11 +443,7 @@ class InsertPage extends StatelessWidget {
                 ),
               ),
             ),
-// 여기까지 0.95
-            SizedBox(
-              // color: Colors.black,
-              height: heightsize * 0.01,
-            )
+            const Spacer(),
           ],
         ),
       ),

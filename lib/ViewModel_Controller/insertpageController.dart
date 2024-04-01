@@ -17,14 +17,30 @@ class InsertPageController extends GetxController {
     height.value = newHeight;
     bmi.value= CalcBMI().calcbmi(height.value,weight.value);
   } //end of changeofHeight
+  plusHeight() {
+    height.value += 0.1;
+    bmi.value= CalcBMI().calcbmi(height.value,weight.value);
+  } //end of changeofHeight
+  subHeight() {
+    height.value -= 0.1;
+    bmi.value= CalcBMI().calcbmi(height.value,weight.value);
+  } //end of changeofHeight
 
   changeWeight(double newWeight) {
     weight.value = newWeight;
     bmi.value= CalcBMI().calcbmi(height.value,weight.value);
     // calcBMI(height, weight);
   } //end of changeWeight
-
-
+  plusWeight() {
+    weight.value += 0.1;
+    bmi.value= CalcBMI().calcbmi(height.value,weight.value);
+    // calcBMI(height, weight);
+  } //end of changeWeight
+  subWeight() {
+    weight.value -= 0.1;
+    bmi.value= CalcBMI().calcbmi(height.value,weight.value);
+    // calcBMI(height, weight);
+  } //end of changeWeight
 
   selectImage() async {
     XFile? tempFile;

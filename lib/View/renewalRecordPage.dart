@@ -1,15 +1,17 @@
 import 'dart:math';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:mybmirecord/View/renewalResultbmiPage.dart';
-import 'package:mybmirecord/Controller_ViewModel/recordpageController.dart';
+import 'package:mybmirecord/ViewModel_Controller/recordpageController.dart';
 import 'package:mybmirecord/Model_Func/sqlite_repository.dart';
 import 'package:mybmirecord/View/home.dart';
-import 'package:mybmirecord/View_Custom/customLineGraph/graphCard.dart';
-import 'package:mybmirecord/View_Custom/gridCard.dart';
-import 'package:mybmirecord/View_Custom/textcustom.dart';
+import 'package:mybmirecord/Widget_Custom/customLineGraph/graphCard.dart';
+import 'package:mybmirecord/Widget_Custom/gridCard.dart';
+import 'package:mybmirecord/Widget_Custom/CustomWidget.dart';
 import 'package:mybmirecord/static/forBannerAd.dart';
 
 import '../Model_dataModel/bmi_record.dart';
@@ -17,13 +19,8 @@ import '../static/forRelativeSize.dart';
 
 class ReRecordPage extends StatelessWidget {
   ReRecordPage({super.key});
-  late List<BMIrecord> records = [];
-  late double minBMI = 5 ;
-  late double maxBMI = 60;
-  late double minHeight=0;
-  late double maxHeight=180;
-  late double minWeight=30;
-  late double maxWeight=100;
+  // late List<BMIrecord> records = [];
+
   @override
   Widget build(BuildContext context) {
     Get.put(RecordPageController());
@@ -36,7 +33,7 @@ class ReRecordPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: TextCustom().customText("My BMI Status ? ", fsizeXLarge, "C"),
+        title: customText("My BMI Status ? ", fsizeXLarge, "C"),
       ),
       body: Center(
         child: Column(
@@ -47,7 +44,7 @@ class ReRecordPage extends StatelessWidget {
              */
             GetX<RecordPageController>(builder: (controller) {
               if (!controller.loadRec.value) {
-                bringRecords();
+                controller.bringRecords();
                 return const CircularProgressIndicator();
               } else {
                 return Container(
@@ -60,19 +57,19 @@ class ReRecordPage extends StatelessWidget {
                       ,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: records.length,
+                    itemCount: controller.records.length,
                     itemBuilder: (context, index) {
                       return GestureDetector(
                         onTap: () {
                           Get.off(
-                              ResultBMIPage(recordKey: records[index].seq!));
+                              ResultBMIPage(recordKey: controller.records[index].seq!));
                         },
                         child: SizedBox(
                           child: Center(
-                            child: GridCard(records[index].imgbyte,
-                                    records[index].timestamp)
+                            child: GridCard(controller.records[index].imgbyte,
+                                    controller.records[index].timestamp)
                                 .girdCard(widthsize * 0.35, heightsize * 0.19,
-                                    records[index].bmi, 3,
+                                    controller.records[index].bmi, 3,
                                     fsize: RelativeSizeClass(context).orientation == Orientation.portrait? fsizeMiddle : fsizeMiddle/1.8),
                           ),
                         ),
@@ -114,7 +111,7 @@ class ReRecordPage extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
-                                    TextCustom().customText(
+                                    customText(
                                         controller.graphSelect.value == 0
                                             ? "단위 : "
                                             : controller.graphSelect.value == 1
@@ -141,8 +138,7 @@ class ReRecordPage extends StatelessWidget {
                                         controller.selectBMIGraph();
                                       }
                                     : null,
-                                child: TextCustom()
-                                    .customText("BMI", fsizeSmall, "C")),
+                                child: customText("BMI", fsizeSmall, "C")),
                             ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                     backgroundColor:
@@ -158,8 +154,7 @@ class ReRecordPage extends StatelessWidget {
                                         controller.selectHeightGraph();
                                       }
                                     : null,
-                                child: TextCustom()
-                                    .customText("키", fsizeSmall, "C")),
+                                child: customText("키", fsizeSmall, "C")),
                             ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                     backgroundColor:
@@ -175,8 +170,7 @@ class ReRecordPage extends StatelessWidget {
                                         controller.selectWeightGraph();
                                       }
                                     : null,
-                                child: TextCustom()
-                                    .customText("몸무게", fsizeSmall, "C")),
+                                child: customText("몸무게", fsizeSmall, "C")),
                           ],
                         );
                       },
@@ -185,7 +179,7 @@ class ReRecordPage extends StatelessWidget {
                   GetX<RecordPageController>(
                     builder: (controller) {
                       if (!controller.loadRec.value) {
-                        bringRecords();
+                        controller.bringRecords();
                         return const CircularProgressIndicator();
                       } else {
                         return Row(
@@ -198,25 +192,25 @@ class ReRecordPage extends StatelessWidget {
                                 height: heightsize * 0.26,
                                 child: ListView.builder(
                                   scrollDirection: Axis.horizontal,
-                                  itemCount: records.length,
+                                  itemCount: controller.records.length,
                                   itemBuilder: (context, index) {
                                     return graphCard().lineGraphCell(
                                         controller.graphSelect.value,
                                         widthsize * 0.2,
                                         heightsize * 0.22, //height 1
-                                        minBMI*0.1, //min 그래프 y 축의 최소값
-                                        maxBMI*1.1, //max 그래프에서 보여줄 최대값.
+                                        controller.minBMI*0.1, //min 그래프 y 축의 최소값
+                                        controller.maxBMI*1.1, //max 그래프에서 보여줄 최대값.
                                         index == 0
                                             ? null
-                                            : records[index - 1]
+                                            : controller.records[index - 1]
                                                 .bmi, // 시작값. 직전 측정값
-                                        records[index].bmi, // 해당 날짜의 측정 실제 값.
-                                        index + 1 < records.length
-                                            ? records[index + 1].bmi
+                                        controller.records[index].bmi, // 해당 날짜의 측정 실제 값.
+                                        index + 1 < controller.records.length
+                                            ? controller.records[index + 1].bmi
                                             : null,
                                         3,
                                         heightsize * 0.03, //height 2  가로축의 값을 입력하는 파트
-                                        records[index].timestamp,
+                                        controller.records[index].timestamp,
                                         heightsize * 0.01, //height 3 그래프와 가로축 사이의 여백
                                         fsizeX: fsizeSmall);
                                   },
@@ -231,26 +225,26 @@ class ReRecordPage extends StatelessWidget {
                                 height: heightsize * 0.26,
                                 child: ListView.builder(
                                   scrollDirection: Axis.horizontal,
-                                  itemCount: records.length,
+                                  itemCount: controller.records.length,
                                   itemBuilder: (context, index) {
                                     return graphCard().lineGraphCell(
                                         controller.graphSelect.value,
                                         widthsize * 0.2,
                                         heightsize * 0.22,
-                                        minHeight*0.3,
-                                        maxHeight*1.1, //max 그래프에서 보여줄 최대값.
+                                        controller.minHeight*0.3,
+                                        controller.maxHeight*1.1, //max 그래프에서 보여줄 최대값.
                                         index == 0
                                             ? null
-                                            : records[index - 1]
+                                            : controller.records[index - 1]
                                                 .height, // 시작값. 직전 측정값
-                                        records[index]
+                                        controller.records[index]
                                             .height, // 해당 날짜의 측정 실제 값.
-                                        index + 1 < records.length
-                                            ? records[index + 1].height
+                                        index + 1 < controller.records.length
+                                            ? controller.records[index + 1].height
                                             : null,
                                         3,
                                         heightsize * 0.03,
-                                        records[index].timestamp,
+                                        controller.records[index].timestamp,
                                         heightsize * 0.01,
                                         fsizeX: fsizeSmall);
                                   },
@@ -265,26 +259,26 @@ class ReRecordPage extends StatelessWidget {
                                 height: heightsize * 0.26,
                                 child: ListView.builder(
                                   scrollDirection: Axis.horizontal,
-                                  itemCount: records.length,
+                                  itemCount: controller.records.length,
                                   itemBuilder: (context, index) {
                                     return graphCard().lineGraphCell(
                                         controller.graphSelect.value,
                                         widthsize * 0.2,
                                         heightsize * 0.22,
-                                        minWeight*0.15,
-                                        maxWeight*1.2, //max 그래프에서 보여줄 최대값.
+                                        controller.minWeight*0.15,
+                                        controller.maxWeight*1.2, //max 그래프에서 보여줄 최대값.
                                         index == 0
                                             ? null
-                                            : records[index - 1]
+                                            : controller.records[index - 1]
                                                 .weight, // 시작값. 직전 측정값
-                                        records[index]
+                                        controller.records[index]
                                             .weight, // 해당 날짜의 측정 실제 값.
-                                        index + 1 < records.length
-                                            ? records[index + 1].weight
+                                        index + 1 < controller.records.length
+                                            ? controller.records[index + 1].weight
                                             : null,
                                         3,
                                         heightsize * 0.03,
-                                        records[index].timestamp,
+                                        controller.records[index].timestamp,
                                         heightsize * 0.01,
                                         fsizeX: fsizeSmall);
                                   },
@@ -331,9 +325,9 @@ const Spacer(),
               width: widthsize,
               height: heightsize * 0.14,
               child: 
-              // kReleaseMode? 
+              kReleaseMode? 
               AdWidget(ad: MkBannerADclass().mkBannerAD(context))
-              // :const Center(child: Text("for banner Contents"))
+              :const Center(child: Text("for banner ad"))
               ,
               
               // child: const Text("광고 파트, 높이 : 0.14"),
@@ -364,8 +358,7 @@ const Spacer(),
                       onPressed: () {
                         Get.off(() => const Home());
                       },
-                      child: TextCustom()
-                          .customText("새로 입력하기", fsizeLarge, "c", clr: Colors.white),
+                      child: customText("새로 입력하기", fsizeLarge, "c", clr: Colors.white),
                     ),
                   ),
                 ],
@@ -378,25 +371,4 @@ const Spacer(),
     );
   } // end of widget
 
-  bringRecords() async {
-    SqliteRepository sql = SqliteRepository();
-
-    // records.addAll(await sql.bringRecord()) ;
-    records = await sql.bringRecord();
-    if (records.isNotEmpty){
-    minBMI = (records.map((record) => record.bmi).toList()).reduce(min);
-    maxBMI = (records.map((record) => record.bmi).toList()).reduce(max);
-    minWeight = (records.map((record) => record.weight).toList()).reduce(min);
-    maxWeight = (records.map((record) => record.weight).toList()).reduce(max);
-    minHeight = (records.map((record) => record.height).toList()).reduce(min);
-    maxHeight = (records.map((record) => record.height).toList()).reduce(max);
-    }
-
-
-
-
-
-
-    Get.find<RecordPageController>().loadRec.value = true;
-  } //end of bringRecords
 } //end  of class

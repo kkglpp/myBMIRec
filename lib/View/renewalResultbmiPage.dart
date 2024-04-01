@@ -1,13 +1,14 @@
 import 'dart:math';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:mybmirecord/Controller_ViewModel/resultbmipageController.dart';
+import 'package:mybmirecord/ViewModel_Controller/resultbmipageController.dart';
 import 'package:mybmirecord/Model_Func/sqlite_repository.dart';
 import 'package:mybmirecord/View/home.dart';
 
 import 'package:get/get.dart';
-import 'package:mybmirecord/View_Custom/circleChart.dart';
-import 'package:mybmirecord/View_Custom/textcustom.dart';
+import 'package:mybmirecord/Widget_Custom/circleChart.dart';
+import 'package:mybmirecord/Widget_Custom/CustomWidget.dart';
 import 'package:mybmirecord/static/forBannerAd.dart';
 
 import '../static/forRelativeSize.dart';
@@ -62,7 +63,7 @@ class ResultBMIPage extends StatelessWidget {
                                 width: widthsize,
                                 height: heightsize * 0.55,
                                 child: Center(
-                                  child: TextCustom().customText(
+                                  child: customText(
                                       "No Image", fsizeXLarge, "C",
                                       clr: Colors.white),
                                 )),
@@ -78,9 +79,9 @@ class ResultBMIPage extends StatelessWidget {
                   width: widthsize,
                   height: heightsize * 0.14,
                   child: 
-                  // kReleaseMode?
+                  kReleaseMode?
                   AdWidget(ad: MkBannerADclass().mkBannerAD(context))
-                      // : Center(child: const Text("for banner Contents")),
+                      : Center(child: const Text("for banner ad")),
                 ),
                 const Spacer(),
 
@@ -106,7 +107,7 @@ class ResultBMIPage extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    TextCustom().customText(
+                                    customText(
                                       "BMI ",
                                       RelativeSizeClass(context).orientation ==
                                               Orientation.portrait
@@ -124,7 +125,7 @@ class ResultBMIPage extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    TextCustom().customText(
+                                    customText(
                                       ": ",
                                       RelativeSizeClass(context).orientation ==
                                               Orientation.portrait
@@ -143,8 +144,7 @@ class ResultBMIPage extends StatelessWidget {
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   crossAxisAlignment: CrossAxisAlignment.end,
-                                  children: [
-                                    TextCustom().customText(
+                                  children: [customText(
                                       "${controller.bmirec!.bmi.toStringAsFixed(1)} ",
                                       RelativeSizeClass(context).orientation ==
                                               Orientation.portrait
@@ -171,7 +171,7 @@ class ResultBMIPage extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    TextCustom().customText(
+                                    customText(
                                       "몸무게",
                                       RelativeSizeClass(context).orientation ==
                                               Orientation.portrait
@@ -189,7 +189,7 @@ class ResultBMIPage extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    TextCustom().customText(
+                                    customText(
                                       ": ",
                                       RelativeSizeClass(context).orientation ==
                                               Orientation.portrait
@@ -208,7 +208,7 @@ class ResultBMIPage extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
-                                    TextCustom().customText(
+                                    customText(
                                       "${controller.bmirec!.weight.toStringAsFixed(1)} kg",
                                       RelativeSizeClass(context).orientation ==
                                               Orientation.portrait
@@ -235,7 +235,7 @@ class ResultBMIPage extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    TextCustom().customText(
+                                    customText(
                                         "키 ",
                                         RelativeSizeClass(context)
                                                     .orientation ==
@@ -253,7 +253,7 @@ class ResultBMIPage extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    TextCustom().customText(
+                                    customText(
                                       ": ",
                                       RelativeSizeClass(context).orientation ==
                                               Orientation.portrait
@@ -272,7 +272,7 @@ class ResultBMIPage extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
-                                    TextCustom().customText(
+                                    customText(
                                       "${controller.bmirec!.height.toStringAsFixed(1)} cm",
                                       RelativeSizeClass(context).orientation ==
                                               Orientation.portrait
@@ -397,7 +397,7 @@ class ResultBMIPage extends StatelessWidget {
                               onPressed: () {
                                 deleteDialog();
                               },
-                              child: TextCustom().customText(
+                              child: customText(
                                   "삭제하기", fsizeMiddle, "C",
                                   clr: Colors.red)),
                           SizedBox(
@@ -410,7 +410,7 @@ class ResultBMIPage extends StatelessWidget {
                               onPressed: () {
                                 Get.off(const Home());
                               },
-                              child: TextCustom().customText(
+                              child: customText(
                                   "확 인", fsizeMiddle, "C",
                                   clr: Colors.blue)),
                         ],
