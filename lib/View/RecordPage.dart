@@ -53,7 +53,19 @@ class RecordPage extends StatelessWidget {
                     ],
                   ),
                 );
-              } else {
+              } else if(controller.records.isEmpty){
+                return Container(
+                  decoration: BoxDecoration(
+                    color: const Color.fromARGB(255, 202, 202, 202),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  width: widthsize,
+                  height: heightsize * 0.19,
+                  child: Center(child: customText("기록이 없습니다.\n당신의 오늘을 기록하세요!", fsizeLarge, "C")),
+                );
+                
+              }
+              else {
                 // print("목록 불러오기 성공");
                 return recordCardList(context, controller);
               }
