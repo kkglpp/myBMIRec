@@ -1,8 +1,9 @@
 import 'package:mybmirecord/Model_dataModel/bmi_record.dart';
+import 'package:mybmirecord/Model_datahandler/databaseHandler.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
-class DatabaseHandler {
+class DatabaseHandlerImpl implements DatabaseHandler {
   // 사용할 sql 구문 모음
   final String createStr =
       'CREATE TABLE bmirecord2(seq integer primary key autoincrement, insertdate String, weight real, height real, bmi real, image blob)';

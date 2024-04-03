@@ -1,17 +1,17 @@
 import 'dart:io';
 
 import '../Model_dataModel/bmi_record.dart';
-import '../Model_datahandler/database_handler.dart';
+import '../Model_datahandler/databaseHandler_Impl.dart';
 
 class SqliteRepository {
   deleteRecord(int recordKey) async {
-    DatabaseHandler db = DatabaseHandler();
+    DatabaseHandlerImpl db = DatabaseHandlerImpl();
     bool rs = await db.deleteRecord(recordKey);
     return rs;
   }
 
   Future<List<BMIrecord>> bringRecord() async {
-    DatabaseHandler db = DatabaseHandler();
+    DatabaseHandlerImpl db = DatabaseHandlerImpl();
     List<BMIrecord> records;
     records = await db.queryRecord();
     return records;
@@ -19,7 +19,7 @@ class SqliteRepository {
 
   saveMyBMI(String? imgPath, double weight, double height, double bmi) async {
     // print("$bmi // 키:  $height // 몸무게: $weight");
-    DatabaseHandler dh = DatabaseHandler();
+    DatabaseHandlerImpl dh = DatabaseHandlerImpl();
     int nowYear = DateTime.now().year;
     int nowday = DateTime.now().day;
     int nowMonth = DateTime.now().month;
@@ -51,7 +51,7 @@ class SqliteRepository {
   } //end of save
 
   Future<BMIrecord> bringQuery(int seq) async {
-    final DatabaseHandler db = DatabaseHandler();
+    final DatabaseHandlerImpl db = DatabaseHandlerImpl();
     BMIrecord? bmi;
     bmi = (await db.queryOneRecord(seq))[0];
     return bmi;
