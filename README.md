@@ -12,7 +12,7 @@
 #### Flutter 아키텍쳐 및 패키지들 시험 연습을 겸하는 application. 
 
 ---
-## Ver 1 -> github.com/kkglpp/MyBMIRecords
+## Ver 1 -> github.com/kkglpp/MyBMIRecord
 
 ---
 
