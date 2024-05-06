@@ -22,15 +22,17 @@ class InsertPageController extends GetxController {
   } //end of changeofHeight
 
   plusHeight() {
-    if (height.value < 249.9) {
+    if (height.value < 250) {
       height.value += 0.1;
       bmi.value = CalcBMI().calcbmi(height.value, weight.value);
     }
   } //end of changeofHeight
 
   subHeight() {
+    if(height.value>100){
     height.value -= 0.1;
     bmi.value = CalcBMI().calcbmi(height.value, weight.value);
+    }
   } //end of changeofHeight
 
   changeWeight(double newWeight) {
@@ -40,7 +42,7 @@ class InsertPageController extends GetxController {
   } //end of changeWeight
 
   plusWeight() {
-    if (weight.value < 179.9) {
+    if (weight.value < 180) {
       weight.value += 0.1;
       bmi.value = CalcBMI().calcbmi(height.value, weight.value);
     }
@@ -48,9 +50,11 @@ class InsertPageController extends GetxController {
   } //end of changeWeight
 
   subWeight() {
+    if(weight.value > 30 ){
     weight.value -= 0.1;
     bmi.value = CalcBMI().calcbmi(height.value, weight.value);
     // calcBMI(height, weight);
+    }
   } //end of changeWeight
 
   selectImage() async {
