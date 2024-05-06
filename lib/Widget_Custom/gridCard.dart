@@ -64,7 +64,7 @@ class GridCard {
                       width: realWidth,
                       height: realHeight,
                       child: Center(
-                        child: customText("No Image", fsize * 1.5, "C",
+                        child: customText("No Image", fsize * 1.2, "C",
                             clr: Colors.white),
                       ),
                     )
@@ -85,7 +85,7 @@ class GridCard {
                     ),
             ),
             Positioned(
-              top: realHeight * 0.7,
+              top: realHeight * 0.65,
               child: Container(
                   decoration: BoxDecoration(
                       color: Colors.white.withAlpha(190),
@@ -94,7 +94,7 @@ class GridCard {
                           bottomLeft: Radius.circular(10),
                           bottomRight: Radius.circular(10))),
                   width: realWidth,
-                  height: realHeight * 0.3,
+                  height: realHeight * 0.35,
                   child: Row(
                     children: [
                       const SizedBox(
@@ -106,7 +106,7 @@ class GridCard {
                           children: [
                             customText("BMI : ${bmiValue.toStringAsFixed(1)}",
                                 fsize, "L"),
-                            customText(recordDate, fsize * 0.9, "C"),
+                            customText(recordDate, fsize * 0.8, "C"),
                           ]),
                     ],
                   )),

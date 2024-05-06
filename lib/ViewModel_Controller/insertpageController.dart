@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mybmirecord/Model_Func/calcBMI.dart';
@@ -11,34 +13,43 @@ class InsertPageController extends GetxController {
   RxBool viewType = false.obs;
   final ImagePicker imgPicker = ImagePicker();
   RxString imgPath = "1".obs;
+  Timer? _timer;
 
   //Function.
   changeHeight(double newHeight) {
     height.value = newHeight;
-    bmi.value= CalcBMI().calcbmi(height.value,weight.value);
+    bmi.value = CalcBMI().calcbmi(height.value, weight.value);
   } //end of changeofHeight
+
   plusHeight() {
-    height.value += 0.1;
-    bmi.value= CalcBMI().calcbmi(height.value,weight.value);
+    if (height.value < 249.9) {
+      height.value += 0.1;
+      bmi.value = CalcBMI().calcbmi(height.value, weight.value);
+    }
   } //end of changeofHeight
+
   subHeight() {
     height.value -= 0.1;
-    bmi.value= CalcBMI().calcbmi(height.value,weight.value);
+    bmi.value = CalcBMI().calcbmi(height.value, weight.value);
   } //end of changeofHeight
 
   changeWeight(double newWeight) {
     weight.value = newWeight;
-    bmi.value= CalcBMI().calcbmi(height.value,weight.value);
+    bmi.value = CalcBMI().calcbmi(height.value, weight.value);
     // calcBMI(height, weight);
   } //end of changeWeight
+
   plusWeight() {
-    weight.value += 0.1;
-    bmi.value= CalcBMI().calcbmi(height.value,weight.value);
+    if (weight.value < 179.9) {
+      weight.value += 0.1;
+      bmi.value = CalcBMI().calcbmi(height.value, weight.value);
+    }
     // calcBMI(height, weight);
   } //end of changeWeight
+
   subWeight() {
     weight.value -= 0.1;
-    bmi.value= CalcBMI().calcbmi(height.value,weight.value);
+    bmi.value = CalcBMI().calcbmi(height.value, weight.value);
     // calcBMI(height, weight);
   } //end of changeWeight
 
@@ -53,6 +64,49 @@ class InsertPageController extends GetxController {
       imgPath.value = tempFile.path;
     } else {}
   } // end of selectImage
+
+  repeatedPlusHeight() {
+    _timer?.cancel();
+    _timer = Timer.periodic(
+      const Duration(milliseconds: 50),
+      (timer) {
+        plusHeight();
+      },
+    );
+  }
+
+  repeatedSubHeight() {
+    _timer?.cancel();
+    _timer = Timer.periodic(
+      const Duration(milliseconds: 50),
+      (timer) {
+        subHeight();
+      },
+    );
+  }
+  repeatedPlusWeight() {
+    _timer?.cancel();
+    _timer = Timer.periodic(
+      const Duration(milliseconds: 50),
+      (timer) {
+        plusWeight();
+      },
+    );
+  }
+
+  repeatedSubWeight() {
+    _timer?.cancel();
+    _timer = Timer.periodic(
+      const Duration(milliseconds: 50),
+      (timer) {
+        subWeight();
+      },
+    );
+  }
+
+  timerEnd(){
+    _timer?.cancel();
+  }
 
   saveMyBMI() async {
     int rs = 0;

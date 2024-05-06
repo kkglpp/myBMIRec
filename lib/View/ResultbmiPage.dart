@@ -28,7 +28,7 @@ class ResultBMIPage extends StatelessWidget {
     // double heightsize = 700;
     double widthsize = RelativeSizeClass(context).widthSize!;
     double heightsize = RelativeSizeClass(context).heightSize!;
-    // double fsizeSmall = RelativeSizeClass(context).customFontSizeS!;
+    double fsizeSmall = RelativeSizeClass(context).customFontSizeS!;
     double fsizeMiddle = RelativeSizeClass(context).customFontSizeM!;
     double fsizeLarge = RelativeSizeClass(context).customFontSizeL!;
     double fsizeXLarge = RelativeSizeClass(context).customFontSizeXL!;
@@ -112,8 +112,8 @@ class ResultBMIPage extends StatelessWidget {
                                       "BMI ",
                                       RelativeSizeClass(context).orientation ==
                                               Orientation.portrait
-                                          ? fsizeLarge
-                                          : fsizeLarge / 1.5,
+                                          ? fsizeMiddle
+                                          : fsizeSmall,
                                       "L",
                                     )
                                   ],
@@ -130,8 +130,8 @@ class ResultBMIPage extends StatelessWidget {
                                       ": ",
                                       RelativeSizeClass(context).orientation ==
                                               Orientation.portrait
-                                          ? fsizeLarge
-                                          : fsizeLarge / 1.5,
+                                          ? fsizeMiddle
+                                          : fsizeSmall,
                                       "R",
                                     )
                                   ],
@@ -149,8 +149,8 @@ class ResultBMIPage extends StatelessWidget {
                                       "${controller.bmirec!.bmi.toStringAsFixed(1)} ",
                                       RelativeSizeClass(context).orientation ==
                                               Orientation.portrait
-                                          ? fsizeLarge
-                                          : fsizeLarge / 1.5,
+                                          ? fsizeMiddle
+                                          : fsizeSmall ,
                                       "R",
                                     )
                                   ],
@@ -176,8 +176,8 @@ class ResultBMIPage extends StatelessWidget {
                                       "몸무게",
                                       RelativeSizeClass(context).orientation ==
                                               Orientation.portrait
-                                          ? fsizeLarge
-                                          : fsizeLarge / 1.5,
+                                          ? fsizeMiddle
+                                          : fsizeSmall,
                                       "L",
                                     )
                                   ],
@@ -194,8 +194,8 @@ class ResultBMIPage extends StatelessWidget {
                                       ": ",
                                       RelativeSizeClass(context).orientation ==
                                               Orientation.portrait
-                                          ? fsizeLarge
-                                          : fsizeLarge / 1.5,
+                                          ? fsizeMiddle
+                                          : fsizeSmall,
                                       "R",
                                     )
                                   ],
@@ -213,8 +213,8 @@ class ResultBMIPage extends StatelessWidget {
                                       "${controller.bmirec!.weight.toStringAsFixed(1)} kg",
                                       RelativeSizeClass(context).orientation ==
                                               Orientation.portrait
-                                          ? fsizeLarge
-                                          : fsizeLarge / 1.5,
+                                          ? fsizeMiddle
+                                          : fsizeSmall,
                                       "R",
                                     )
                                   ],
@@ -241,8 +241,8 @@ class ResultBMIPage extends StatelessWidget {
                                         RelativeSizeClass(context)
                                                     .orientation ==
                                                 Orientation.portrait
-                                            ? fsizeLarge
-                                            : fsizeLarge / 1.5,
+                                            ? fsizeMiddle
+                                            : fsizeSmall,
                                         "L")
                                   ],
                                 ),
@@ -258,8 +258,8 @@ class ResultBMIPage extends StatelessWidget {
                                       ": ",
                                       RelativeSizeClass(context).orientation ==
                                               Orientation.portrait
-                                          ? fsizeLarge
-                                          : fsizeLarge / 1.5,
+                                          ? fsizeMiddle
+                                          : fsizeSmall,
                                       "R",
                                     )
                                   ],
@@ -277,8 +277,8 @@ class ResultBMIPage extends StatelessWidget {
                                       "${controller.bmirec!.height.toStringAsFixed(1)} cm",
                                       RelativeSizeClass(context).orientation ==
                                               Orientation.portrait
-                                          ? fsizeLarge
-                                          : fsizeLarge / 1.5,
+                                          ? fsizeMiddle
+                                          : fsizeSmall,
                                       "R",
                                     )
                                   ],

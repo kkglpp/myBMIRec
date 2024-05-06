@@ -4,21 +4,39 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class RelativeSizeClass {
 
+  
+
   double? widthSize;
   double? heightSize;
   double? customFontSizeS;
   double? customFontSizeM;
   double? customFontSizeL;
   double? customFontSizeXL;
+  double? orientWidth;
+  double? orientHeight;
   var  orientation ;
+
   RelativeSizeClass(BuildContext context) {
     orientation = MediaQuery.of(context).orientation;
-    widthSize =  400.w;
+    orientWidth = MediaQuery.of(context).size.width;
+    orientHeight = MediaQuery.of(context).size.height;
+        widthSize =  400.w;
     heightSize =  750.h;
     customFontSizeS = 10.sp;
     customFontSizeM = 13.sp;
-    customFontSizeL = 17.sp;
+    customFontSizeL = 15.sp;
     customFontSizeXL = 21.sp;
+    print((orientHeight!/orientWidth!));
+    if ( (orientHeight!/orientWidth!) < 1.5){
+    widthSize =  400.w;
+    heightSize =  750.h;
+    customFontSizeS = 8.sp;
+    customFontSizeM = 10.sp;
+    customFontSizeL = 12.sp;
+    customFontSizeXL = 15.sp;
+    }
+
+
     /* screenUtil 안쓸떄 썻던 방법. */
     // orientation = MediaQuery.of(context).orientation;
     // widthSize =  MediaQuery.of(context).size.width*0.9;
@@ -28,4 +46,7 @@ class RelativeSizeClass {
     // customFontSizeL = (widthSize! * 0.02*1.6).clamp(14, 22) ; //450 기준 14.4
     // customFontSizeXL = (widthSize! * 0.02*2).clamp(18, 25); //450 -> 18
   }
+
+
+
 }

@@ -6,8 +6,12 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:mybmirecord/View/home.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
-void main() {
+void main()async {
   WidgetsFlutterBinding.ensureInitialized(); //Flutter 초기화 여부 확인
+    await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
   MobileAds.instance.initialize(); // MobilesAD 초기화
   runApp(const MyApp());
 }
@@ -19,7 +23,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-    return ScreenUtilInit(
+    return ScreenUtilInit( // 크기를 반응형으로 만등기 위함
       designSize: const Size(430, 932),
       minTextAdapt: true,
       splitScreenMode: true,

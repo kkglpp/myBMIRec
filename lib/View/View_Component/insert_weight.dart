@@ -47,27 +47,37 @@ Widget insertWeight(BuildContext context, InsertPageController controller) {
             Container(
               // color: Colors.pink,
               height: heightsize * 0.045,
-              child: IconButton(
-                  onPressed: () {
-                    controller.plusWeight();
-                  },
-                  icon: Icon(
-                    Icons.keyboard_arrow_up_sharp,
-                    size: fsizeXLarge * 1.2,
-                  )),
+              child: GestureDetector(
+                onTap: () => controller.plusWeight(),
+                onTapDown: (details) {
+                  controller.repeatedPlusWeight();
+                },
+                onTapUp: (details) {
+                  controller.timerEnd();
+                },
+                child: Icon(
+                  Icons.keyboard_arrow_up_sharp,
+                  size: fsizeXLarge * 1.2,
+                ),
+              ),
             ),
             const Spacer(),
             Container(
               // color: Colors.yellow,
               height: heightsize * 0.045,
-              child: IconButton(
-                  onPressed: () {
-                    controller.subWeight();
-                  },
-                  icon: Icon(
-                    Icons.keyboard_arrow_down_sharp,
-                    size: fsizeXLarge * 1.2,
-                  )),
+              child: GestureDetector(
+                onTap: () => controller.subWeight(),
+                onTapDown: (details) {
+                  controller.repeatedSubWeight();
+                },
+                onTapUp: (details) {
+                  controller.timerEnd();
+                },
+                child: Icon(
+                  Icons.keyboard_arrow_down_sharp,
+                  size: fsizeXLarge * 1.2,
+                ),
+              ),
             ),
           ],
         ),
