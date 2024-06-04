@@ -95,7 +95,7 @@ class InsertPage extends StatelessWidget {
                           children: [
                             customText(
                                 "BMI : ${controller.bmi.toStringAsFixed(1)}",
-                                fsizeXLarge,
+                                fsizeXLarge*0.9,
                                 "L"),
                           ],
                         ),
@@ -110,7 +110,7 @@ class InsertPage extends StatelessWidget {
                           children: [
                             customText(
                               "사진 고르기 ➤ ",
-                              fsizeLarge,
+                              fsizeLarge*0.9,
                               "R",
                             ),
                           ],

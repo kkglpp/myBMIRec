@@ -58,6 +58,7 @@ class InsertPageController extends GetxController {
   } //end of changeWeight
 
   selectImage() async {
+
     XFile? tempFile;
     try {
       tempFile = await imgPicker.pickImage(source: ImageSource.gallery);

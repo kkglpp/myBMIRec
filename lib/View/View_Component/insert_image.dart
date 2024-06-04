@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:mybmirecord/ViewModel_Controller/insertpageController.dart';
+import 'package:mybmirecord/Widget_Custom/CustomWidget.dart';
 import 'package:mybmirecord/static/forRelativeSize.dart';
 
 Widget insertImg(BuildContext context, InsertPageController ctrl) {
@@ -23,11 +24,11 @@ Widget insertImg(BuildContext context, InsertPageController ctrl) {
         ),
         SizedBox(
             child: ctrl.imgPath.value == "1"
-                ? Image.asset(
-                    "images/0.jpeg",
+                ? Container(
+                  color: Colors.black,
+                    child: Center(child: customText("이미지를 골라주세요", fsizeLarge, "C",clr: Colors.white)),
                     height: heightsize * 0.35,
-                    width: widthsize,
-                    fit: BoxFit.fitHeight,
+                    width: widthsize*0.6,
                   )
                 : Image.file(
                     File(ctrl.imgPath.value),

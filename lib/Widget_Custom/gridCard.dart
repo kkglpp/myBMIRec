@@ -106,7 +106,7 @@ class GridCard {
                           children: [
                             customText("BMI : ${bmiValue.toStringAsFixed(1)}",
                                 fsize, "L"),
-                            customText(recordDate, fsize * 0.8, "C"),
+                            customText(recordDate, fsize * 0.6, "C"),
                           ]),
                     ],
                   )),

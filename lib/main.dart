@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     return ScreenUtilInit( // 크기를 반응형으로 만등기 위함
-      designSize: const Size(430, 932),
+      designSize: const Size(435, 1000),
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
