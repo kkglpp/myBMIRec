@@ -10,7 +10,7 @@ class RelativeSizeClass {
   double? customFontSizeXL;
   double? orientWidth;
   double? orientHeight;
-  var orientation;
+  Orientation? orientation;
 
   RelativeSizeClass(BuildContext context) {
     orientation = MediaQuery.of(context).orientation;

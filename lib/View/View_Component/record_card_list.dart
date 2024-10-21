@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mybmirecord/View/ResultbmiPage.dart';
-import 'package:mybmirecord/ViewModel_Controller/recordpageController.dart';
-import 'package:mybmirecord/Widget_Custom/gridCard.dart';
-import 'package:mybmirecord/static/forRelativeSize.dart';
+import 'package:mybmirecord/View/result_bmi_page.dart';
+import 'package:mybmirecord/ViewModel_Controller/recordpage_controller.dart';
+import 'package:mybmirecord/Widget_Custom/grid_card.dart';
+import 'package:mybmirecord/static/relative_size.dart';
 
 Widget recordCardList(BuildContext context, RecordPageController controller){
       double widthsize = RelativeSizeClass(context).widthSize!;
     double heightsize = RelativeSizeClass(context).heightSize!;
-    double fsizeSmall = RelativeSizeClass(context).customFontSizeS!;
+    // double fsizeSmall = RelativeSizeClass(context).customFontSizeS!;
     double fsizeMiddle = RelativeSizeClass(context).customFontSizeM!;
-    double fsizeLarge= RelativeSizeClass(context).customFontSizeL!;
-    double fsizeXLarge= RelativeSizeClass(context).customFontSizeXL!;
+    // double fsizeLarge= RelativeSizeClass(context).customFontSizeL!;
+    // double fsizeXLarge= RelativeSizeClass(context).customFontSizeXL!;
 
   return  Container(
                   decoration: BoxDecoration(

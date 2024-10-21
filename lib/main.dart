@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:mybmirecord/View/home.dart';
-import 'package:responsive_framework/responsive_framework.dart';
 
 void main()async {
   WidgetsFlutterBinding.ensureInitialized(); //Flutter 초기화 여부 확인

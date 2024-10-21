@@ -1,16 +1,15 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mybmirecord/ViewModel_Controller/insertpageController.dart';
-import 'package:mybmirecord/Widget_Custom/CustomWidget.dart';
-import 'package:mybmirecord/static/forRelativeSize.dart';
+import 'package:mybmirecord/ViewModel_Controller/insertpage_controller.dart';
+import 'package:mybmirecord/static/relative_size.dart';
+
+import '../../Widget_Custom/custom_widget.dart';
 
 Widget insertHeight(BuildContext context, InsertPageController controller) {
   double widthsize = RelativeSizeClass(context).widthSize!;
   double heightsize = RelativeSizeClass(context).heightSize!;
-  double fsizeSmall = RelativeSizeClass(context).customFontSizeS!;
-  double fsizeMiddle = RelativeSizeClass(context).customFontSizeM!;
+  // double fsizeSmall = RelativeSizeClass(context).customFontSizeS!;
+  // double fsizeMiddle = RelativeSizeClass(context).customFontSizeM!;
   double fsizeLarge = RelativeSizeClass(context).customFontSizeL!;
   double fsizeXLarge = RelativeSizeClass(context).customFontSizeXL!;
   
@@ -22,11 +21,11 @@ Widget insertHeight(BuildContext context, InsertPageController controller) {
         height: heightsize * 0.09,
         // color: Colors.blue,
         child: Center(
-          child: customText(
+          child: CustomWidget().customText(
               "${controller.height.toStringAsFixed(1)}cm", fsizeLarge, 'C'),
         ),
       ),
-      Container(
+      SizedBox(
         // color: Colors.amber,
         width: widthsize * 0.55,
         height: heightsize * 0.09,
@@ -40,14 +39,14 @@ Widget insertHeight(BuildContext context, InsertPageController controller) {
           },
         ),
       ),
-      Container(
+      SizedBox(
         // color: Colors.green,
         width: widthsize * 0.15,
         height: heightsize * 0.09,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
+            SizedBox(
               // color: Colors.pink,
               height: heightsize * 0.045,
               child: GestureDetector(
@@ -65,7 +64,7 @@ Widget insertHeight(BuildContext context, InsertPageController controller) {
               ),
             ),
             const Spacer(),
-            Container(
+            SizedBox(
               // color: Colors.yellow,
               height: heightsize * 0.045,
               child:GestureDetector(

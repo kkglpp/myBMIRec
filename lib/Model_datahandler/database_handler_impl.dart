@@ -1,5 +1,5 @@
 import 'package:mybmirecord/Model_dataModel/bmi_record.dart';
-import 'package:mybmirecord/Model_datahandler/databaseHandler.dart';
+import 'package:mybmirecord/Model_datahandler/database_handler.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -15,8 +15,8 @@ class DatabaseHandlerImpl implements DatabaseHandler {
   final String queryAllStr = 'SELECT * FROM bmirecord2';
   final String queryOneStr = 'SELECT * FROM bmirecord2 WHERE seq = ?';
 
-
   //Db 불러오기.
+  @override
   Future<Database> initializeDB() async {
     String path = await getDatabasesPath();
     return openDatabase(
@@ -30,14 +30,16 @@ class DatabaseHandlerImpl implements DatabaseHandler {
   }
 
   // QueryAddress
+  @override
   Future<List<BMIrecord>> queryRecord() async {
     final Database db = await initializeDB();
     final List<Map<String, Object?>> queryResult =
         await db.rawQuery('select * from bmirecord2');
-        // print("QueryRecord 가져옴 dataHandler");
+    // print("QueryRecord 가져옴 dataHandler");
     return queryResult.map((e) => BMIrecord.fromMap(e)).toList();
   }
 
+  @override
   Future<int> insertRecord(BMIrecord bmi) async {
     int pk = 0;
     final Database db = await initializeDB();
@@ -57,6 +59,7 @@ class DatabaseHandlerImpl implements DatabaseHandler {
     return pk;
   }
 
+  @override
   Future<List<BMIrecord>> queryOneRecord(int pk) async {
     final Database db = await initializeDB();
     final List<Map<String, Object?>> queryResult =
@@ -66,6 +69,7 @@ class DatabaseHandlerImpl implements DatabaseHandler {
   }
 
   // DeleteAddress
+  @override
   deleteRecord(int recordKey) async {
     final Database db = await initializeDB();
     try {
@@ -77,16 +81,10 @@ class DatabaseHandlerImpl implements DatabaseHandler {
     return true;
   }
 
+  @override
   updateRecord(BMIrecord bmi) async {
     final Database db = await initializeDB();
-    await db.rawUpdate(updateStr, [
-      bmi.timestamp,
-      bmi.weight,
-      bmi.height,
-      bmi.bmi,
-      null,
-      bmi.seq
-    ]);
+    await db.rawUpdate(updateStr,
+        [bmi.timestamp, bmi.weight, bmi.height, bmi.bmi, null, bmi.seq]);
   }
-
 }

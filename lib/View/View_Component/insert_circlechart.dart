@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_getx_widget.dart';
-import 'package:mybmirecord/ViewModel_Controller/insertpageController.dart';
-import 'package:mybmirecord/Widget_Custom/circleChart.dart';
-import 'package:mybmirecord/static/forRelativeSize.dart';
+import 'package:mybmirecord/ViewModel_Controller/insertpage_controller.dart';
+import 'package:mybmirecord/Widget_Custom/circle_chart.dart';
+import 'package:mybmirecord/static/relative_size.dart';
 
 //BMI 수치에 따라 원의크기가 달라지도록하여, 시각적으로 BMI 위험도 상태를 표시.
 //배경에 체중미달 정상 체중 과체중 비만 체중등의 경계선을 제시하여 기준점 제시.
 Widget insertCircleChart(BuildContext context) {
   double widthsize = RelativeSizeClass(context).widthSize!;
   double heightsize = RelativeSizeClass(context).heightSize!;
-  double fsizeSmall = RelativeSizeClass(context).customFontSizeS!;
-  double fsizeMiddle = RelativeSizeClass(context).customFontSizeM!;
-  double fsizeLarge = RelativeSizeClass(context).customFontSizeL!;
-  double fsizeXLarge = RelativeSizeClass(context).customFontSizeXL!;
+  // double fsizeSmall = RelativeSizeClass(context).customFontSizeS!;
+  // double fsizeMiddle = RelativeSizeClass(context).customFontSizeM!;
+  // double fsizeLarge = RelativeSizeClass(context).customFontSizeL!;
+  // double fsizeXLarge = RelativeSizeClass(context).customFontSizeXL!;
 
-  return Container(
+  return SizedBox(
     width: widthsize,
     height: heightsize * 0.5,
     // color: Colors.amber,

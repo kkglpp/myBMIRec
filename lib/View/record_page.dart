@@ -2,14 +2,14 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:mybmirecord/View/View_Component/record_cardList.dart';
+import 'package:mybmirecord/View/View_Component/record_card_list.dart';
 import 'package:mybmirecord/View/View_Component/record_graph.dart';
-import 'package:mybmirecord/ViewModel_Controller/recordpageController.dart';
+import 'package:mybmirecord/ViewModel_Controller/recordpage_controller.dart';
 import 'package:mybmirecord/View/home.dart';
-import 'package:mybmirecord/Widget_Custom/CustomWidget.dart';
-import 'package:mybmirecord/static/forBannerAd.dart';
+import '../Widget_Custom/custom_widget.dart';
+import 'package:mybmirecord/static/mk_banner_ad.dart';
 
-import '../static/forRelativeSize.dart';
+import '../static/relative_size.dart';
 
 class RecordPage extends StatelessWidget {
   const RecordPage({super.key});
@@ -24,10 +24,11 @@ class RecordPage extends StatelessWidget {
     double fsizeMiddle = RelativeSizeClass(context).customFontSizeM!;
     double fsizeLarge = RelativeSizeClass(context).customFontSizeL!;
     double fsizeXLarge = RelativeSizeClass(context).customFontSizeXL!;
+    CustomWidget custom =CustomWidget();
 
     return Scaffold(
       appBar: AppBar(
-        title: customText("My BMI Status ? ", fsizeXLarge, "C"),
+        title: custom.customText("My BMI Status ? ", fsizeXLarge, "C"),
       ),
       body: Center(
         child: Column(
@@ -61,7 +62,7 @@ class RecordPage extends StatelessWidget {
                   ),
                   width: widthsize,
                   height: heightsize * 0.19,
-                  child: Center(child: customText("기록이 없습니다.\n당신의 오늘을 기록하세요!", fsizeLarge, "C")),
+                  child: Center(child: custom.customText("기록이 없습니다.\n당신의 오늘을 기록하세요!", fsizeLarge, "C")),
                 );
                 
               }
@@ -108,7 +109,7 @@ class RecordPage extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
-                                    customText(
+                                    custom.customText(
                                         controller.graphSelect.value == 0
                                             ? "단위 : "
                                             : controller.graphSelect.value == 1
@@ -135,7 +136,7 @@ class RecordPage extends StatelessWidget {
                                         controller.selectBMIGraph();
                                       }
                                     : null,
-                                child: customText("BMI", fsizeSmall, "C")),
+                                child: custom.customText("BMI", fsizeSmall, "C")),
                             ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                     backgroundColor:
@@ -151,7 +152,7 @@ class RecordPage extends StatelessWidget {
                                         controller.selectHeightGraph();
                                       }
                                     : null,
-                                child: customText("키", fsizeSmall, "C")),
+                                child: custom.customText("키", fsizeSmall, "C")),
                             ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                     backgroundColor:
@@ -167,7 +168,7 @@ class RecordPage extends StatelessWidget {
                                         controller.selectWeightGraph();
                                       }
                                     : null,
-                                child: customText("몸무게", fsizeSmall, "C")),
+                                child: custom.customText("몸무게", fsizeSmall, "C")),
                           ],
                         );
                       },
@@ -275,7 +276,7 @@ class RecordPage extends StatelessWidget {
                       onPressed: () {
                         Get.off(() => const Home());
                       },
-                      child: customText("새로 입력하기", fsizeLarge, "c",
+                      child: custom.customText("새로 입력하기", fsizeLarge, "c",
                           clr: Colors.white),
                     ),
                   ),

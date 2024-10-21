@@ -2,7 +2,7 @@ import 'dart:math';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-import 'package:mybmirecord/Widget_Custom/CustomWidget.dart';
+import 'package:mybmirecord/Widget_Custom/custom_widget.dart';
 
 class GridCard {
   Uint8List? imgBytes;
@@ -13,11 +13,12 @@ class GridCard {
     this.recordDate,
   );
 
+  CustomWidget cWidget = CustomWidget();
+
   girdCard(
       double widthsize, double heightsize, double bmiValue, double paddingValue,
       {double fsize = 12}) {
-    // double realWidth = widthsize;
-    // double realHeight = heightsize ;
+
 
     late double lenSize = min(widthsize, heightsize);
     double realWidth = lenSize - (paddingValue * 2);
@@ -34,12 +35,10 @@ class GridCard {
                 // color: Colors.black,
                 borderRadius: BorderRadius.circular(10),
                 boxShadow: [
-
                   //그림자를 넣어서 꾸민다.
-                  //BMI 수치에따라 색을 바꿔준다. 
+                  //BMI 수치에따라 색을 바꿔준다.
                   // 저체중 (18.5 미만) - 보라색   정상체중 (30 미만) - 파랑색   과체중~~ - 붉은색
                   // 수치별 색은 시각화 시킨 원의 범위별 색과 일치.
-
 
                   BoxShadow(
                     color: bmiValue < 18.5
@@ -64,7 +63,7 @@ class GridCard {
                       width: realWidth,
                       height: realHeight,
                       child: Center(
-                        child: customText("No Image", fsize * 1.2, "C",
+                        child: cWidget.customText("No Image", fsize * 1.2, "C",
                             clr: Colors.white),
                       ),
                     )
@@ -104,9 +103,9 @@ class GridCard {
                           mainAxisAlignment: MainAxisAlignment.end,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            customText("BMI : ${bmiValue.toStringAsFixed(1)}",
+                            cWidget.customText("BMI : ${bmiValue.toStringAsFixed(1)}",
                                 fsize, "L"),
-                            customText(recordDate, fsize * 0.6, "C"),
+                            cWidget.customText(recordDate, fsize * 0.6, "C"),
                           ]),
                     ],
                   )),

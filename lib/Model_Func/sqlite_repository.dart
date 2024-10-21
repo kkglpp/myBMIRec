@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import '../Model_dataModel/bmi_record.dart';
-import '../Model_datahandler/databaseHandler_Impl.dart';
+import '../Model_datahandler/database_handler_impl.dart';
 
 class SqliteRepository {
   deleteRecord(int recordKey) async {

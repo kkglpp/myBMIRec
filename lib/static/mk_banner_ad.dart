@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
-const Map<String, String> UNIT_ID =
+const Map<String, String> unitID =
 kReleaseMode
     ? {
         'ios': '[YOUR iOS AD UNIT ID]',
@@ -16,7 +16,6 @@ kReleaseMode
       };
 
 class MkBannerADclass{
-  
 
   mkBannerAD(BuildContext context){
   TargetPlatform os = Theme.of(context).platform;
@@ -24,7 +23,7 @@ class MkBannerADclass{
       // size: AdSize(width: widthsize.toInt(), height: (heightsize*0.05).toInt()),
       size: AdSize.banner,
       // adUnitId: UNIT_ID[os == TargetPlatform.iOS ? 'ios' : 'android']!,
-      adUnitId: UNIT_ID[os == TargetPlatform.iOS ? 'ios' : 'android']!,
+      adUnitId: unitID[os == TargetPlatform.iOS ? 'ios' : 'android']!,
       listener: BannerAdListener(
       onAdFailedToLoad: (Ad ad, LoadAdError error) {},
       onAdLoaded: (_) {},

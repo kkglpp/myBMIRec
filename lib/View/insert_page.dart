@@ -5,12 +5,12 @@ import 'package:mybmirecord/View/View_Component/insert_circlechart.dart';
 import 'package:mybmirecord/View/View_Component/insert_height.dart';
 import 'package:mybmirecord/View/View_Component/insert_image.dart';
 import 'package:mybmirecord/View/View_Component/insert_weight.dart';
-import 'package:mybmirecord/View/RecordPage.dart';
-import 'package:mybmirecord/View/ResultbmiPage.dart';
-import 'package:mybmirecord/ViewModel_Controller/insertpageController.dart';
+import 'package:mybmirecord/View/record_page.dart';
+import 'package:mybmirecord/View/result_bmi_page.dart';
+import 'package:mybmirecord/ViewModel_Controller/insertpage_controller.dart';
 
-import 'package:mybmirecord/Widget_Custom/CustomWidget.dart';
-import 'package:mybmirecord/static/forRelativeSize.dart';
+import '../Widget_Custom/custom_widget.dart';
+import 'package:mybmirecord/static/relative_size.dart';
 
 class InsertPage extends StatelessWidget {
   const InsertPage({super.key});
@@ -38,10 +38,11 @@ class InsertPage extends StatelessWidget {
 
     double widthsize = RelativeSizeClass(context).widthSize!;
     double heightsize = RelativeSizeClass(context).heightSize!;
-    double fsizeSmall = RelativeSizeClass(context).customFontSizeS!;
-    double fsizeMiddle = RelativeSizeClass(context).customFontSizeM!;
+    // double fsizeSmall = RelativeSizeClass(context).customFontSizeS!;
+    // double fsizeMiddle = RelativeSizeClass(context).customFontSizeM!;
     double fsizeLarge = RelativeSizeClass(context).customFontSizeL!;
     double fsizeXLarge = RelativeSizeClass(context).customFontSizeXL!;
+    CustomWidget custom = CustomWidget();
 
     return Scaffold(
       body: Center(
@@ -74,7 +75,7 @@ class InsertPage extends StatelessWidget {
             Container로 한 박스로 묶음.
             높이 : 0.05  (0.023 +@ )
             */
-            Container(
+            SizedBox(
               // color: Colors.amber,
               width: widthsize,
               height: heightsize * 0.05,
@@ -93,9 +94,9 @@ class InsertPage extends StatelessWidget {
                         // color: Colors.grey,
                         child: Row(
                           children: [
-                            customText(
+                            custom.customText(
                                 "BMI : ${controller.bmi.toStringAsFixed(1)}",
-                                fsizeXLarge*0.9,
+                                fsizeXLarge * 0.9,
                                 "L"),
                           ],
                         ),
@@ -108,9 +109,9 @@ class InsertPage extends StatelessWidget {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            customText(
+                            custom.customText(
                               "사진 고르기 ➤ ",
-                              fsizeLarge*0.9,
+                              fsizeLarge * 0.9,
                               "R",
                             ),
                           ],
@@ -141,7 +142,7 @@ class InsertPage extends StatelessWidget {
             BMI 수치를 시각화 하는 부분 + 화면 전환시 사진을 입력 받는 부분.
             전체 높이 : heightsize * 0.5   여기까지 0.73 +@
              */
-            Container(
+            SizedBox(
               // color: Colors.amber,
               width: widthsize,
               height: heightsize * 0.5,
@@ -209,7 +210,7 @@ class InsertPage extends StatelessWidget {
                   foregroundColor: Colors.white,
                   minimumSize: Size(widthsize * 0.8, heightsize * 0.075)),
               onPressed: () {
-                Get.off(() => RecordPage());
+                Get.off(() => const RecordPage());
               },
               child: SizedBox(
                 width: widthsize * 0.8,

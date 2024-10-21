@@ -1,18 +1,18 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:mybmirecord/ViewModel_Controller/insertpageController.dart';
-import 'package:mybmirecord/Widget_Custom/CustomWidget.dart';
-import 'package:mybmirecord/static/forRelativeSize.dart';
+import 'package:mybmirecord/ViewModel_Controller/insertpage_controller.dart';
+import 'package:mybmirecord/static/relative_size.dart';
+
+import '../../Widget_Custom/custom_widget.dart';
 
 Widget insertImg(BuildContext context, InsertPageController ctrl) {
   double widthsize = RelativeSizeClass(context).widthSize!;
   double heightsize = RelativeSizeClass(context).heightSize!;
-  double fsizeSmall = RelativeSizeClass(context).customFontSizeS!;
+  // double fsizeSmall = RelativeSizeClass(context).customFontSizeS!;
   double fsizeMiddle = RelativeSizeClass(context).customFontSizeM!;
   double fsizeLarge = RelativeSizeClass(context).customFontSizeL!;
-  double fsizeXLarge = RelativeSizeClass(context).customFontSizeXL!;
-
+  // double fsizeXLarge = RelativeSizeClass(context).customFontSizeXL!;
   return SizedBox(
     width: widthsize,
     height: heightsize * 0.5,
@@ -26,9 +26,9 @@ Widget insertImg(BuildContext context, InsertPageController ctrl) {
             child: ctrl.imgPath.value == "1"
                 ? Container(
                   color: Colors.black,
-                    child: Center(child: customText("이미지를 골라주세요", fsizeLarge, "C",clr: Colors.white)),
                     height: heightsize * 0.35,
                     width: widthsize*0.6,
+                    child: Center(child: CustomWidget().customText("이미지를 골라주세요", fsizeLarge, "C",clr: Colors.white)),
                   )
                 : Image.file(
                     File(ctrl.imgPath.value),

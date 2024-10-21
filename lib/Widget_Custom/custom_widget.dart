@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 
+class CustomWidget {
+
 Widget customText(String msg, double fSize, String alig, {Color clr = Colors.black}){
     return Text(
       msg,
@@ -12,3 +14,7 @@ Widget customText(String msg, double fSize, String alig, {Color clr = Colors.bla
       ),
     );
   }
+
+}
+
+
