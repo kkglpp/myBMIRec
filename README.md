@@ -9,7 +9,7 @@
 ---   
 ---  
 ### 시연 영상 링크 
-[Watch the video here!](https://youtu.be/B-EZPtX22Cg)   
+[![Watch the video](https://img.youtube.com/vi/B-EZPtX22Cg/0.jpg)](https://youtu.be/B-EZPtX22Cg)
 
 ---  
 ---  
