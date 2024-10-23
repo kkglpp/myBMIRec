@@ -4,7 +4,12 @@
     
 - 상태관리로는 GetX 라이브러리를 선택하였고, Sqlite 를 사용하였습니다.
 
-- MVVM 패턴을 지향하고자 하였습니다.  
+- MVVM 패턴을 지향하고자 하였습니다.
+
+---   
+---  
+### 시연 영상 링크 
+[Watch the video here!](https://youtu.be/B-EZPtX22Cg)   
 
 ---  
 ---  
